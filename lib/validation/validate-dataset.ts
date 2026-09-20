@@ -1,4 +1,10 @@
 import {
+  CONFIDENCE_LEVELS,
+  REVIEW_STATUSES,
+  type ConfidenceLevel,
+  type ReviewStatus,
+} from '@/lib/domain/enums';
+import {
   AssumptionSchema,
   ChronologySchema,
   EventSchema,
@@ -432,6 +438,25 @@ export function validateChronologyInput(rows: unknown[], ctx: InputContext): Fin
       }
     }
 
+    // The figure format is hand-written rather than Zod-parsed, so the
+    // enums have to be checked here or a typo silently becomes a label the
+    // UI has no wording for.
+    if (
+      typeof row.reviewStatus === 'string' &&
+      !REVIEW_STATUSES.includes(row.reviewStatus as ReviewStatus)
+    ) {
+      severe('unknown-review-status', subject, `Unrecognised status ${row.reviewStatus}`);
+    }
+    for (const [path, confidence] of confidencesIn(row)) {
+      if (!CONFIDENCE_LEVELS.includes(confidence as ConfidenceLevel)) {
+        severe(
+          'unknown-confidence',
+          `${subject}.${path}`,
+          `Unrecognised confidence ${confidence}`,
+        );
+      }
+    }
+
     const assumptions = Array.isArray(row.assumptions) ? row.assumptions : [];
     for (const a of assumptions) {
       if (typeof a === 'string' && !ctx.assumptionIds.has(a)) {
@@ -510,6 +535,27 @@ export function validateChronologyInput(rows: unknown[], ctx: InputContext): Fin
 interface Figure {
   value: unknown;
   reference?: unknown;
+}
+
+/** Every confidence label anywhere in a figure record, with its path. */
+function confidencesIn(row: Record<string, unknown>): Array<[string, string]> {
+  const found: Array<[string, string]> = [];
+  const visit = (value: unknown, path: string) => {
+    if (Array.isArray(value)) {
+      value.forEach((item, i) => visit(item, `${path}[${i}]`));
+      return;
+    }
+    if (value === null || typeof value !== 'object') return;
+    for (const [key, child] of Object.entries(value)) {
+      if (key === 'confidence' && typeof child === 'string') {
+        found.push([path ? `${path}.${key}` : key, child]);
+      } else {
+        visit(child, path ? `${path}.${key}` : key);
+      }
+    }
+  };
+  visit(row, '');
+  return found;
 }
 
 function walkFigures(

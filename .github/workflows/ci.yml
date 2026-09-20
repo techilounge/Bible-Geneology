@@ -36,8 +36,13 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run format
-      - run: npm run validate:data
-      - run: npm run test
+      - run: npm run validate
+
+      # Requirement section 21's real question is not whether the validators
+      # report findings but whether a bad dataset can reach production. This
+      # corrupts the canonical files five ways and asserts the gate fails.
+      - run: npm run validate:prove-gate
+      - run: npm run test:coverage
 
       # The database gate. Migrations run twice: once on a clean database, then
       # again with --force, because a migration that is not safe to re-run is a

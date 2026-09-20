@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "npm run validate:data && npm run derive:chronology && next build",
+    "build": "npm run validate && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -25,7 +25,10 @@
     "validate:data": "tsx scripts/validate-data.ts",
     "data:worksheet": "tsx scripts/figure-worksheet.ts",
     "derive:chronology": "tsx scripts/derive-chronology.ts",
-    "test:coverage": "npm run derive:chronology --silent && vitest run --coverage"
+    "test:coverage": "npm run derive:chronology --silent && vitest run --coverage",
+    "validate:derived": "npm run derive:chronology --silent && tsx scripts/validate-derived.ts",
+    "validate": "npm run validate:data && npm run validate:derived",
+    "validate:prove-gate": "tsx scripts/prove-gate.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
