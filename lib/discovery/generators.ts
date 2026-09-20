@@ -7,6 +7,7 @@ import {
   getMaximumConcurrentGenerations,
   getOverlapChain,
   getGenerationDistance,
+  referencesFor,
   buildOverlapGraph,
   descendantsOf,
   type Dataset,
@@ -33,31 +34,6 @@ function nameOf(dataset: Dataset, personId: string): string {
   return dataset.people.get(personId)?.canonicalName ?? personId;
 }
 
-/**
- * References in reading order rather than alphabetical, so Genesis 5:9 comes
- * before Genesis 5:14 instead of after it.
- */
-function byReference(a: string, b: string): number {
-  const parse = (id: string): [string, number, number] => {
-    const [book = '', chapter = '0', verse = '0'] = id.split('.');
-    return [book, Number(chapter), Number(verse)];
-  };
-  const [bookA, chapterA, verseA] = parse(a);
-  const [bookB, chapterB, verseB] = parse(b);
-  return bookA.localeCompare(bookB) || chapterA - chapterB || verseA - verseB;
-}
-
-function referencesFor(dataset: Dataset, personIds: readonly string[]): string[] {
-  const refs = new Set<string>();
-  for (const personId of personIds) {
-    /* v8 ignore next -- @preserve: every id here came out of the dataset. */
-    for (const reference of dataset.chronology.get(personId)?.sourceReferences ?? []) {
-      refs.add(reference);
-    }
-  }
-  return [...refs].sort(byReference);
-}
-
 function year(value: number): string {
   return `${value} ${EPOCH_LABEL}`;
 }
@@ -74,7 +50,14 @@ function dated(dataset: Dataset) {
  * dataset has no dates at all, so "the longest lifespan" is a fact about
  * the people this chronology can place, not about Scripture.
  */
-function population(dataset: Dataset): string {
+/**
+ * The subset a finding ranged over, in words.
+ *
+ * Exported because the quiz asks questions over the same subset, and two
+ * surfaces describing the same population differently would be worse than
+ * either description alone.
+ */
+export function datedPopulation(dataset: Dataset): string {
   const total = dataset.people.size;
   const placed = dated(dataset).length;
   return `the ${placed} of ${total} people this chronology gives both a birth and a death`;
@@ -110,7 +93,7 @@ const lifespanRecords: Generator = (dataset) => {
       `${nameOf(dataset, subject.personId)} has the ` +
       `${kind === 'longest-lifespan' ? 'longest' : 'shortest'} lifespan in this ` +
       `dataset, at ${subject.lifespan} years.`,
-    population: population(dataset),
+    population: datedPopulation(dataset),
     personIds: [subject.personId],
     eventIds: [],
     calculation: [
@@ -178,7 +161,7 @@ function overlapDiscovery(
     kind,
     chronologyId: dataset.chronologyId,
     headline,
-    population: population(dataset),
+    population: datedPopulation(dataset),
     personIds: [pair.a, pair.b],
     eventIds: [],
     calculation: [
@@ -253,7 +236,9 @@ const livingAncestorsAtBirth: Generator = (dataset) => {
         living: result.status === 'known' ? result.value : [],
       };
     })
-    .sort((a, b) => b.living.length - a.living.length || a.personId.localeCompare(b.personId))[0];
+    .sort(
+      (a, b) => b.living.length - a.living.length || a.personId.localeCompare(b.personId),
+    )[0];
 
   if (!best || best.living.length === 0) return [];
   const names = best.living
@@ -268,7 +253,7 @@ const livingAncestorsAtBirth: Generator = (dataset) => {
       headline:
         `${nameOf(dataset, best.personId)} was born with ${best.living.length} ancestors ` +
         `still alive, more than anyone else in this dataset.`,
-      population: population(dataset),
+      population: datedPopulation(dataset),
       personIds: [best.personId, ...best.living.map((person) => person.personId)],
       eventIds: [],
       calculation: [
@@ -299,7 +284,9 @@ const livingDescendantsAtDeath: Generator = (dataset) => {
         living: result.status === 'known' ? result.value : [],
       };
     })
-    .sort((a, b) => b.living.length - a.living.length || a.personId.localeCompare(b.personId))[0];
+    .sort(
+      (a, b) => b.living.length - a.living.length || a.personId.localeCompare(b.personId),
+    )[0];
 
   if (!best || best.living.length === 0) return [];
 
@@ -311,7 +298,7 @@ const livingDescendantsAtDeath: Generator = (dataset) => {
       headline:
         `${nameOf(dataset, best.personId)} died with ${best.living.length} descendants ` +
         `still alive, more than anyone else in this dataset.`,
-      population: population(dataset),
+      population: datedPopulation(dataset),
       personIds: [best.personId, ...best.living.map((person) => person.personId)],
       eventIds: [],
       calculation: [
@@ -337,7 +324,7 @@ const mostConcurrentGenerations: Generator = (dataset) => {
       headline:
         `In ${year(at)}, ${generations} generations of this family were alive at once, ` +
         `${personIds.length} people in all.`,
-      population: population(dataset),
+      population: datedPopulation(dataset),
       personIds: [...personIds].sort((a, b) => a.localeCompare(b)),
       eventIds: [],
       calculation: [
@@ -361,9 +348,9 @@ const outlivedADescendant: Generator = (dataset) => {
   const found: { discovery: Discovery; gap: number }[] = [];
 
   for (const record of dated(dataset)) {
-    const descendantIds = [
-      ...descendantsOf(dataset.relationships, record.personId),
-    ].sort((a, b) => a.localeCompare(b));
+    const descendantIds = [...descendantsOf(dataset.relationships, record.personId)].sort(
+      (a, b) => a.localeCompare(b),
+    );
     for (const descendantId of descendantIds) {
       const descendant = dataset.chronology.get(descendantId);
       if (!descendant || descendant.deathYear === null) continue;
@@ -378,7 +365,7 @@ const outlivedADescendant: Generator = (dataset) => {
           headline:
             `${nameOf(dataset, record.personId)} outlived a descendant: ` +
             `${nameOf(dataset, descendantId)} died ${gap} years first.`,
-          population: population(dataset),
+          population: datedPopulation(dataset),
           personIds: [record.personId, descendantId],
           eventIds: [],
           calculation: [
@@ -428,7 +415,9 @@ const eventsDuringALifetime: Generator = (dataset) => {
       };
     })
     .filter((entry) => entry.events.length > 0)
-    .sort((a, b) => b.events.length - a.events.length || a.personId.localeCompare(b.personId));
+    .sort(
+      (a, b) => b.events.length - a.events.length || a.personId.localeCompare(b.personId),
+    );
 
   const best = counted[0];
   if (!best) return [];
@@ -445,7 +434,7 @@ const eventsDuringALifetime: Generator = (dataset) => {
         `${best.events.length} of the dated events in this chronology fall inside ` +
         `${nameOf(dataset, best.personId)}'s lifetime, ` +
         `${shared > 1 ? 'as many as anyone else\u2019s' : 'more than anyone else\u2019s'}.`,
-      population: population(dataset),
+      population: datedPopulation(dataset),
       personIds: [best.personId],
       eventIds: best.events.map((event) => event.eventId),
       calculation: best.events.map((event) => ({
@@ -505,7 +494,7 @@ const shortestConnectionChain: Generator = (dataset) => {
         `${furthest.generations} generations separate ${nameOf(dataset, furthest.a)} from ` +
         `${nameOf(dataset, furthest.b)}, but only ${chain.length - 2} ` +
         `lifetimes sit between them.`,
-      population: population(dataset),
+      population: datedPopulation(dataset),
       personIds: chain,
       eventIds: [],
       calculation: [

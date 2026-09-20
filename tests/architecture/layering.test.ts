@@ -12,7 +12,15 @@ import { describe, expect, it } from 'vitest';
  * switched off and this is the property the whole layering rests on. A test
  * fails loudly and in CI.
  */
-const ENGINE = ['lib/chronology', 'lib/graph', 'lib/domain'];
+const ENGINE = [
+  'lib/chronology',
+  'lib/graph',
+  'lib/discovery',
+  'lib/quiz',
+  'lib/learning',
+  'lib/progress',
+  'lib/domain',
+];
 
 const FORBIDDEN_IMPORTS = [
   /from\s+['"]react['"]/,

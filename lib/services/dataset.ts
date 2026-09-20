@@ -14,11 +14,9 @@ import {
   ALTERNATE_CHRONOLOGY_ID,
   DEFAULT_CHRONOLOGY_ID,
 } from '@/lib/config/chronology-defaults';
-import {
-  discoveryById,
-  generateDiscoveries,
-  type Discovery,
-} from '@/lib/discovery';
+import { discoveryById, generateDiscoveries, type Discovery } from '@/lib/discovery';
+import { buildJourney, journeyBySlug, type BuiltJourney } from '@/lib/learning';
+import { generateQuestion, type Question, type QuizMode } from '@/lib/quiz';
 import type {
   Assumption,
   BiblicalEvent,
@@ -252,6 +250,28 @@ export const getDiscoveries = (
   const found = generateDiscoveries(getDataset(chronologyId));
   discoveryCache.set(chronologyId, found);
   return found;
+};
+
+/**
+ * A question, generated and marked before it is handed to a page.
+ *
+ * The seed comes from the address, so a shared link is the same
+ * question, and the generator refuses rather than inventing when the
+ * dataset cannot support one.
+ */
+export const getQuestion = (
+  mode: QuizMode,
+  seed: string,
+  chronologyId: string = DEFAULT_CHRONOLOGY_ID,
+): Question | null => generateQuestion(getDataset(chronologyId), mode, seed);
+
+/** A journey with every figure in it read from the chronology. */
+export const getJourney = (
+  slug: string,
+  chronologyId: string = DEFAULT_CHRONOLOGY_ID,
+): BuiltJourney | null => {
+  const journey = journeyBySlug(slug);
+  return journey ? buildJourney(getDataset(chronologyId), journey) : null;
 };
 
 export const getDiscovery = (

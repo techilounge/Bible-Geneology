@@ -47,6 +47,29 @@ export default defineConfig({
           functions: 100,
           statements: 99,
         },
+
+        // The quiz engine decides whether an answer is right, and the
+        // progress rules decide what a player has earned. Both are held
+        // to the engine standard for the same reason: an untested branch
+        // is a wrong answer nobody has read.
+        'lib/quiz/**': {
+          lines: 100,
+          branches: 100,
+          functions: 100,
+          statements: 99,
+        },
+        'lib/progress/**': {
+          lines: 100,
+          branches: 100,
+          functions: 100,
+          statements: 99,
+        },
+        'lib/learning/**': {
+          lines: 100,
+          branches: 100,
+          functions: 100,
+          statements: 99,
+        },
       },
     },
   },

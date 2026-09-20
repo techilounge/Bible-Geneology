@@ -20,6 +20,8 @@ const ROUTES = [
   '/compare',
   '/events',
   '/discover',
+  '/games',
+  '/journeys',
   '/chronology',
   '/about',
 ];

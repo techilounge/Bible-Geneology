@@ -34,7 +34,15 @@ export default tseslint.config(
   // The domain layer is framework-independent. Requirement section 18:
   // the chronology engine must contain no UI code and no I/O.
   {
-    files: ['lib/chronology/**', 'lib/graph/**', 'lib/discovery/**', 'lib/domain/**'],
+    files: [
+      'lib/chronology/**',
+      'lib/graph/**',
+      'lib/discovery/**',
+      'lib/quiz/**',
+      'lib/learning/**',
+      'lib/progress/**',
+      'lib/domain/**',
+    ],
     rules: {
       'no-restricted-imports': [
         'error',

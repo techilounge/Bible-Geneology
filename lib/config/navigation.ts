@@ -57,6 +57,18 @@ export const PRIMARY_NAV: readonly NavItem[] = [
     description: 'Findings the dataset supports, each with its working.',
     phase: 11,
   },
+  {
+    href: '/games',
+    label: 'Play',
+    description: 'Eight ways to test the chronology, all generated from it.',
+    phase: 12,
+  },
+  {
+    href: '/journeys',
+    label: 'Journeys',
+    description: 'Guided routes through the genealogy, a step at a time.',
+    phase: 12,
+  },
 ] as const;
 
 export const SECONDARY_NAV: readonly NavItem[] = [

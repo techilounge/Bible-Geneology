@@ -59,6 +59,7 @@ export {
   type LivingPerson,
   type YearChange,
 } from './alive';
+export { compareReferences, referencesFor } from './references';
 export { getEventsDuringLifetime, type EventDuringLifetime } from './events';
 export { getChronologyExplanation, type ChronologyExplanation } from './explanation';
 export {

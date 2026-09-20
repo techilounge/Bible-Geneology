@@ -140,7 +140,11 @@ test.describe('accessibility', () => {
 
     await page.goto('/discover');
     await page.getByTestId('discovery').first().getByRole('link').click();
-    await expect(page.locator('h1')).toBeVisible();
+    // The click is a soft navigation, and a heading is visible on both
+    // pages, so waiting for the heading alone can run axe against a
+    // document that is about to be replaced.
+    await expect(page).toHaveURL(/\/discover\/.+/);
+    await expect(page.getByTestId('calculation')).toBeVisible();
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
       .analyze();
