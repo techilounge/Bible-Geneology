@@ -74,3 +74,18 @@ export {
   getOverlapChain,
   type OverlapGraph,
 } from '@/lib/graph/overlap-graph';
+export {
+  axisTicks,
+  buildRows,
+  clampDomain,
+  createScale,
+  extentOf,
+  overlappingIds,
+  packLanes,
+  visibleRows,
+  zoomAbout,
+  type TimelineEvent,
+  type TimelineInput,
+  type TimelineRow,
+  type TimelineScale,
+} from './scale';

@@ -30,7 +30,14 @@ export interface LivingPerson {
  * chronology supports; "their lifetimes overlapped by N years" needs an end
  * date it does not have.
  */
-function livingWindowEnd(record: {
+/**
+ * Where a life's bar ends, and whether that end is recorded.
+ *
+ * Exported because the timeline needs the same answer. Two surfaces deciding
+ * independently where Enoch's bar stops is exactly how they end up
+ * disagreeing.
+ */
+export function livingWindowEnd(record: {
   birthYear: number | null;
   deathYear: number | null;
   lifespan: number | null;

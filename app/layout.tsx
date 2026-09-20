@@ -16,6 +16,13 @@ export const metadata: Metadata = {
   applicationName: branding.productName,
   manifest: '/manifest.webmanifest',
   appleWebApp: { capable: true, title: branding.shortName },
+  // Without this the browser asks for /favicon.ico on every page load and
+  // gets a 404. The icons already exist for the manifest; pointing at them
+  // costs nothing and stops the noise.
+  icons: {
+    icon: [{ url: '/icon-192.png', type: 'image/png', sizes: '192x192' }],
+    apple: [{ url: '/icon-192.png', sizes: '192x192' }],
+  },
 };
 
 export const viewport: Viewport = {
