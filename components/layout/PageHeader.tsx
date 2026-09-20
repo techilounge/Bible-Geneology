@@ -6,10 +6,13 @@ export function PageHeader({
   lede,
   children,
 }: {
-  eyebrow?: string;
+  // `| undefined` rather than bare optional: with exactOptionalPropertyTypes
+  // a caller passing a value that may be absent should not have to build the
+  // props object conditionally just to omit a subtitle.
+  eyebrow?: string | undefined;
   title: string;
-  lede?: string;
-  children?: ReactNode;
+  lede?: string | undefined;
+  children?: ReactNode | undefined;
 }) {
   return (
     <div className="flex flex-col gap-3">

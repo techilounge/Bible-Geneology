@@ -40,6 +40,16 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: { '@': fileURLToPath(new URL('.', import.meta.url)) },
+    alias: {
+      '@': fileURLToPath(new URL('.', import.meta.url)),
+      // `server-only` throws unless the bundler is resolving under the
+      // react-server condition, which Vitest is not. The guard that matters
+      // is Next's, at build time, where a client import of a server module
+      // actually fails the build; here it would only stop the module being
+      // testable at all.
+      'server-only': fileURLToPath(
+        new URL('./node_modules/server-only/empty.js', import.meta.url),
+      ),
+    },
   },
 });
