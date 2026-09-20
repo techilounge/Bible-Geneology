@@ -17,7 +17,11 @@ CREATE SCHEMA IF NOT EXISTS auth;
 
 CREATE TABLE IF NOT EXISTS auth.users (
   id    uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  email text UNIQUE
+  email text UNIQUE,
+  -- Supabase puts whatever the identity provider returned here; the profile
+  -- trigger in 0014 reads a display name out of it. Shimmed so the trigger
+  -- runs locally exactly as it will on the hosted project.
+  raw_user_meta_data jsonb NOT NULL DEFAULT '{}'::jsonb
 );
 
 -- Supabase derives this from the request JWT. Locally, tests set the setting

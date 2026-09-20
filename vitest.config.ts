@@ -70,6 +70,12 @@ export default defineConfig({
           functions: 100,
           statements: 99,
         },
+        'lib/account/**': {
+          lines: 100,
+          branches: 100,
+          functions: 100,
+          statements: 99,
+        },
       },
     },
   },

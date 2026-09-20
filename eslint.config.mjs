@@ -42,6 +42,7 @@ export default tseslint.config(
       'lib/learning/**',
       'lib/progress/**',
       'lib/domain/**',
+      'lib/account/**',
     ],
     rules: {
       'no-restricted-imports': [

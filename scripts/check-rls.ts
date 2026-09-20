@@ -15,6 +15,7 @@ const USER_WRITABLE = new Set([
   'saved_comparisons',
   'quiz_attempts',
   'user_achievements',
+  'learning_progress',
   'profiles',
 ]);
 

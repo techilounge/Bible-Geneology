@@ -80,6 +80,12 @@ export const SECONDARY_NAV: readonly NavItem[] = [
     phase: 5,
   },
   {
+    href: '/account',
+    label: 'Account',
+    description: 'Favourites and progress kept across browsers, for readers who want it.',
+    phase: 13,
+  },
+  {
     href: '/about',
     label: 'About',
     description: 'What this is, and what it deliberately does not claim.',

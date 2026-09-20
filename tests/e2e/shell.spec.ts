@@ -24,6 +24,9 @@ const ROUTES = [
   '/journeys',
   '/chronology',
   '/about',
+  '/account',
+  '/account/sign-in',
+  '/account/signed-out',
 ];
 
 async function horizontalOverflow(page: Page): Promise<number> {

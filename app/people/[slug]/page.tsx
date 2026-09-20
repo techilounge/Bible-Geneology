@@ -5,6 +5,7 @@ import { ChronologyValue } from '@/components/chronology/ChronologyValue';
 import { PersonDates } from '@/components/chronology/PersonDates';
 import { UndatedNotice } from '@/components/chronology/UndatedNotice';
 import { WhyThisDate } from '@/components/chronology/WhyThisDate';
+import { FavouriteButton } from '@/components/account/FavouriteButton';
 import { PageHeader, PageShell } from '@/components/layout/PageHeader';
 import { Card, CardTitle } from '@/components/ui/Card';
 import {
@@ -144,6 +145,12 @@ export default async function PersonPage({
             ))}
           </p>
         ) : null}
+        <FavouriteButton
+          entityType="person"
+          entityId={person.id}
+          next={`/people/${person.slug}`}
+          label={`Save ${person.canonicalName} to your account`}
+        />
       </PageHeader>
 
       {record === null ? (
