@@ -28,6 +28,15 @@ export interface Overlap {
   overlapEnd: number | null;
   /** True when the intervals touch at exactly one year boundary. */
   sameYearBoundary: boolean;
+  /**
+   * Years between the earlier death and the later birth, when the two do
+   * not overlap; 0 when they do.
+   *
+   * Here rather than in the page that prints it. "Noah died two years
+   * before Abraham was born" is a chronological claim, and a claim belongs
+   * where it can be tested.
+   */
+  gapYears: number;
 }
 
 export function getLifetimeOverlap(
@@ -64,6 +73,7 @@ export function getLifetimeOverlap(
       overlapStart: years > 0 ? overlapStart : null,
       overlapEnd: years > 0 ? overlapEnd : null,
       sameYearBoundary: overlapEnd === overlapStart,
+      gapYears: Math.max(0, overlapStart - overlapEnd),
     },
     'DERIVED',
   );

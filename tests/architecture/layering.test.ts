@@ -89,8 +89,10 @@ describe('the presentation layer cannot reach the service-role client', () => {
  * a value is birth plus lifespan is documentation, not a calculation.
  */
 const TIME_SURFACES = [
+  'app/compare',
   'app/timeline',
   'app/who-was-alive',
+  'components/compare',
   'components/timeline',
   'components/year',
 ];

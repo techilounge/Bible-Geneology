@@ -83,9 +83,14 @@ chain is assembled wrong.
 The build prompt's §30 worked example ("Noah and Abraham ... approximately 58 years")
 and two of its §35 Surprise Me examples ("Shem was alive when Jacob was born", "Noah's
 lifetime extended into Abraham's lifetime") assert overlaps that the chosen default
-does not produce. They are placeholder copy, not data, but they must be rewritten
-before Phase 9 and Phase 11 ship, and no seeded discovery may reproduce them. A copy
-review against the verified dataset is an exit condition for both phases.
+does not produce. They are placeholder copy, not data.
+
+**Done in Phase 9.** `docs/COPY_CORRECTIONS.md` records each original beside a true
+replacement, and `tests/architecture/copy.test.ts` fails the build if one of the
+original wordings reappears anywhere in `app/`, `components/`, `lib/` or
+`data/canonical/`. The Phase 11 condition still stands: no seeded discovery may
+reproduce them, and a discovery that asserts an overlap must be generated from the
+engine rather than written by hand.
 
 **Provenance assertions**, run over the whole dataset rather than per pair:
 

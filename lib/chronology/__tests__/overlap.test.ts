@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import type { PersonChronology } from '@/lib/domain';
+import { buildDataset } from '../dataset';
 import { compareLifespans, getLifetimeOverlap } from '../overlap';
 import { fixtureDataset } from './fixtures';
 
@@ -134,5 +136,45 @@ describe('compareLifespans: the remaining absences', () => {
       status: 'unknown',
       reason: 'not-applicable',
     });
+  });
+});
+
+describe('the gap between two lifetimes that do not overlap', () => {
+  it('measures from the earlier death to the later birth', () => {
+    // ancestor 0-100, child 100-150: they touch at one boundary, so the
+    // gap is zero even though the overlap is too.
+    const touching = getLifetimeOverlap(dataset, 'ancestor', 'child');
+    if (touching.status !== 'known') throw new Error('fixture missing');
+    expect(touching.value.gapYears).toBe(0);
+    expect(touching.value.sameYearBoundary).toBe(true);
+  });
+
+  it('is zero when the two do overlap', () => {
+    const overlapping = getLifetimeOverlap(dataset, 'ancestor', 'parent');
+    if (overlapping.status !== 'known') throw new Error('fixture missing');
+    expect(overlapping.value.overlaps).toBe(true);
+    expect(overlapping.value.gapYears).toBe(0);
+  });
+
+  it('counts the years between a death and a later birth', () => {
+    const apart = buildDataset({
+      chronologyId: 'fixture',
+      people: [],
+      chronology: [
+        { ...(dataset.chronology.get('ancestor') as PersonChronology) },
+        {
+          ...(dataset.chronology.get('child') as PersonChronology),
+          birthYear: 140,
+          deathYear: 200,
+        },
+      ],
+      relationships: [],
+    });
+    const result = getLifetimeOverlap(apart, 'ancestor', 'child');
+    if (result.status !== 'known') throw new Error('fixture missing');
+    // ancestor dies in 100, child is born in 140.
+    expect(result.value.overlaps).toBe(false);
+    expect(result.value.sameYearBoundary).toBe(false);
+    expect(result.value.gapYears).toBe(40);
   });
 });
