@@ -17,7 +17,14 @@
 
   --color-text-primary: oklch(96% 0.004 255);
   --color-text-secondary: oklch(78% 0.008 255);
-  --color-text-muted: oklch(63% 0.01 255);
+  /*
+   * Lightened from 63% because muted text on --color-surface-overlay came
+   * out at 4.04:1, under the 4.5:1 that WCAG 1.4.3 asks for at this size.
+   * A token that is only contrast-safe on some of the app's surfaces is a
+   * trap for the next component, so the token moved rather than the two
+   * places that happened to trip over it.
+   */
+  --color-text-muted: oklch(70% 0.01 255);
 
   --color-accent: oklch(78% 0.115 82);
   --color-accent-strong: oklch(70% 0.135 78);
@@ -26,7 +33,13 @@
   --color-confidence-derived: oklch(74% 0.105 235);
   --color-confidence-approximate: oklch(78% 0.1 95);
   --color-confidence-disputed: oklch(72% 0.135 30);
-  --color-confidence-unknown: oklch(60% 0.008 255);
+  /*
+   * Lightened from 60% for the same reason as --color-text-muted: the
+   * Unknown badge puts this colour on --color-surface-overlay, where 60%
+   * came out at 3.55:1. "Unknown" is the label that matters most to read
+   * correctly, so it is not the one to leave under the threshold.
+   */
+  --color-confidence-unknown: oklch(70% 0.008 255);
 
   --font-sans: var(--font-inter), system-ui, sans-serif;
 }

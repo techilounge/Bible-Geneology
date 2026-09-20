@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
+import type { PersonChronology } from '@/lib/domain';
 import {
   agesAtYear,
+  busiestYear,
+  changeYears,
+  nextChange,
   getLivingAncestorsAtYear,
   getLivingDescendantsAtYear,
   getMaximumConcurrentGenerations,
@@ -294,5 +298,115 @@ describe('getPeopleAliveAtBirth: absence', () => {
       status: 'unknown',
       reason: 'not-applicable',
     });
+  });
+});
+
+describe('changeYears', () => {
+  const changes = changeYears(dataset);
+
+  it('lists only the years in which the living set actually changes', () => {
+    // Births at 0, 10, 50 (two) and 100; ends at 90, 100, 150 (two) and 210.
+    expect(changes.map((c) => c.year)).toEqual([0, 10, 50, 90, 100, 150, 210]);
+  });
+
+  it('groups everyone who is born in the same year', () => {
+    expect(changes.find((c) => c.year === 50)?.births).toEqual(['cousin', 'parent']);
+  });
+
+  it('records a birth and an end falling in the same year', () => {
+    const year = changes.find((c) => c.year === 100);
+    expect(year?.births).toEqual(['child']);
+    expect(year?.ends).toEqual(['ancestor']);
+    expect(year?.hasRecordedDeath).toBe(true);
+  });
+
+  it('does not call the end of an open-ended window a death', () => {
+    // openended is born in 10 with a lifespan of 200 and no recorded death,
+    // so 210 is where the chronology stops placing them, not a death year.
+    const year = changes.find((c) => c.year === 210);
+    expect(year?.ends).toEqual(['openended']);
+    expect(year?.hasRecordedDeath).toBe(false);
+  });
+
+  it('ignores anyone the chronology cannot place', () => {
+    const named = changes.flatMap((c) => [...c.births, ...c.ends]);
+    expect(named).not.toContain('undated');
+    expect(named).not.toContain('absent');
+  });
+
+  it('has nothing to report for an empty chronology', () => {
+    const empty = buildDataset({
+      chronologyId: 'fixture',
+      people: [],
+      chronology: [],
+      relationships: [],
+    });
+    expect(changeYears(empty)).toEqual([]);
+  });
+});
+
+describe('nextChange', () => {
+  const changes = changeYears(dataset);
+
+  it('finds the next year in which something happens', () => {
+    expect(nextChange(changes, 100, 'forward')?.year).toBe(150);
+  });
+
+  it('skips the centuries in which nothing happens', () => {
+    // 50 to 90 is one step, not forty.
+    expect(nextChange(changes, 50, 'forward')?.year).toBe(90);
+  });
+
+  it('finds the previous year in which something happened', () => {
+    expect(nextChange(changes, 100, 'back')?.year).toBe(90);
+    expect(nextChange(changes, 211, 'back')?.year).toBe(210);
+  });
+
+  it('stops at the ends of the range rather than wrapping around', () => {
+    expect(nextChange(changes, 210, 'forward')).toBeNull();
+    expect(nextChange(changes, 0, 'back')).toBeNull();
+  });
+
+  it('has nothing to find in an empty list', () => {
+    expect(nextChange([], 100, 'forward')).toBeNull();
+    expect(nextChange([], 100, 'back')).toBeNull();
+  });
+});
+
+describe('busiestYear', () => {
+  it('finds the year the chronology can place the most people alive', () => {
+    // In the fixture, 50 to 90 holds ancestor, parent, cousin and openended.
+    const result = busiestYear(dataset);
+    expect(result.status).toBe('known');
+    if (result.status !== 'known') throw new Error('fixture missing');
+    expect(result.value.count).toBe(4);
+    expect(result.value.year).toBe(50);
+  });
+
+  it('prefers the earliest year when two are equally full', () => {
+    const tied = buildDataset({
+      chronologyId: 'fixture',
+      people: [],
+      chronology: [
+        {
+          ...(dataset.chronology.get('ancestor') as PersonChronology),
+        },
+      ],
+      relationships: [],
+    });
+    const result = busiestYear(tied);
+    if (result.status !== 'known') throw new Error('fixture missing');
+    // One person, alive from year 0; the first year of change wins.
+    expect(result.value.year).toBe(0);
+  });
+
+  it('says it does not know when nobody can be placed', () => {
+    const empty = buildDataset({
+      chronologyId: 'fixture',
+      people: [],
+      chronology: [],
+      relationships: [],
+    });
+    expect(busiestYear(empty).status).toBe('unknown');
   });
 });

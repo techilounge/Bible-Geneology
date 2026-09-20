@@ -8,7 +8,9 @@ import {
   extentOf,
   overlappingIds,
   packLanes,
+  panDomain,
   visibleRows,
+  zoomCentred,
   zoomAbout,
   type TimelineInput,
   type TimelineRow,
@@ -273,6 +275,7 @@ describe('packLanes', () => {
     startYear,
     endYear,
     openEnded: false,
+    lengthYears: endYear - startYear,
     birthConfidence: 'DERIVED',
     deathConfidence: 'DERIVED',
   });
@@ -317,6 +320,7 @@ describe('overlappingIds', () => {
     startYear,
     endYear,
     openEnded: false,
+    lengthYears: endYear - startYear,
     birthConfidence: 'DERIVED',
     deathConfidence: 'DERIVED',
     lane: 0,
@@ -341,5 +345,47 @@ describe('overlappingIds', () => {
 
   it('returns nothing for a person who is not on the timeline', () => {
     expect(overlappingIds(rows, 'nobody').size).toBe(0);
+  });
+});
+
+describe('panDomain and zoomCentred', () => {
+  const bounds: [number, number] = [0, 1000];
+
+  it('slides the viewport by a fraction of its own width', () => {
+    expect(panDomain([100, 200], 0.5, bounds)).toEqual([150, 250]);
+    expect(panDomain([100, 200], -0.5, bounds)).toEqual([50, 150]);
+  });
+
+  it('will not pan past the data', () => {
+    expect(panDomain([0, 100], -1, bounds)).toEqual([0, 100]);
+    expect(panDomain([900, 1000], 1, bounds)).toEqual([900, 1000]);
+  });
+
+  it('keeps the middle of the view still while zooming', () => {
+    const zoomed = zoomCentred([100, 200], 0.5, bounds);
+    expect((zoomed[0] + zoomed[1]) / 2).toBe(150);
+    expect(zoomed[1] - zoomed[0]).toBe(50);
+  });
+
+  it('will not zoom out past the data', () => {
+    expect(zoomCentred([0, 1000], 4, bounds)).toEqual([0, 1000]);
+  });
+});
+
+describe('buildRows records how long each life is', () => {
+  it('carries the length so no component has to subtract two years', () => {
+    const rows = buildRows([
+      { personId: 'a', name: 'A', slug: 'a', record: record(0, 930, 930) },
+    ]);
+    expect(rows[0]?.lengthYears).toBe(930);
+  });
+
+  it('measures an open-ended life to where the chronology stops placing it', () => {
+    // Enoch's case: a stated lifespan, no recorded death.
+    const rows = buildRows([
+      { personId: 'e', name: 'E', slug: 'e', record: record(622, null, 365) },
+    ]);
+    expect(rows[0]?.lengthYears).toBe(365);
+    expect(rows[0]?.openEnded).toBe(true);
   });
 });

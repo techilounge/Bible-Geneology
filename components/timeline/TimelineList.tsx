@@ -62,7 +62,7 @@ export function TimelineList({
                   {row.openEnded ? `${row.endYear}?` : row.endYear} {EPOCH_LABEL}
                 </span>
                 <span className="text-sm text-[var(--color-text-muted)]">
-                  {row.endYear - row.startYear} years
+                  {row.lengthYears} years
                   {row.openEnded
                     ? ', though Scripture records no death for this person'
                     : ''}

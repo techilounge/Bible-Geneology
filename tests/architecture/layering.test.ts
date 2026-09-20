@@ -74,3 +74,56 @@ describe('the presentation layer cannot reach the service-role client', () => {
     expect(offenders).toEqual([]);
   });
 });
+
+/**
+ * The Phase 8 gate: no arithmetic on year values exists in the route's
+ * components.
+ *
+ * The reason is the reliability hierarchy in requirement section 18. A
+ * component that subtracts one year from another has become a second,
+ * untested chronology engine, and the day it disagrees with the first one
+ * the product is quietly lying. Every number on these pages comes out of
+ * `lib/chronology`, which is tested to 100% of its branches.
+ *
+ * Comments are stripped before scanning, because a comment explaining that
+ * a value is birth plus lifespan is documentation, not a calculation.
+ */
+const TIME_SURFACES = [
+  'app/timeline',
+  'app/who-was-alive',
+  'components/timeline',
+  'components/year',
+];
+
+const YEAR_ARITHMETIC = [
+  /\b\w*[Yy]ears?\b\s*[-+]\s*/,
+  /[-+]\s*\b\w*[Yy]ears?\b/,
+  /\bages?\b\s*[-+]\s*/,
+  /[-+]\s*\bages?\b/,
+];
+
+function withoutComments(source: string): string {
+  return source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+}
+
+describe('no route or component does chronology arithmetic', () => {
+  const sources = TIME_SURFACES.flatMap((dir) =>
+    globSync(join(dir, '**/*.tsx'))
+      .filter((path) => !path.endsWith('.test.tsx'))
+      .map((path) => [path, withoutComments(readFileSync(path, 'utf8'))] as const),
+  );
+
+  it('finds the time-drawing surfaces to check', () => {
+    expect(sources.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it.each(YEAR_ARITHMETIC.map((p) => [p.source, p] as const))(
+    'contains nothing matching %s',
+    (_label, pattern) => {
+      const offenders = sources
+        .filter(([, text]) => pattern.test(text))
+        .map(([path, text]) => `${path}: ${pattern.exec(text)?.[0] ?? ''}`);
+      expect(offenders).toEqual([]);
+    },
+  );
+});

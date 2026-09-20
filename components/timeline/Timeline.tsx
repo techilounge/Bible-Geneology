@@ -121,8 +121,8 @@ export function Timeline({
         rows={filtered}
         events={shownEvents}
         bounds={bounds}
-        selected={selected}
-        overlapping={overlapping}
+        emphasised={selected}
+        highlighted={selected === null ? null : new Set([...overlapping, selected])}
         onSelect={setSelected}
       />
 

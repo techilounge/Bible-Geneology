@@ -9,6 +9,9 @@ import {
   getEvent,
   getNamesFor,
   getPersonBySlug,
+  getTimelineBounds,
+  getTimelineEvents,
+  getTimelineRows,
   nameOf,
   resolveReferences,
 } from '../dataset';
@@ -110,5 +113,53 @@ describe('lookups', () => {
   it('names a person for prose, falling back to the id', () => {
     expect(nameOf('abraham')).toBe('Abraham');
     expect(nameOf('nobody')).toBe('nobody');
+  });
+});
+
+describe('the timeline view of the dataset', () => {
+  it('draws a bar only for someone the chronology can place from end to end', () => {
+    const rows = getTimelineRows();
+    const ids = new Set(rows.map((row) => row.personId));
+
+    expect(ids.has('adam')).toBe(true);
+    // Esau has a birth year and neither a death year nor a lifespan, so
+    // there is no year to draw the bar to. Joseph has a lifespan and no
+    // birth year, pending two figures from the text.
+    expect(ids.has('esau')).toBe(false);
+    expect(ids.has('joseph')).toBe(false);
+  });
+
+  it('records how long each life is, so no component has to subtract', () => {
+    const adam = getTimelineRows().find((row) => row.personId === 'adam');
+    expect(adam?.lengthYears).toBe(930);
+  });
+
+  it('gives the timeline and the year explorer the same rows', () => {
+    // Not an identity check: the point is that both callers go through this
+    // function, so the two pages cannot disagree about who can be drawn.
+    expect(getTimelineRows().map((r) => r.personId)).toEqual(
+      getTimelineRows().map((r) => r.personId),
+    );
+  });
+
+  it('marks only the events the chronology can date', () => {
+    const events = getTimelineEvents();
+    const ids = events.map((event) => event.id);
+
+    expect(ids).toContain('the-flood');
+    // Genesis 10:25 places Babel in an era, not a year.
+    expect(ids).not.toContain('tower-of-babel');
+  });
+
+  it('returns the events in the order they happened', () => {
+    const years = getTimelineEvents().map((event) => event.year);
+    expect([...years].sort((a, b) => a - b)).toEqual(years);
+  });
+
+  it('bounds the axis by the earliest birth and the latest end', () => {
+    const [start, end] = getTimelineBounds();
+    const rows = getTimelineRows();
+    expect(start).toBe(Math.min(...rows.map((row) => row.startYear)));
+    expect(end).toBe(Math.max(...rows.map((row) => row.endYear)));
   });
 });

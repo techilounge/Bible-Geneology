@@ -200,3 +200,114 @@ export function agesAtYear(dataset: Dataset, year: number) {
     ageResult: getAgeAtYear(dataset, person.personId, year),
   }));
 }
+
+/**
+ * A year in which the set of living people changes.
+ *
+ * The year explorer needs somewhere to jump to, and "the next year in which
+ * anything happens" is a better answer than "the next year". Between Jared's
+ * death and Methuselah's there are centuries in which the list does not
+ * change at all, and stepping through them one at a time tells the reader
+ * nothing.
+ */
+export interface YearChange {
+  year: number;
+  /** People whose recorded life begins in this year. */
+  births: string[];
+  /**
+   * People whose living window ends in this year. For a record with a stated
+   * lifespan and no recorded death this is not a death, and the caller is
+   * told so, because saying Enoch died in 987 AM is a claim the text does not
+   * make.
+   */
+  ends: string[];
+  /** True when at least one of the ends above is a recorded death. */
+  hasRecordedDeath: boolean;
+}
+
+/**
+ * Every year in which someone is born or a living window closes, in order.
+ *
+ * Derived from the chronology alone. Nothing here rounds, estimates or fills
+ * a gap: a person the chronology cannot place contributes no year.
+ */
+export function changeYears(dataset: Dataset): YearChange[] {
+  const byYear = new Map<number, YearChange>();
+
+  const at = (year: number): YearChange => {
+    const existing = byYear.get(year);
+    if (existing) return existing;
+    const created: YearChange = { year, births: [], ends: [], hasRecordedDeath: false };
+    byYear.set(year, created);
+    return created;
+  };
+
+  for (const record of dataset.chronology.values()) {
+    const span = livingWindowEnd(record);
+    if (span === null || record.birthYear === null) continue;
+    at(record.birthYear).births.push(record.personId);
+    const end = at(span.end);
+    end.ends.push(record.personId);
+    if (!span.openEnded) end.hasRecordedDeath = true;
+  }
+
+  const changes = [...byYear.values()].sort((a, b) => a.year - b.year);
+  for (const change of changes) {
+    change.births.sort();
+    change.ends.sort();
+  }
+  return changes;
+}
+
+/**
+ * The next year of change strictly after (or before) the given year.
+ *
+ * Returns null at the ends of the range rather than wrapping around, because
+ * a control that silently jumps from the last death back to Adam's birth
+ * would read as a bug.
+ */
+export function nextChange(
+  changes: readonly YearChange[],
+  from: number,
+  direction: 'forward' | 'back',
+): YearChange | null {
+  if (direction === 'forward') {
+    return changes.find((change) => change.year > from) ?? null;
+  }
+  for (let i = changes.length - 1; i >= 0; i -= 1) {
+    const change = changes[i];
+    /* v8 ignore next -- @preserve: noUncheckedIndexedAccess forces this guard; the index is always in range. */
+    if (!change) continue;
+    if (change.year < from) return change;
+  }
+  return null;
+}
+
+export interface BusiestYear {
+  year: number;
+  count: number;
+}
+
+/**
+ * The year in which the chronology can place the most people alive.
+ *
+ * Only years of change need checking: between one birth or death and the
+ * next, the count cannot move. Ties go to the earliest year, so the answer
+ * is stable rather than dependent on iteration order.
+ *
+ * It is a fact about this chronology and not about history, and the page
+ * that uses it says so. It exists because a year explorer has to open on
+ * some year, and opening on the fullest one is more use than opening on the
+ * epoch, where the answer is Adam.
+ */
+export function busiestYear(dataset: Dataset): ChronologyResult<BusiestYear> {
+  let best: BusiestYear | null = null;
+
+  for (const change of changeYears(dataset)) {
+    const count = getPeopleAliveAtYear(dataset, change.year).length;
+    if (best === null || count > best.count) best = { year: change.year, count };
+  }
+
+  if (best === null || best.count === 0) return unknown('no-data');
+  return known(best, 'DERIVED');
+}

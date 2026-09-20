@@ -26,6 +26,7 @@ function row(
     startYear,
     endYear,
     openEnded: false,
+    lengthYears: endYear - startYear,
     birthConfidence: 'DERIVED',
     deathConfidence: 'DERIVED',
     ...extra,

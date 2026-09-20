@@ -50,8 +50,14 @@ export {
   getPeopleAliveAtBirth,
   getPeopleAliveAtDeath,
   getPeopleAliveAtYear,
+  busiestYear,
+  changeYears,
+  livingWindowEnd,
+  nextChange,
+  type BusiestYear,
   type ConcurrentGenerations,
   type LivingPerson,
+  type YearChange,
 } from './alive';
 export { getEventsDuringLifetime, type EventDuringLifetime } from './events';
 export { getChronologyExplanation, type ChronologyExplanation } from './explanation';
@@ -82,6 +88,8 @@ export {
   extentOf,
   overlappingIds,
   packLanes,
+  panDomain,
+  zoomCentred,
   visibleRows,
   zoomAbout,
   type TimelineEvent,

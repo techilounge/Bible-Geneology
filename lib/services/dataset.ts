@@ -1,7 +1,15 @@
 import 'server-only';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { buildDataset, type Dataset } from '@/lib/chronology';
+import {
+  buildDataset,
+  buildRows,
+  extentOf,
+  type Dataset,
+  type TimelineEvent,
+  type TimelineInput,
+  type TimelineRow,
+} from '@/lib/chronology';
 import {
   ALTERNATE_CHRONOLOGY_ID,
   DEFAULT_CHRONOLOGY_ID,
@@ -163,3 +171,59 @@ export const nameOf = (personId: string): string => {
   const person = getCanonical().people.find((p) => p.id === personId);
   return person?.canonicalName ?? personId;
 };
+
+/**
+ * The dataset as bars on a time axis.
+ *
+ * Shared by the timeline and the year explorer, so the two cannot disagree
+ * about who can be drawn. Someone with a birth year and no end — Esau — has
+ * no bar, and that is stated on the pages rather than silently dropped.
+ */
+export const getTimelineRows = (
+  chronologyId: string = DEFAULT_CHRONOLOGY_ID,
+): TimelineRow[] => {
+  const dataset = getDataset(chronologyId);
+  const input: TimelineInput[] = [];
+  for (const person of getCanonical().people) {
+    const record = dataset.chronology.get(person.id);
+    if (!record) continue;
+    input.push({
+      personId: person.id,
+      name: person.canonicalName,
+      slug: person.slug,
+      record,
+    });
+  }
+  return buildRows(input);
+};
+
+/**
+ * The events the chronology can date.
+ *
+ * An undated event has no place on an axis, and putting it at a plausible
+ * year would be exactly the invention requirement section 3 forbids. The
+ * Tower of Babel is the case: Genesis 10:25 gives an era, not a year.
+ */
+export const getTimelineEvents = (
+  chronologyId: string = DEFAULT_CHRONOLOGY_ID,
+): TimelineEvent[] => {
+  const dataset = getDataset(chronologyId);
+  const events: TimelineEvent[] = [];
+  for (const event of getCanonical().events) {
+    const dated = dataset.eventChronology.get(event.id);
+    if (!dated || dated.startYear === null) continue;
+    events.push({
+      id: event.id,
+      name: event.name,
+      slug: event.slug,
+      year: dated.startYear,
+      confidence: dated.confidence,
+    });
+  }
+  return events.sort((a, b) => a.year - b.year);
+};
+
+/** The full span the dated lifetimes cover, for a viewport to start at. */
+export const getTimelineBounds = (
+  chronologyId: string = DEFAULT_CHRONOLOGY_ID,
+): [number, number] => extentOf(getTimelineRows(chronologyId)) ?? [0, 1];

@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
 /**
@@ -203,4 +204,34 @@ test.describe('installability', () => {
     const source = await (await request.get('/sw.js')).text();
     expect(source).toContain("url.pathname.startsWith('/api/')");
   });
+});
+
+test.describe('accessibility across the app', () => {
+  /**
+   * An axe sweep of every route, with the same rule set the timeline and
+   * year explorer are held to. Contrast in particular is a property of a
+   * colour token meeting a surface, so it can only be caught where the two
+   * actually meet: a token that passes on one page and fails on another is
+   * exactly the bug this catches.
+   */
+  for (const route of ROUTES) {
+    test(`${route} has no axe violations`, async ({ page }) => {
+      await page.goto(route);
+      // Next streams the page in, so until React has revealed it the real
+      // content is still sitting in a [hidden] container and axe would be
+      // scanning the placeholder.
+      await expect(page.locator('h1')).toBeVisible();
+
+      const results = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
+        .analyze();
+
+      expect(
+        results.violations.map((violation) => ({
+          id: violation.id,
+          nodes: violation.nodes.map((node) => node.html.slice(0, 120)),
+        })),
+      ).toEqual([]);
+    });
+  }
 });

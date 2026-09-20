@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import {
   axisTicks,
-  clampDomain,
   createScale,
+  panDomain,
   visibleRows,
-  zoomAbout,
+  zoomCentred,
   type TimelineEvent,
   type TimelineRow,
 } from '@/lib/chronology/scale';
@@ -45,18 +45,32 @@ export interface TimelineChartProps {
   rows: readonly TimelineRow[];
   events: readonly TimelineEvent[];
   bounds: readonly [number, number];
-  selected: string | null;
-  overlapping: ReadonlySet<string>;
-  onSelect: (personId: string | null) => void;
+  /** Drawn with an accent outline: the one bar the reader is looking at. */
+  emphasised?: string | null;
+  /**
+   * When given, everything outside the set is dimmed. Null means no
+   * emphasis at all, which is not the same as an empty set: an empty set
+   * means the answer is "nobody", and the chart should show that.
+   */
+  highlighted?: ReadonlySet<string> | null;
+  /** A vertical rule at one year, for the year explorer. */
+  markerYear?: number | undefined;
+  markerLabel?: string | undefined;
+  onSelect?: ((personId: string | null) => void) | undefined;
+  /** Extra text for the chart's screen-reader description. */
+  describedAs?: string | undefined;
 }
 
 export function TimelineChart({
   rows,
   events,
   bounds,
-  selected,
-  overlapping,
+  emphasised = null,
+  highlighted = null,
+  markerYear,
+  markerLabel,
   onSelect,
+  describedAs,
 }: TimelineChartProps) {
   const hintId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -84,21 +98,12 @@ export function TimelineChart({
   const height = lanes * LANE_HEIGHT + AXIS_HEIGHT;
 
   const zoom = useCallback(
-    (factor: number) => {
-      setDomain((current) =>
-        zoomAbout(current, (current[0] + current[1]) / 2, factor, bounds),
-      );
-    },
+    (factor: number) => setDomain((current) => zoomCentred(current, factor, bounds)),
     [bounds],
   );
 
   const pan = useCallback(
-    (fraction: number) => {
-      setDomain((current) => {
-        const shift = (current[1] - current[0]) * fraction;
-        return clampDomain([current[0] + shift, current[1] + shift], bounds);
-      });
-    },
+    (fraction: number) => setDomain((current) => panDomain(current, fraction, bounds)),
     [bounds],
   );
 
@@ -113,7 +118,7 @@ export function TimelineChart({
         '=': () => zoom(0.7),
         '-': () => zoom(1 / 0.7),
         Home: reset,
-        Escape: () => onSelect(null),
+        Escape: () => onSelect?.(null),
       };
       const action = actions[event.key];
       if (!action) return;
@@ -124,7 +129,7 @@ export function TimelineChart({
   );
 
   const dimmed = (personId: string) =>
-    selected !== null && personId !== selected && !overlapping.has(personId);
+    highlighted !== null && personId !== emphasised && !highlighted.has(personId);
 
   return (
     <div className="flex flex-col gap-3">
@@ -145,9 +150,9 @@ export function TimelineChart({
       </div>
 
       <p id={hintId} className="sr-only">
-        A visual summary of the lifetimes listed below under &ldquo;Every dated
-        lifetime&rdquo;. Arrow keys pan, plus and minus zoom, Home shows the whole span,
-        and Escape clears the selection.
+        {describedAs ??
+          'A visual summary of the lifetimes listed below under \u201cEvery dated lifetime\u201d.'}{' '}
+        Arrow keys pan, plus and minus zoom, and Home shows the whole span.
       </p>
 
       <div
@@ -213,6 +218,29 @@ export function TimelineChart({
             ))}
           </g>
 
+          {markerYear === undefined ? null : (
+            <g>
+              <line
+                data-testid="marker-rule"
+                x1={scale.yearToX(markerYear)}
+                x2={scale.yearToX(markerYear)}
+                y1={0}
+                y2={height}
+                stroke="var(--color-text-primary)"
+                strokeWidth={2}
+              />
+              {markerLabel ? (
+                <text
+                  x={scale.yearToX(markerYear) + 4}
+                  y={height - 4}
+                  className="fill-[var(--color-text-primary)] font-mono text-[11px]"
+                >
+                  {markerLabel}
+                </text>
+              ) : null}
+            </g>
+          )}
+
           <g>
             {shown.map((row) => {
               const x = scale.yearToX(row.startYear);
@@ -238,14 +266,14 @@ export function TimelineChart({
                     // uncertainty is in the shape and not only in a label.
                     strokeDasharray={row.openEnded ? '4 3' : undefined}
                     stroke={
-                      row.personId === selected
+                      row.personId === emphasised
                         ? 'var(--color-accent)'
                         : row.openEnded
                           ? 'var(--color-text-primary)'
                           : undefined
                     }
                     strokeWidth={
-                      row.personId === selected ? 2 : row.openEnded ? 1 : undefined
+                      row.personId === emphasised ? 2 : row.openEnded ? 1 : undefined
                     }
                     // Panning and zooming move these; the global
                     // reduced-motion rule in globals.css cuts the duration.
@@ -260,17 +288,19 @@ export function TimelineChart({
                       {row.name}
                     </text>
                   ) : null}
-                  <rect
-                    x={x}
-                    y={y}
-                    width={barWidth}
-                    height={BAR_HEIGHT}
-                    fill="transparent"
-                    className="cursor-pointer"
-                    onClick={() =>
-                      onSelect(row.personId === selected ? null : row.personId)
-                    }
-                  />
+                  {onSelect ? (
+                    <rect
+                      x={x}
+                      y={y}
+                      width={barWidth}
+                      height={BAR_HEIGHT}
+                      fill="transparent"
+                      className="cursor-pointer"
+                      onClick={() =>
+                        onSelect(row.personId === emphasised ? null : row.personId)
+                      }
+                    />
+                  ) : null}
                 </g>
               );
             })}

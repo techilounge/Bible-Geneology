@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { PageHeader, PageShell } from '@/components/layout/PageHeader';
 import { Timeline } from '@/components/timeline/Timeline';
-import {
-  buildRows,
-  type TimelineEvent,
-  type TimelineInput,
-} from '@/lib/chronology/scale';
 import { CHRONOLOGY_DISCLAIMER } from '@/lib/config/chronology-defaults';
-import { getCanonical, getDataset } from '@/lib/services/dataset';
+import {
+  getCanonical,
+  getDataset,
+  getTimelineEvents,
+  getTimelineRows,
+} from '@/lib/services/dataset';
 
 export const metadata: Metadata = {
   title: 'Timeline',
@@ -18,40 +18,8 @@ export const metadata: Metadata = {
 export default function TimelinePage() {
   const canonical = getCanonical();
   const dataset = getDataset();
-
-  const input: TimelineInput[] = [];
-  for (const person of canonical.people) {
-    const record = dataset.chronology.get(person.id);
-    if (!record) continue;
-    input.push({
-      personId: person.id,
-      name: person.canonicalName,
-      slug: person.slug,
-      record,
-    });
-  }
-
-  const rows = buildRows(input);
-
-  /**
-   * Only events the chronology can date. An undated event such as the Tower
-   * of Babel has no place on an axis, and putting it at a plausible year
-   * would be exactly the invention requirement section 3 forbids. Those
-   * events are listed on the events page instead.
-   */
-  const events: TimelineEvent[] = [];
-  for (const event of canonical.events) {
-    const dated = dataset.eventChronology.get(event.id);
-    if (!dated || dated.startYear === null) continue;
-    events.push({
-      id: event.id,
-      name: event.name,
-      slug: event.slug,
-      year: dated.startYear,
-      confidence: dated.confidence,
-    });
-  }
-  events.sort((a, b) => a.year - b.year);
+  const rows = getTimelineRows();
+  const events = getTimelineEvents();
 
   /**
    * Three groups, kept apart. Someone with a birth year and no end is not

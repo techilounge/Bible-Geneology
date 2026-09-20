@@ -64,6 +64,12 @@ export interface TimelineRow {
   endYear: number;
   /** True when Scripture records a lifespan but no death, as for Enoch. */
   openEnded: boolean;
+  /**
+   * How long the bar is, in years. Computed here rather than in the
+   * component that prints it, so that no arithmetic on year values lives in
+   * the presentation layer (requirement section 18, and the Phase 8 gate).
+   */
+  lengthYears: number;
   birthConfidence: PersonChronology['birthConfidence'];
   deathConfidence: PersonChronology['deathConfidence'];
   /** Row index, assigned so bars that overlap in time never share a row. */
@@ -111,6 +117,7 @@ export function buildRows(input: readonly TimelineInput[]): TimelineRow[] {
       startYear: entry.record.birthYear,
       endYear: span.end,
       openEnded: span.openEnded,
+      lengthYears: span.end - entry.record.birthYear,
       birthConfidence: entry.record.birthConfidence,
       deathConfidence: entry.record.deathConfidence,
     });
@@ -239,4 +246,31 @@ export function zoomAbout(
   const ratio = span === 0 ? 0.5 : (focusYear - domain[0]) / span;
   const start = focusYear - ratio * nextSpan;
   return clampDomain([start, start + nextSpan], bounds, minimumSpan);
+}
+
+/**
+ * Slides the viewport by a fraction of its own width.
+ *
+ * Here rather than in an event handler for the same reason `clampDomain` is:
+ * viewport arithmetic that lives in a component is viewport arithmetic that
+ * is never tested, and an off-by-one shows up as an empty chart.
+ */
+export function panDomain(
+  domain: readonly [number, number],
+  fraction: number,
+  bounds: readonly [number, number],
+  minimumSpan = 10,
+): [number, number] {
+  const shift = (domain[1] - domain[0]) * fraction;
+  return clampDomain([domain[0] + shift, domain[1] + shift], bounds, minimumSpan);
+}
+
+/** Zooms about the middle of the current viewport. */
+export function zoomCentred(
+  domain: readonly [number, number],
+  factor: number,
+  bounds: readonly [number, number],
+  minimumSpan = 10,
+): [number, number] {
+  return zoomAbout(domain, (domain[0] + domain[1]) / 2, factor, bounds, minimumSpan);
 }
