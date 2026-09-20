@@ -1,25 +1,49 @@
+import Link from 'next/link';
+import { PageShell } from '@/components/layout/PageHeader';
+import { Card } from '@/components/ui/Card';
 import { branding } from '@/lib/config/branding';
+import { PRIMARY_NAV } from '@/lib/config/navigation';
 
-/**
- * Phase 0 placeholder.
- *
- * The real home page is Phase 5 work (application shell) and the experiences it
- * links to are Phases 6 through 12. This page exists so that the Phase 0 exit
- * gate — "the project builds" — is a verifiable command rather than a claim.
- */
 export default function HomePage() {
   return (
-    <main className="mx-auto flex min-h-dvh max-w-2xl flex-col justify-center gap-4 px-4">
-      <p className="text-sm tracking-widest text-[var(--color-accent)] uppercase">
-        Phase 0 · foundation
-      </p>
-      <h1 className="text-4xl font-semibold text-balance">{branding.tagline}</h1>
-      <p className="text-[var(--color-text-secondary)]">{branding.description}</p>
-      <p className="text-sm text-[var(--color-text-muted)]">
-        {branding.productName} is being built in phases. The canonical dataset and the
-        chronology engine come before any timeline is drawn. See the documents in{' '}
-        <code>docs/</code> for the architecture and the build plan.
-      </p>
-    </main>
+    <PageShell>
+      <div className="flex flex-col gap-4 py-8 sm:py-16">
+        <h1 className="max-w-3xl text-4xl font-semibold text-balance sm:text-5xl">
+          {branding.tagline}
+        </h1>
+        <p className="max-w-2xl text-lg text-[var(--color-text-secondary)]">
+          {branding.description}
+        </p>
+        <p className="max-w-2xl text-[var(--color-text-muted)]">
+          Every date here is worked out from ages the text states, and every one shows its
+          working.{' '}
+          <Link
+            href="/chronology"
+            className="rounded underline underline-offset-4 hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+          >
+            How the dates work
+          </Link>
+          .
+        </p>
+      </div>
+
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {PRIMARY_NAV.map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className="block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+            >
+              <Card className="flex h-full flex-col gap-2 transition-colors hover:border-[var(--color-accent)]">
+                <span className="font-semibold">{item.label}</span>
+                <span className="text-sm text-[var(--color-text-secondary)]">
+                  {item.description}
+                </span>
+              </Card>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </PageShell>
   );
 }

@@ -43,6 +43,7 @@ jobs:
       # corrupts the canonical files five ways and asserts the gate fails.
       - run: npm run validate:prove-gate
       - run: npm run test:coverage
+      - run: npm run test:ui
 
       # The database gate. Migrations run twice: once on a clean database, then
       # again with --force, because a migration that is not safe to re-run is a
@@ -56,6 +57,13 @@ jobs:
       - run: npm run test:db
 
       - run: npm run build
+
+      # The Phase 5 gate: no horizontal overflow at 320 to 430 px, keyboard
+      # reach with visible focus, 44px standalone targets, an installable
+      # manifest whose icons all resolve.
+      - name: Install the Playwright browser
+        run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
 
       # Requirement section 55: the service-role key must never reach a client
       # bundle. Convention is not enough, so the build output is checked.

@@ -7,7 +7,16 @@ import next from '@next/eslint-plugin-next';
  * See docs/ARCHITECTURE.md section 2 for the dependency direction.
  */
 export default tseslint.config(
-  { ignores: ['.next/**', 'node_modules/**', 'coverage/**', 'data/generated/**'] },
+  {
+    ignores: [
+      '.next/**',
+      'node_modules/**',
+      'coverage/**',
+      'data/generated/**',
+      'playwright-report/**',
+      'test-results/**',
+    ],
+  },
 
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -55,6 +64,22 @@ export default tseslint.config(
         { name: 'window', message: 'The domain layer is framework-independent.' },
         { name: 'document', message: 'The domain layer is framework-independent.' },
       ],
+    },
+  },
+
+  // The service worker runs in a worker, not a page or a Node process, so
+  // it has its own globals and is plain JavaScript rather than a module.
+  {
+    files: ['public/sw.js'],
+    languageOptions: {
+      globals: {
+        self: 'readonly',
+        caches: 'readonly',
+        fetch: 'readonly',
+        Response: 'readonly',
+        URL: 'readonly',
+        console: 'readonly',
+      },
     },
   },
 
