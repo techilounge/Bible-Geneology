@@ -82,7 +82,10 @@ export default async function FamilyTreePage({
         className="flex flex-wrap items-end gap-4 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-raised)] p-4"
       >
         <div className="flex flex-col gap-1">
-          <label htmlFor="tree-root" className="text-sm text-[var(--color-text-secondary)]">
+          <label
+            htmlFor="tree-root"
+            className="text-sm text-[var(--color-text-secondary)]"
+          >
             Centre on
           </label>
           <select

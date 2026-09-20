@@ -97,9 +97,7 @@ export function buildFamilyTree(
   }
 
   const edges: TreeEdge[] = relationships
-    .filter(
-      (row) => depths.has(row.sourcePersonId) && depths.has(row.targetPersonId),
-    )
+    .filter((row) => depths.has(row.sourcePersonId) && depths.has(row.targetPersonId))
     .map((row) => ({
       sourcePersonId: row.sourcePersonId,
       targetPersonId: row.targetPersonId,

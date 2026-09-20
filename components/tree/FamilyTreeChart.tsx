@@ -162,7 +162,9 @@ export function FamilyTreeChart({
       return;
     }
 
-    setViewport((current) => panViewport(current, next.x - previous.x, next.y - previous.y));
+    setViewport((current) =>
+      panViewport(current, next.x - previous.x, next.y - previous.y),
+    );
   };
 
   const onPointerUp = (event: React.PointerEvent) => {
@@ -192,12 +194,16 @@ export function FamilyTreeChart({
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-center gap-2">
         <Control
-          onClick={() => setViewport((v) => zoomViewport(v, 1.25, size.width / 2, size.height / 2))}
+          onClick={() =>
+            setViewport((v) => zoomViewport(v, 1.25, size.width / 2, size.height / 2))
+          }
           label="Zoom in"
           symbol="+"
         />
         <Control
-          onClick={() => setViewport((v) => zoomViewport(v, 1 / 1.25, size.width / 2, size.height / 2))}
+          onClick={() =>
+            setViewport((v) => zoomViewport(v, 1 / 1.25, size.width / 2, size.height / 2))
+          }
           label="Zoom out"
           symbol="−"
         />

@@ -79,9 +79,7 @@ export default async function DiscoverPage({
       ) : null}
 
       <section className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold">
-          All {discoveries.length} findings
-        </h2>
+        <h2 className="text-lg font-semibold">All {discoveries.length} findings</h2>
         <ul className="flex flex-col gap-3">
           {discoveries.map((discovery) => (
             <DiscoveryCard key={discovery.id} discovery={discovery} names={names} />

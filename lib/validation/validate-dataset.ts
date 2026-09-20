@@ -526,7 +526,10 @@ export function validateChronologyInput(rows: unknown[], ctx: InputContext): Fin
     // The supplier of a reading and the verifier of it are different roles.
     // Recording a person as the verifier of a source they did not inspect is
     // the specific thing the Phase 2 verification pass was asked to stop.
-    if (typeof row.verifiedBy === 'string' && !row.verifiedBy.startsWith('source-check:')) {
+    if (
+      typeof row.verifiedBy === 'string' &&
+      !row.verifiedBy.startsWith('source-check:')
+    ) {
       severe(
         'verifier-is-not-a-check',
         subject,

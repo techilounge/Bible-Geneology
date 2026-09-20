@@ -97,7 +97,8 @@ describe('the findings themselves', () => {
   });
 
   it('never claims two people met, however they overlapped', () => {
-    const banned = /\bmet\b|knew each other|passed (?:down|on) to|must have|would have known/i;
+    const banned =
+      /\bmet\b|knew each other|passed (?:down|on) to|must have|would have known/i;
     for (const discovery of found) {
       expect(discovery.headline, discovery.id).not.toMatch(banned);
       for (const step of discovery.calculation) {

@@ -72,7 +72,9 @@ test.describe('a discovery page', () => {
     await page.getByTestId('discovery').first().getByRole('link').click();
     await expect(page).toHaveURL(/\/discover\/.+/);
 
-    await expect(page.getByRole('heading', { name: 'How this was worked out' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'How this was worked out' }),
+    ).toBeVisible();
     await expect(page.getByRole('heading', { name: 'The people' })).toBeVisible();
     await expect(
       page.getByRole('heading', { name: 'Where the numbers come from' }),
@@ -81,7 +83,9 @@ test.describe('a discovery page', () => {
 
   test('says an overlap is not a meeting, wherever it reports one', async ({ page }) => {
     await page.goto('/discover');
-    const overlapping = page.locator('[data-testid="discovery"][data-kind="largest-overlap"]');
+    const overlapping = page.locator(
+      '[data-testid="discovery"][data-kind="largest-overlap"]',
+    );
     await overlapping.first().getByRole('link').click();
     await expect(page.getByTestId('not-contact')).toHaveText(NOT_CONTACT);
   });
@@ -128,7 +132,10 @@ test.describe('accessibility', () => {
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
         .analyze();
-      expect(results.violations.map((v) => v.id), route).toEqual([]);
+      expect(
+        results.violations.map((v) => v.id),
+        route,
+      ).toEqual([]);
     }
 
     await page.goto('/discover');

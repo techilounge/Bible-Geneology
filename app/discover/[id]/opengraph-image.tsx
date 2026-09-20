@@ -22,36 +22,34 @@ export default async function Image({ params }: { params: Promise<{ id: string }
   const discovery = getDiscovery((await params).id);
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          background: '#12141a',
-          color: '#f4f4f5',
-          padding: 72,
-          fontFamily: 'sans-serif',
-        }}
-      >
-        <div style={{ display: 'flex', fontSize: 28, letterSpacing: 6, color: '#d6a85a' }}>
-          DID YOU KNOW?
-        </div>
-        <div style={{ display: 'flex', fontSize: 56, lineHeight: 1.2 }}>
-          {discovery?.headline ?? 'A finding from the Bible Timeline Explorer dataset.'}
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 24 }}>
-          <div style={{ display: 'flex', color: '#a1a1aa' }}>
-            {discovery
-              ? `Drawn from ${discovery.population}, under the ${discovery.chronologyId} chronology.`
-              : ''}
-          </div>
-          <div style={{ display: 'flex', color: '#d6a85a' }}>Bible Timeline Explorer</div>
-        </div>
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        background: '#12141a',
+        color: '#f4f4f5',
+        padding: 72,
+        fontFamily: 'sans-serif',
+      }}
+    >
+      <div style={{ display: 'flex', fontSize: 28, letterSpacing: 6, color: '#d6a85a' }}>
+        DID YOU KNOW?
       </div>
-    ),
+      <div style={{ display: 'flex', fontSize: 56, lineHeight: 1.2 }}>
+        {discovery?.headline ?? 'A finding from the Bible Timeline Explorer dataset.'}
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 24 }}>
+        <div style={{ display: 'flex', color: '#a1a1aa' }}>
+          {discovery
+            ? `Drawn from ${discovery.population}, under the ${discovery.chronologyId} chronology.`
+            : ''}
+        </div>
+        <div style={{ display: 'flex', color: '#d6a85a' }}>Bible Timeline Explorer</div>
+      </div>
+    </div>,
     size,
   );
 }

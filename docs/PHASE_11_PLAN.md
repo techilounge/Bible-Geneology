@@ -16,19 +16,19 @@ build prompt's own examples asserted overlaps the data does not support.
 
 ## Files
 
-| File                                  | What it is                                                     |
-| ------------------------------------- | -------------------------------------------------------------- |
-| `lib/discovery/types.ts`              | The `Discovery` shape: what it claims and what it rests on      |
-| `lib/discovery/generators.ts`         | One generator per kind in requirement section 34                |
-| `lib/discovery/generate.ts`           | Runs them all, in a fixed order, with stable ids                |
-| `lib/discovery/pick.ts`               | Surprise Me: a seed picks a discovery, so a link reopens it     |
-| `lib/discovery/__tests__/`            | Determinism, provenance, and the claims themselves              |
-| `components/discovery/DiscoveryCard.tsx` | One finding, with the calculation under it                   |
-| `components/discovery/DiscoveryList.tsx` | The list, filterable by kind                                 |
-| `app/discover/page.tsx`               | The discovery index, replacing the placeholder                  |
-| `app/discover/[id]/page.tsx`          | One discovery, with its visualisation and sources               |
-| `app/discover/[id]/opengraph-image.tsx` | The shareable card                                            |
-| `tests/e2e/discover.spec.ts`          | The gate, in a browser                                          |
+| File                                     | What it is                                                  |
+| ---------------------------------------- | ----------------------------------------------------------- |
+| `lib/discovery/types.ts`                 | The `Discovery` shape: what it claims and what it rests on  |
+| `lib/discovery/generators.ts`            | One generator per kind in requirement section 34            |
+| `lib/discovery/generate.ts`              | Runs them all, in a fixed order, with stable ids            |
+| `lib/discovery/pick.ts`                  | Surprise Me: a seed picks a discovery, so a link reopens it |
+| `lib/discovery/__tests__/`               | Determinism, provenance, and the claims themselves          |
+| `components/discovery/DiscoveryCard.tsx` | One finding, with the calculation under it                  |
+| `components/discovery/DiscoveryList.tsx` | The list, filterable by kind                                |
+| `app/discover/page.tsx`                  | The discovery index, replacing the placeholder              |
+| `app/discover/[id]/page.tsx`             | One discovery, with its visualisation and sources           |
+| `app/discover/[id]/opengraph-image.tsx`  | The shareable card                                          |
+| `tests/e2e/discover.spec.ts`             | The gate, in a browser                                      |
 
 ## Database
 

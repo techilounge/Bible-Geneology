@@ -58,9 +58,7 @@ describe('buildFamilyTree', () => {
     const spouse = layout.nodes.find((node) => node.personId === 'spouse');
     expect(spouse?.depth).toBe(0);
     expect(spouse?.spouseOnly).toBe(true);
-    expect(layout.nodes.find((node) => node.personId === 'root')?.spouseOnly).toBe(
-      false,
-    );
+    expect(layout.nodes.find((node) => node.personId === 'root')?.spouseOnly).toBe(false);
   });
 
   it('leaves spouses out when asked to', () => {
@@ -221,7 +219,9 @@ describe('buildTreeOutline', () => {
     // FAMILY stores the marriage as root → spouse. Asking from the other
     // end has to give the same answer, or the outline would depend on
     // which way round the record happens to be written.
-    const outline = buildTreeOutline(buildFamilyTree(FAMILY, 'spouse', { up: 0, down: 0 }));
+    const outline = buildTreeOutline(
+      buildFamilyTree(FAMILY, 'spouse', { up: 0, down: 0 }),
+    );
     expect(outline.root.spouseIds).toEqual(['root']);
   });
 
@@ -244,7 +244,9 @@ describe('buildTreeOutline', () => {
   });
 
   it('does not recurse for ever on a cycle', () => {
-    const outline = buildTreeOutline(buildFamilyTree(CYCLE, 'loop-a', { up: 2, down: 2 }));
+    const outline = buildTreeOutline(
+      buildFamilyTree(CYCLE, 'loop-a', { up: 2, down: 2 }),
+    );
     expect(outline.root.personId).toBe('loop-a');
     expect(outline.root.children.map((child) => child.personId)).toEqual(['loop-b']);
     expect(outline.root.children[0]?.children).toEqual([]);
@@ -252,12 +254,8 @@ describe('buildTreeOutline', () => {
 
   it('marks descent and marriage apart, so the drawing need not know the difference', () => {
     const layout = buildFamilyTree(FAMILY, 'root', { up: 0, down: 1 });
-    const spouseEdge = layout.edges.find(
-      (edge) => edge.relationshipType === 'spouse',
-    );
-    const parentEdge = layout.edges.find(
-      (edge) => edge.relationshipType === 'parent',
-    );
+    const spouseEdge = layout.edges.find((edge) => edge.relationshipType === 'spouse');
+    const parentEdge = layout.edges.find((edge) => edge.relationshipType === 'parent');
     expect(spouseEdge?.isDescent).toBe(false);
     expect(parentEdge?.isDescent).toBe(true);
   });
