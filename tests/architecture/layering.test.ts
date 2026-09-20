@@ -129,3 +129,75 @@ describe('no route or component does chronology arithmetic', () => {
     },
   );
 });
+
+/**
+ * The Phase 10 gate: no relationship literal exists in any visualisation
+ * component.
+ *
+ * Two ways a picture can start asserting things the dataset does not hold.
+ * It can name a person — a hard-coded root, a special case for Adam — and
+ * then the picture is data. Or it can name a relationship type, compare
+ * against it, and decide for itself what descent means; then it is a
+ * second reading of the data model, and the day it disagrees with
+ * `lib/graph` the drawing is lying.
+ *
+ * Neither is possible if the component never sees a relationship record.
+ * `buildFamilyTree` and `buildTreeOutline` hand over nodes, edges and an
+ * already-nested outline, each edge carrying `isDescent`, so the drawing
+ * has nothing left to decide.
+ */
+const RELATIONSHIP_TYPES = [
+  'parent',
+  'child',
+  'spouse',
+  'sibling',
+  'ancestor',
+  'descendant',
+];
+
+function componentSources(): Array<[string, string]> {
+  return globSync(join('components', '**/*.tsx'))
+    .filter((path) => !path.endsWith('.test.tsx'))
+    .map((path) => [path, readFileSync(path, 'utf8')] as [string, string]);
+}
+
+describe('no visualisation component holds a relationship of its own', () => {
+  const sources = componentSources();
+
+  it('finds the components to check', () => {
+    expect(sources.length).toBeGreaterThan(10);
+  });
+
+  it.each(RELATIONSHIP_TYPES)('contains no %s literal', (type) => {
+    const pattern = new RegExp(`['"\`]${type}['"\`]`);
+    const offenders = sources
+      .filter(([, text]) => pattern.test(text))
+      .map(([path]) => path);
+    expect(offenders).toEqual([]);
+  });
+
+  it('never compares a relationship type', () => {
+    const offenders = sources
+      .filter(([, text]) => /relationshipType\s*[=!]==?/.test(text))
+      .map(([path]) => path);
+    expect(offenders).toEqual([]);
+  });
+
+  it('names nobody from the dataset', () => {
+    // A component that mentions a person by id has become data, and the
+    // next person added to the dataset will not get whatever it does.
+    const people = JSON.parse(
+      readFileSync(join('data', 'canonical', 'people.json'), 'utf8'),
+    ) as Array<{ id: string }>;
+
+    const offenders: string[] = [];
+    for (const [path, text] of sources) {
+      for (const person of people) {
+        if (new RegExp(`['"\`]${person.id}['"\`]`).test(text)) {
+          offenders.push(`${path}: ${person.id}`);
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+});

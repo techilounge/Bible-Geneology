@@ -63,6 +63,27 @@ test.describe('every route renders its own page', () => {
   });
 });
 
+test.describe('the page arrives whole, without scripting', () => {
+  /**
+   * A route-level loading.tsx puts the page behind a Suspense boundary, and
+   * React then streams the real content into a `[hidden]` container that
+   * only an inline script reveals. With scripting off that content never
+   * appears: the reader is left looking at a skeleton for ever. None of
+   * these pages waits on anything slow, so the skeleton bought nothing and
+   * cost the whole page. This is the test that keeps it that way.
+   */
+  for (const route of ROUTES) {
+    test(`${route} renders its content with JavaScript disabled`, async ({ browser }) => {
+      const context = await browser.newContext({ javaScriptEnabled: false });
+      const page = await context.newPage();
+      await page.goto(route);
+      await expect(page.locator('h1')).toBeVisible();
+      await expect(page.locator('main')).toBeVisible();
+      await context.close();
+    });
+  }
+});
+
 test.describe('keyboard access', () => {
   test('the skip link is the first stop and moves focus to the content', async ({
     page,
