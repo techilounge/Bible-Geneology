@@ -12,10 +12,10 @@
     "id": "kjv-1769",
     "name": "King James Version (1769 Blayney edition)",
     "sourceType": "SCRIPTURE_EXPLICIT",
-    "citation": "The Holy Bible, Authorised Version, 1769 Blayney edition",
+    "citation": "The Holy Bible, Authorised Version, 1769 Blayney edition, as published in the npm package bible-kjv@1.1.3 (sha512-pl6dXVYFxd7vlkGE6kiNmd0GUFe5UPyJzu8KwkY3vEbjO4v470Lh5+lAH61UiZMru5oevN7aZzDCSudb2frzaA==)",
     "url": null,
-    "license": "Public domain in the United States",
-    "notes": "One of the translations a value is cross-checked against before it may be marked SOURCE_CHECKED."
+    "license": "Public domain in the United States; Crown letters patent in the United Kingdom, which is why it corroborates rather than leads",
+    "notes": "The corroborating source. An independent translation of the same Masoretic Hebrew, so its agreeing with the World English Bible on a number is worth more than either alone. A figure is promoted to VERIFIED only when both state it."
   },
   {
     "id": "asv-1901",
@@ -24,16 +24,16 @@
     "citation": "American Standard Version, 1901",
     "url": null,
     "license": "Public domain",
-    "notes": "Cross-check translation."
+    "notes": "Listed as an available public-domain cross-check. Not used by the Phase 2 verification pass, which uses the World English Bible and the King James Version."
   },
   {
     "id": "web-bible",
-    "name": "World English Bible",
+    "name": "World English Bible (eBible.org)",
     "sourceType": "SCRIPTURE_EXPLICIT",
-    "citation": "World English Bible",
-    "url": null,
-    "license": "Public domain",
-    "notes": "Cross-check translation."
+    "citation": "World English Bible, eBible.org, as published in the npm package world-english-bible@1.0.1 (sha512-OH/5yt9BYrhy1oBXXwhSuL9ES97t5Ij8rLWeQZUOIFAkoGzZaq8aLcKMBdzwHqPbJBkyMYPhgFj6rzvtT/oT4A==)",
+    "url": "https://ebible.org/web/",
+    "license": "Public domain worldwide",
+    "notes": "The project's authoritative source for verifying chronological figures, chosen because it is public domain everywhere and translates the Masoretic Hebrew. No verse text from it is committed to this repository: it is a devDependency read at verification time by scripts/verify-source.ts, which records only the numbers a verse states and a short quoted fragment as evidence."
   },
   {
     "id": "acts-7-harmonisation",

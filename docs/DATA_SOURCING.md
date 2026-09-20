@@ -39,6 +39,11 @@ Masoretic reading before a record is marked SOURCE_CHECKED. Where the translatio
 agree, the value is EXPLICIT. Where they disagree, the record is DISPUTED and carries
 both claims.
 
+For the move from SOURCE_CHECKED to VERIFIED the two translations are fixed rather than
+chosen: the World English Bible leads and the King James Version corroborates, for the
+reasons in `docs/VERIFICATION_SOURCE.md`. That check is mechanical and repeatable, which
+is what makes VERIFIED mean the same thing on every record that carries it.
+
 **Verse text is never seeded** (§16). These sources are used to _establish_ the
 numbers; the numbers plus the reference identifier are what the database stores.
 
@@ -385,13 +390,24 @@ For each record, in order:
 1. Open the named verse in at least two of the public-domain translations in §2.
 2. Enter the number into the `input` block. If the translations disagree, set
    `reviewStatus: 'DISPUTED'`, record both readings as `source_claims`, and stop.
-3. Set `reviewStatus: 'SOURCE_CHECKED'` and record `verifiedBy` and `verifiedAt`.
+3. Set `reviewStatus: 'SOURCE_CHECKED'` and record `suppliedBy` and `suppliedAt`. The
+   person who supplied a reading is not the verifier of it; `verifiedBy` names what
+   performed the independent check, and the validator rejects anything else.
 4. Run `npm run derive:chronology`, which computes birth and death years and writes the
    derivation records.
 5. Run `npm run validate:data`. Fix any failure before continuing.
 6. Run `npm run test:golden`. The golden assertions in `TESTING_STRATEGY.md` §3 must
    pass against the derived values.
-7. Only once 4 through 6 are green does a record move to `VERIFIED`.
+7. Run `npm run verify:source`. Every figure the record claims Scripture states must
+   match the cited verse in both the primary and the corroborating translation, and any
+   derivation the record rests on must re-run soundly over verified inputs.
+8. Only once 4 through 7 are green does a record move to `VERIFIED`, and it moves there
+   by `npm run verify:source -- --promote` rather than by hand, so the provenance the
+   status rests on is written at the same moment as the status.
+
+`docs/VERIFICATION_SOURCE.md` says which texts this uses and why, and
+`docs/PHASE_2_VERIFICATION_REPORT.md` records the pass of 2026-09-20: what was
+verified, what was not, and the one figure it reclassified.
 
 Step 6 is the real check on this whole document. The golden assertions were specified
 independently of the seed values, from the product requirements. If the numbers a human

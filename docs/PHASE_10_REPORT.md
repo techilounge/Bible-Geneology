@@ -11,13 +11,13 @@ Commit: `feat(phase-10): add the interactive family tree`
 family written out beside it as a nested list. The drawing is pannable and zoomable
 by finger, wheel or keyboard; the list is what a screen reader hears.
 
-| Piece                              | What it does                                              |
-| ---------------------------------- | --------------------------------------------------------- |
-| `lib/graph/tree-layout.ts`         | Relationships in, coordinates out. Depths, order, edges.   |
-| `lib/graph/tree-viewport.ts`       | Pan, zoom, pinch and fit as pure functions over a viewport |
-| `components/tree/FamilyTreeChart.tsx` | The drawing, and the gestures that move it              |
-| `components/tree/TreeOutline.tsx`  | The same family as a nested list, always in the DOM        |
-| `app/family-tree/page.tsx`         | A plain GET form for who to centre on and how far to reach |
+| Piece                                 | What it does                                               |
+| ------------------------------------- | ---------------------------------------------------------- |
+| `lib/graph/tree-layout.ts`            | Relationships in, coordinates out. Depths, order, edges.   |
+| `lib/graph/tree-viewport.ts`          | Pan, zoom, pinch and fit as pure functions over a viewport |
+| `components/tree/FamilyTreeChart.tsx` | The drawing, and the gestures that move it                 |
+| `components/tree/TreeOutline.tsx`     | The same family as a nested list, always in the DOM        |
+| `app/family-tree/page.tsx`            | A plain GET form for who to centre on and how far to reach |
 
 ## 2. Every edge traces to a relationship row
 
@@ -90,15 +90,15 @@ says what the no-JS reader sees instead.
 
 ## 7. Exit gate
 
-| Requirement                                                     | Status                                        |
-| --------------------------------------------------------------- | --------------------------------------------- |
-| Tree renders ancestors and descendants around a chosen person   | Pass                                          |
-| Every edge traces to a `relationships` row                      | Pass — asserted against the canonical file    |
-| A test asserts no relationship literal in any visualisation     | Pass — architecture suite, plus person ids    |
-| Touch pan and zoom work on a 320px viewport                     | Pass — drag, pinch, buttons and keyboard      |
-| The drawing has a text equivalent                               | Pass — nested outline, chart `aria-hidden`    |
-| `npm run verify` green                                          | Pass — 488 engine and service tests, 62 component |
-| `npm run test:e2e` green                                        | Pass — 440 tests, desktop and mobile          |
+| Requirement                                                   | Status                                            |
+| ------------------------------------------------------------- | ------------------------------------------------- |
+| Tree renders ancestors and descendants around a chosen person | Pass                                              |
+| Every edge traces to a `relationships` row                    | Pass — asserted against the canonical file        |
+| A test asserts no relationship literal in any visualisation   | Pass — architecture suite, plus person ids        |
+| Touch pan and zoom work on a 320px viewport                   | Pass — drag, pinch, buttons and keyboard          |
+| The drawing has a text equivalent                             | Pass — nested outline, chart `aria-hidden`        |
+| `npm run verify` green                                        | Pass — 488 engine and service tests, 62 component |
+| `npm run test:e2e` green                                      | Pass — 440 tests, desktop and mobile              |
 
 ## 8. Still open, carried forward
 

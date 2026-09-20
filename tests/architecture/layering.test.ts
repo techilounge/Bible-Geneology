@@ -75,6 +75,23 @@ describe('the presentation layer cannot reach the service-role client', () => {
   });
 });
 
+describe('the verification tooling stays out of the application', () => {
+  /**
+   * lib/verification reads two Bible translations out of node_modules.
+   * They are devDependencies, so a page that imported it would build
+   * locally and fail wherever production dependencies alone are installed
+   * — and would ship several megabytes of verse text to do it.
+   */
+  it('no route or component imports lib/verification', () => {
+    const offenders = ['app', 'components']
+      .flatMap((dir) => globSync(join(dir, '**/*.{ts,tsx}')))
+      .filter((path) =>
+        /from\s+['"]@\/lib\/verification/.test(readFileSync(path, 'utf8')),
+      );
+    expect(offenders).toEqual([]);
+  });
+});
+
 /**
  * The Phase 8 gate: no arithmetic on year values exists in the route's
  * components.

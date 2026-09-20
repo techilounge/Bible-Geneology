@@ -18,8 +18,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 1,
+      "derivationRerun": "no-derivation"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -41,8 +51,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -64,8 +84,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -87,8 +117,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -110,8 +150,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -133,8 +183,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -160,8 +220,18 @@
       "enoch-has-no-recorded-death"
     ],
     "notes": "Genesis 5:24 records no death for Enoch, so his death year stays unknown.",
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -183,8 +253,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -206,8 +286,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -229,9 +319,7 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20",
+    "reviewStatus": "VERIFIED",
     "additionalFigures": [
       {
         "name": "ageAtFlood",
@@ -239,7 +327,19 @@
         "reference": "GEN.7.6",
         "confidence": "EXPLICIT"
       }
-    ]
+    ],
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
+    "verifiedAt": "2026-09-20"
   },
   {
     "personId": "shem",
@@ -267,9 +367,7 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "shem-birth-from-gen-11-10"],
     "notes": "Genesis 5:32 gives one age for three brothers; Genesis 11:10 names Shem specifically.",
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20",
+    "reviewStatus": "VERIFIED",
     "additionalFigures": [
       {
         "name": "yearsAfterFloodAtArphaxadBirth",
@@ -277,7 +375,19 @@
         "reference": "GEN.11.10",
         "confidence": "EXPLICIT"
       }
-    ]
+    ],
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
+    "verifiedAt": "2026-09-20"
   },
   {
     "personId": "ham",
@@ -295,8 +405,8 @@
     "assumptions": ["adam-created-at-year-zero"],
     "notes": "Named with his brothers but never dated individually.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "japheth",
@@ -314,8 +424,8 @@
     "assumptions": ["adam-created-at-year-zero"],
     "notes": "Named with his brothers but never dated individually.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "arphaxad",
@@ -344,8 +454,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -375,8 +495,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -406,8 +536,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -437,8 +577,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -468,8 +618,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -499,8 +659,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -530,8 +700,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -553,8 +733,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Genesis 11:32 states Terah's total, so his lifespan is EXPLICIT where the rest of the chapter's are derived.",
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -577,9 +767,7 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "abraham-birth-from-acts-7-4"],
     "notes": "Genesis 11:26 gives one age for three sons and does not say Abram was eldest, so 70 is an interpretation. See docs/DATA_SOURCING.md section 4a.",
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20",
+    "reviewStatus": "VERIFIED",
     "additionalFigures": [
       {
         "name": "ageAtDepartureFromHaran",
@@ -587,7 +775,19 @@
         "reference": "GEN.12.4",
         "confidence": "EXPLICIT"
       }
-    ]
+    ],
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
+    "verifiedAt": "2026-09-20"
   },
   {
     "personId": "nahor-son-of-terah",
@@ -605,8 +805,8 @@
     "assumptions": ["adam-created-at-year-zero"],
     "notes": "Named in Genesis 11:26 but never dated individually.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "haran",
@@ -624,8 +824,8 @@
     "assumptions": ["adam-created-at-year-zero"],
     "notes": "Named in Genesis 11:26 but never dated individually.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "ishmael",
@@ -646,8 +846,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -669,8 +879,18 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -692,9 +912,7 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": null,
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20",
+    "reviewStatus": "VERIFIED",
     "additionalFigures": [
       {
         "name": "ageBeforePharaoh",
@@ -702,7 +920,19 @@
         "reference": "GEN.47.9",
         "confidence": "EXPLICIT"
       }
-    ]
+    ],
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 3,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
+    "verifiedAt": "2026-09-20"
   },
   {
     "personId": "esau",
@@ -721,8 +951,18 @@
     "deathRule": "unknown",
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Twin of Jacob, so his birth offset is the same verse; no lifespan is stated.",
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
+    "reviewStatus": "VERIFIED",
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 1,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
     "verifiedAt": "2026-09-20"
   },
   {
@@ -746,17 +986,27 @@
     "assumptions": ["adam-created-at-year-zero"],
     "notes": "One of the few women whose ages Scripture states.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20",
     "additionalFigures": [
       {
         "name": "ageAtIsaacBirth",
         "value": 90,
         "reference": "GEN.17.17",
-        "confidence": "EXPLICIT"
+        "confidence": "DERIVED",
+        "sourceReferences": ["GEN.17.17", "GEN.21.5"],
+        "note": "Genesis 17:17 states Sarah's age as ninety, in Abraham's question at the announcement rather than at the birth, and Genesis 17:21 places the birth a year later. Genesis 21:5 gives Abraham's age at the birth as the hundred he names in the same question, so ninety is the reading Sarah's age at the birth follows from. The number is stated; applying it to the birth is a reading, so this is DERIVED, as Joseph's age when he was sold is."
       }
     ],
-    "dependsOn": ["isaac"]
+    "dependsOn": ["isaac"],
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 2,
+      "derivationRerun": "sound"
+    }
   },
   {
     "personId": "joseph",
@@ -778,9 +1028,7 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "joseph-birth-from-egypt-years"],
     "notes": "Joseph's birth is derived from his age before Pharaoh, the years of plenty and famine elapsed when Jacob arrived, and Jacob's own age before Pharaoh. It is not stated directly.",
-    "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20",
+    "reviewStatus": "VERIFIED",
     "additionalFigures": [
       {
         "name": "ageWhenSold",
@@ -808,7 +1056,19 @@
         "confidence": "EXPLICIT"
       }
     ],
-    "dependsOn": ["jacob"]
+    "dependsOn": ["jacob"],
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20",
+    "verification": {
+      "method": "automated-source-check",
+      "tool": "scripts/verify-source.ts",
+      "primarySource": "web-bible",
+      "corroboratingSource": "kjv-1769",
+      "figuresChecked": 4,
+      "derivationRerun": "sound"
+    },
+    "verifiedBy": "source-check:web-bible+kjv-1769",
+    "verifiedAt": "2026-09-20"
   },
   {
     "personId": "eve",
@@ -826,8 +1086,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "hagar",
@@ -845,8 +1105,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "rebekah",
@@ -864,8 +1124,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "leah",
@@ -883,8 +1143,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "rachel",
@@ -902,8 +1162,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "bilhah",
@@ -921,8 +1181,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "zilpah",
@@ -940,8 +1200,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "reuben",
@@ -959,8 +1219,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "simeon",
@@ -978,8 +1238,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "levi",
@@ -997,8 +1257,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "judah",
@@ -1016,8 +1276,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "dan",
@@ -1035,8 +1295,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "naphtali",
@@ -1054,8 +1314,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "gad",
@@ -1073,8 +1333,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "asher",
@@ -1092,8 +1352,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "issachar",
@@ -1111,8 +1371,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "zebulun",
@@ -1130,8 +1390,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "dinah",
@@ -1149,8 +1409,8 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   },
   {
     "personId": "benjamin",
@@ -1168,7 +1428,7 @@
     "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
     "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
     "reviewStatus": "SOURCE_CHECKED",
-    "verifiedBy": "Kelv (techilounge)",
-    "verifiedAt": "2026-09-20"
+    "suppliedBy": "Kelv (techilounge)",
+    "suppliedAt": "2026-09-20"
   }
 ]

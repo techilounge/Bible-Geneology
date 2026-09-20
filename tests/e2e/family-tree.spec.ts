@@ -37,6 +37,19 @@ function parseTransform(value: string): { x: number; y: number; scale: number } 
  * width, so the first paint says 100% and the real figure lands a frame
  * later. Reading it too early compares a placeholder with a measurement.
  */
+async function settledTransform(
+  page: Page,
+): Promise<{ x: number; y: number; scale: number }> {
+  let last: string | null = null;
+  await expect(async () => {
+    const now = await transform(page);
+    const previous = last;
+    last = now;
+    expect(now).toBe(previous);
+  }).toPass({ timeout: 10_000 });
+  return parseTransform(last ?? '');
+}
+
 async function settledScale(page: Page): Promise<string> {
   let last: string | null = null;
   await expect(async () => {
@@ -60,7 +73,9 @@ test.describe('every edge traces to a relationship row', () => {
 
       const drawn = await page
         .locator('[data-testid="tree-edge"]')
-        .evaluateAll((edges) => edges.map((edge) => edge.getAttribute('data-edge') ?? ''));
+        .evaluateAll((edges) =>
+          edges.map((edge) => edge.getAttribute('data-edge') ?? ''),
+        );
 
       expect(drawn.length).toBeGreaterThan(0);
       for (const edge of drawn) {
@@ -118,7 +133,9 @@ test.describe('the tree in words', () => {
     for (const id of drawn) {
       expect(outline.length, `${id} missing from the outline`).toBeGreaterThan(0);
     }
-    await expect(page.getByRole('heading', { name: 'The same family, in words' })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'The same family, in words' }),
+    ).toBeVisible();
   });
 
   test('keeps the drawing out of the accessibility tree', async ({ page }) => {
@@ -173,7 +190,7 @@ test.describe('pan and zoom on a 320px viewport', () => {
   test('a touch drag pans the tree', async ({ page }) => {
     await page.goto('/family-tree?root=noah&up=1&down=1');
     await expect(page.locator('[data-testid="tree-transform"]')).toBeAttached();
-    const before = parseTransform(await transform(page));
+    const before = await settledTransform(page);
 
     await page.locator(CHART).evaluate((element) => {
       const send = (type: string, x: number, y: number) =>
@@ -200,7 +217,7 @@ test.describe('pan and zoom on a 320px viewport', () => {
   test('a pinch zooms the tree', async ({ page }) => {
     await page.goto('/family-tree?root=noah&up=1&down=1');
     await expect(page.locator('[data-testid="tree-transform"]')).toBeAttached();
-    const before = parseTransform(await transform(page));
+    const before = await settledTransform(page);
 
     // Playwright cannot perform a real two-finger gesture, so the pointer
     // events a pinch produces are dispatched directly. It exercises the
@@ -244,7 +261,7 @@ test.describe('pan and zoom on a 320px viewport', () => {
 
   test('the keyboard pans and zooms it too', async ({ page }) => {
     await page.goto('/family-tree?root=noah&up=1&down=1');
-    const before = parseTransform(await transform(page));
+    const before = await settledTransform(page);
 
     await expect(async () => {
       await page.locator(CHART).focus();

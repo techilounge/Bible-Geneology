@@ -505,6 +505,35 @@ export function validateChronologyInput(rows: unknown[], ctx: InputContext): Fin
       );
     }
 
+    // VERIFIED means someone checked the figure against a named source, and
+    // the record has to say which source and by what method. Without that
+    // the status is an assertion about an act nobody can reproduce, which is
+    // the thing requirement section 5 exists to prevent.
+    if (row.reviewStatus === 'VERIFIED') {
+      const provenance = row.verification as Record<string, unknown> | undefined;
+      if (
+        typeof provenance?.method !== 'string' ||
+        typeof provenance.primarySource !== 'string'
+      ) {
+        severe(
+          'verified-without-provenance',
+          subject,
+          'A VERIFIED record must record the verification method and the source it was checked against',
+        );
+      }
+    }
+
+    // The supplier of a reading and the verifier of it are different roles.
+    // Recording a person as the verifier of a source they did not inspect is
+    // the specific thing the Phase 2 verification pass was asked to stop.
+    if (typeof row.verifiedBy === 'string' && !row.verifiedBy.startsWith('source-check:')) {
+      severe(
+        'verifier-is-not-a-check',
+        subject,
+        'verifiedBy names who or what performed the check; a person who supplied a reading belongs in suppliedBy',
+      );
+    }
+
     if (unfilled > 0) {
       warn(
         'figure-not-yet-read',

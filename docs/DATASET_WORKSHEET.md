@@ -10,6 +10,6 @@ Where two translations disagree, leave the value blank, note both readings,
 and the record becomes DISPUTED rather than VERIFIED.
 
 | Person | Figure | Verse | Value |
-| --- | --- | --- | --- |
+| ------ | ------ | ----- | ----- |
 
 0 figures.
