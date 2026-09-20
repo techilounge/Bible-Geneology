@@ -5,9 +5,26 @@ on:
   push:
     branches: [main]
 
+env:
+  DATABASE_URL: postgres://postgres:postgres@localhost:5432/bible_timeline_explorer
+
 jobs:
   verify:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: bible_timeline_explorer
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -15,10 +32,23 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run format
       - run: npm run test
+
+      # The database gate. Migrations run twice: once on a clean database, then
+      # again with --force, because a migration that is not safe to re-run is a
+      # migration nobody can recover a half-applied deploy with.
+      - name: Apply the local Supabase shim
+        run: psql "$DATABASE_URL" -f scripts/bootstrap-local-db.sql
+      - run: npm run db:migrate
+      - name: Re-apply every migration to prove idempotency
+        run: npx tsx scripts/db-migrate.ts --force
+      - run: npm run db:check-rls
+      - run: npm run test:db
+
       - run: npm run build
 
       # Requirement section 55: the service-role key must never reach a client

@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     environment: 'node',
     include: ['lib/**/*.test.ts', 'tests/**/*.test.ts'],
-    exclude: ['tests/e2e/**'],
+    exclude: ['tests/e2e/**', 'tests/db/**'],
     coverage: {
       provider: 'v8',
       include: ['lib/**'],

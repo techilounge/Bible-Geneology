@@ -5,7 +5,8 @@ question: **who was alive at the same time?**
 
 ## Current state
 
-**Phase 0 — repository discovery and foundation.** There is no feature code yet, by
+**Phase 1 complete — database and domain foundation.** Schema, migrations, domain
+types and validation schemas exist; there is no dataset and no feature UI yet, by
 design. The build order is fixed and documented, and it puts verified data before
 calculations and calculations before interface.
 
@@ -35,23 +36,41 @@ cannot be established stay `UNKNOWN`; they are never filled in to make a chart t
 ## Commands
 
 ```bash
-npm run dev        # development server
-npm run typecheck  # tsc --noEmit, strict
-npm run lint       # eslint, including the layering rules
-npm run test       # vitest
-npm run build      # production build
-npm run verify     # all of the above, in order
+npm run dev           # development server
+npm run typecheck     # tsc --noEmit, strict
+npm run lint          # eslint, including the layering rules
+npm run test          # vitest, unit only, no database needed
+npm run build         # production build
+npm run verify        # all of the above, in order
+
+npm run db:reset      # drop and recreate the local database, apply the Supabase shim
+npm run db:migrate    # apply every migration in order
+npm run db:check-rls  # fail if any table has RLS off or a canonical write policy
+npm run db:verify     # reset, migrate and check in one command
+npm run test:db       # constraint and RLS isolation tests against a real Postgres
 ```
 
-Further gate commands (`validate:data`, `test:golden`, `db:migrate`, `test:e2e`,
-`audit:dataset`) are added in the phases that implement them, rather than defined now
-as scripts that would pass without checking anything. See
+Further gate commands (`validate:data`, `test:golden`, `test:e2e`, `audit:dataset`)
+are added in the phases that implement them, rather than defined now as scripts that
+would pass without checking anything. See
 [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md).
 
 ## Setup
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in Supabase values from Phase 1 onward
+cp .env.example .env.local
+
+# Local database. Needs a Postgres reachable at DATABASE_URL
+# (default postgres://postgres@127.0.0.1:5432/bible_timeline_explorer).
+npm run db:verify
+npm run test:db
+
 npm run dev
 ```
+
+`scripts/bootstrap-local-db.sql` creates the `auth` schema, `auth.uid()` and the
+`anon` / `authenticated` / `service_role` roles that Supabase provides and a bare
+Postgres does not. It is local-only and deliberately lives outside
+`supabase/migrations/` so it cannot be applied to the hosted project. The migrations
+themselves are identical in both places, which is what makes a local run meaningful.
