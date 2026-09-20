@@ -47,26 +47,45 @@ written justification in the pull request explaining what about the chronology w
 wrong before, and review by the project owner. They exist to detect drift in the data
 and the engine, so a suite that gets edited whenever it fails is worthless.
 
-From §22, with each assertion's dependency noted:
+The build prompt's §22 list was written against the 70-year reading of Terah's age at
+Abraham's birth. Kelv's decision of 2026-09-20 makes 130 the default
+(`DATA_SOURCING.md` §4a), and that inverts two of those assertions. The table below is
+the corrected set. Where an assertion changed, the original is shown so the change is
+visible rather than quietly absorbed.
 
-| #   | Assertion                                                        | Depends on                  |
-| --- | ---------------------------------------------------------------- | --------------------------- |
-| 1   | Adam's lifespan is as GEN.5.5 states                             | dataset only                |
-| 2   | Methuselah's lifespan is as GEN.5.27 states                      | dataset only                |
-| 3   | Adam and Methuselah's lifetimes overlap, approximately 243 years | chain + `overlap-half-open` |
-| 4   | Adam and Noah's lifetimes do not overlap                         | chain                       |
-| 5   | Adam and Lamech's lifetimes overlap                              | chain                       |
-| 6   | Methuselah and Noah's lifetimes overlap                          | chain                       |
-| 7   | Noah and Abraham's lifetimes overlap under `masoretic`           | chain + Terah decision (a)  |
-| 8   | Shem and Abraham's lifetimes overlap                             | chain + Shem decision (b)   |
-| 9   | Shem and Isaac's lifetimes overlap                               | as 8                        |
-| 10  | Shem and Jacob's lifetimes overlap                               | as 8                        |
-| 11  | Methuselah's age at Noah's birth is a specific derived value     | chain                       |
+| #   | Assertion                                                         | Depends on                  |
+| --- | ----------------------------------------------------------------- | --------------------------- |
+| 1   | Adam's lifespan is as GEN.5.5 states                              | dataset only                |
+| 2   | Methuselah's lifespan is as GEN.5.27 states                       | dataset only                |
+| 3   | Adam and Methuselah's lifetimes overlap, approximately 243 years  | chain + `overlap-half-open` |
+| 4   | Adam and Noah's lifetimes do not overlap                          | chain                       |
+| 5   | Adam and Lamech's lifetimes overlap                               | chain                       |
+| 6   | Methuselah and Noah's lifetimes overlap                           | chain                       |
+| 7   | **Noah and Abraham's lifetimes do NOT overlap** under `masoretic` | chain + Terah decision (a)  |
+| 8   | Shem and Abraham's lifetimes overlap                              | chain + Shem decision (b)   |
+| 9   | Shem and Isaac's lifetimes overlap                                | as 8                        |
+| 10  | **Shem and Jacob's lifetimes do NOT overlap** under `masoretic`   | as 8 + Terah decision (a)   |
+| 11  | Methuselah's age at Noah's birth is a specific derived value      | chain                       |
+| 12  | Terah and Abraham's lifetimes overlap by exactly 75 years         | chain + Terah decision (a)  |
+| 13  | Noah and Abraham DO overlap under `masoretic-gen11-26`            | the alternate variant       |
+| 14  | Shem and Jacob DO overlap under `masoretic-gen11-26`              | the alternate variant       |
 
-Assertions 7 through 10 are also written in the inverse form against the
-`masoretic-acts7` variant, where assertion 7 is expected to _fail to overlap_. Testing
-both readings is what keeps the Terah decision from quietly hardening into an
-assumption (see `DATA_SOURCING.md` §4a).
+Assertions 7 and 10 previously read "overlap" and now read "do not overlap".
+Assertions 13 and 14 are their counterparts under the alternate chronology, so the
+inversion is asserted from both sides and neither reading can drift unnoticed.
+
+Assertion 12 is the derivation's own consistency check. The Terah–Abraham overlap must
+come out at exactly 75 years, Abraham's age at the departure from Haran, because that
+is the figure the 130 offset was derived from. If it comes out at anything else, the
+chain is assembled wrong.
+
+**Consequence for product copy, tracked here because the tests are what caught it.**
+The build prompt's §30 worked example ("Noah and Abraham ... approximately 58 years")
+and two of its §35 Surprise Me examples ("Shem was alive when Jacob was born", "Noah's
+lifetime extended into Abraham's lifetime") assert overlaps that the chosen default
+does not produce. They are placeholder copy, not data, but they must be rewritten
+before Phase 9 and Phase 11 ship, and no seeded discovery may reproduce them. A copy
+review against the verified dataset is an exit condition for both phases.
 
 **Provenance assertions**, run over the whole dataset rather than per pair:
 

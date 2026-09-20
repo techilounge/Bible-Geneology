@@ -9,6 +9,24 @@
 /** Identifier of the chronology selected when the user has not chosen one. */
 export const DEFAULT_CHRONOLOGY_ID = 'masoretic';
 
+/**
+ * The alternate Masoretic reading, kept because it is a real disagreement rather
+ * than an error.
+ *
+ * The default derives Abraham's birth offset from his father as 130, from Terah's
+ * lifespan (GEN.11.32), Abraham's age at the departure from Haran (GEN.12.4) and
+ * the statement that the departure followed Terah's death (ACT.7.4): 205 - 75 = 130.
+ *
+ * This variant instead reads the 70 of GEN.11.26 as Abraham's birth offset. That
+ * verse gives one age for three sons and does not state that Abram was the eldest,
+ * so the reading is an interpretation. It is never marked VERIFIED as an explicit
+ * statement of Abraham's birth age.
+ *
+ * The two variants disagree about whether Noah and Abraham were ever alive at the
+ * same time, so nothing may assume one of them silently.
+ */
+export const ALTERNATE_CHRONOLOGY_ID = 'masoretic-gen11-26';
+
 /** Label for the epoch used by the default chronology. */
 export const EPOCH_LABEL = 'AM';
 

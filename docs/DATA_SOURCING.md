@@ -93,6 +93,10 @@ real test of §57: the UI has to handle "no death year" without inventing one.
 | Nahor → Terah     | GEN.11.24              | GEN.11.25                        |
 | Terah → Abram     | GEN.11.26              | GEN.11.32                        |
 
+The Terah → Abram row is the one exception to reading an offset straight off the
+age-at-fathering verse. Abraham's birth offset is derived from GEN.11.32, GEN.12.4 and
+ACT.7.4 rather than taken as the 70 of GEN.11.26; see §4a.
+
 Note the structural difference from Genesis 5: chapter 11 gives _remaining years after
 fathering_ rather than a total lifespan. Total lifespan is therefore DERIVED
 (age-at-fathering + remaining years), not EXPLICIT, for everyone in this chapter except
@@ -182,23 +186,82 @@ These are not edge cases. Each one changes an answer the product puts on its hom
 and each is modelled as an explicit, switchable decision rather than a constant buried
 in a seed file.
 
-**(a) Terah's age at Abraham's birth.** GEN.11.26 says Terah was 70 when he fathered
-Abram, Nahor, and Haran — three sons, one age, so the age most naturally attaches to
-the first of them or to the start of his fathering. GEN.11.32 gives Terah's lifespan,
-GEN.12.4 gives Abram's age when he left Haran, and Acts 7:4 places that departure after
-Terah's death. Taking those three together yields a _different_ age for Terah at
-Abram's birth than 70.
+**(a) Terah's age at Abraham's birth. Decided by Kelv on 2026-09-20.**
 
-The consequence is direct: **under one reading Noah and Abraham's lifetimes overlap;
-under the other they do not.** The product's §30 example and its §22 golden test both
-assume the overlap exists.
+GEN.11.26 says Terah was 70 when he fathered Abram, Nahor, and Haran. That is one age
+for three sons, and it does not state that Abram was born in that year or that Abram
+was the eldest. Reading 70 as Abraham's birth offset is therefore an **interpretation**,
+not an explicit chronological statement, and treating it as explicit would be exactly
+the category error this project exists to avoid.
 
-This is modelled as two chronology variants, `masoretic` and
-`masoretic-acts7`, sharing every other value. The MVP default is `masoretic`, which
-uses the GEN.11.26 reading. The Could They Have Met? result for Noah and Abraham
-therefore states the chronology by name and links to a note explaining that the other
-reading removes the overlap. That is the honest version of the feature, and it is a
-better product than one that asserts the overlap flatly.
+**The default Masoretic derivation uses 130**, from three figures read together:
+
+| Figure                                | Reference |
+| ------------------------------------- | --------- |
+| Terah died at 205                     | GEN.11.32 |
+| Abraham was 75 when he departed Haran | GEN.12.4  |
+| The departure followed Terah's death  | ACT.7.4   |
+
+```
+205 - 75 = 130
+```
+
+Record shape:
+
+```jsonc
+{
+  "personId": "abraham",
+  "chronologyId": "masoretic",
+  "field": "birthOffsetFromFather",
+  "fatherId": "terah",
+  "result": 130,
+  "confidence": "DERIVED",
+  "sourceReferences": ["GEN.11.26", "GEN.11.32", "GEN.12.4", "ACT.7.4"],
+  "calculationMethod": "205 - 75 = 130",
+  "assumptions": ["abraham-birth-from-acts-7-4"],
+}
+```
+
+The 70 reading is preserved as a **labelled alternate**, chronology id
+`masoretic-gen11-26`, sharing every other value. It is never marked VERIFIED as an
+explicit statement of Abraham's birth age; its review status is DISPUTED and its
+confidence is APPROXIMATE, because that is what an interpretation of a non-specific
+verse is. Both variants carry `source_claims` rows so the disagreement is data rather
+than a comment.
+
+This case is the worked example for "Why this date?" (§17). It shows a reader, on a
+concrete question they care about, the difference between a number Scripture states and
+a number three passages imply — which is the distinction the whole product rests on.
+
+**What the change does to the overlaps.** Moving Abraham's birth 60 years later is not
+a detail. Working the chain through, two of the §22 golden assertions invert:
+
+| Pair            | Under 70                | Under 130 (new default)                                       |
+| --------------- | ----------------------- | ------------------------------------------------------------- |
+| Noah ↔ Abraham  | overlap, about 58 years | **no overlap**, Abraham born about 2 years after Noah's death |
+| Shem ↔ Abraham  | overlap                 | overlap, about 150 years                                      |
+| Terah ↔ Abraham | overlap                 | overlap, 75 years                                             |
+| Shem ↔ Isaac    | overlap                 | overlap, about 50 years                                       |
+| Shem ↔ Jacob    | overlap                 | **no overlap**, Jacob born about 10 years after Shem's death  |
+
+Two observations about that table.
+
+The Terah ↔ Abraham row is a consistency check rather than a result. The overlap comes
+out at exactly 75 years, which is Abraham's age at the departure from Haran. It has to,
+since that is the figure the derivation was built from — but it confirms the chain was
+assembled correctly rather than merely plausibly.
+
+The two inversions have small margins, 2 years and 10 years. Small margins mean Phase 2
+verification genuinely matters here: a single mis-transcribed age anywhere in the
+Genesis 11 chain would flip them back. They are also the reason the §22 assertions and
+the §30 and §35 example copy all need rewriting before Phase 2 closes, since as written
+they assert overlaps that the chosen default does not produce. Tracked in
+`TESTING_STRATEGY.md` §3.
+
+The figures in the table are the derivation's prediction from the standard Masoretic
+ages, stated here so the consequence is visible now. They are not verified data and are
+not seeded. Phase 2 verifies each age from the text and the golden tests then assert
+whatever the verified chain produces.
 
 **(b) Shem's age at the flood.** GEN.5.32 gives Noah's age at the fathering of Shem,
 Ham, and Japheth as a single figure; GEN.7.6 gives his age at the flood; GEN.11.10

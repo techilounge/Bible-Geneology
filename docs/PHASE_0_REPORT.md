@@ -128,19 +128,29 @@ not earned.
 
 ### Issues
 
-1. **No GitHub repository.** The codebase is a local git repository in project storage
-   with no remote. CI is configured but has never run. Nothing will be pushed and no
-   repository created until Kelv asks.
-2. **No Supabase project.** Phase 1 needs one, or a local Supabase instance, before
-   migrations can be verified against a real database.
-3. **The Terah decision is open.** `DATA_SOURCING.md` §4a sets the MVP default to the
-   Genesis 11:26 reading, which is what makes the Noah–Abraham overlap exist. Both
-   readings are modelled as chronology variants and both are tested. Kelv may want to
-   review this before Phase 2 seeds it, since it decides a claim on the home page.
+1. **GitHub repository attached.** `techilounge/Bible-Geneology`, supplied by Kelv on
+   2026-09-20. It was empty; Phase 0 is its initial commit on `main`. CI runs from the
+   next push onward.
+2. **Supabase project identified, credentials not held.** Project `xxbkryncsftubcdjpkns`
+   in `us-west-2`, free plan. No keys or database password are in this session, and
+   none should be pasted into chat. Phase 1 runs its migrations against a local
+   Supabase instance, which is what its gate ("a clean database") actually calls for;
+   the hosted project is configured with credentials set directly in Supabase and the
+   deployment environment. See `SECURITY.md` §3.
+3. **The Terah decision is settled.** Kelv decided on 2026-09-20 that the default
+   Masoretic derivation uses 130, derived from GEN.11.32, GEN.12.4 and ACT.7.4, with
+   the 70 reading kept as the labelled alternate `masoretic-gen11-26` and never marked
+   VERIFIED as an explicit birth age. Documented in `DATA_SOURCING.md` §4a.
+
+   The consequence is larger than the offset: **two of the build prompt's own §22
+   golden assertions invert.** Noah and Abraham no longer overlap, and neither do Shem
+   and Jacob. The §22 list, and the §30 and §35 example copy, were written against the
+   70 reading and need rewriting. Corrected assertions are in `TESTING_STRATEGY.md` §3.
+
 4. **Coverage thresholds are provisional** at 70%. They are raised to 100% for
    `lib/chronology` and `lib/graph` in Phase 3, when those directories have code.
 
-None of these is a §63 stop condition. Items 1 and 2 are the gating ones for Phase 1.
+None of these is a §63 stop condition, and none now blocks Phase 1.
 
 ### Files changed
 
