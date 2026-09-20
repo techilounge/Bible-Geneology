@@ -33,6 +33,12 @@ jobs:
           cache: npm
       - run: npm ci
 
+      # A new advisory against a dependency we already have is the kind of
+      # thing nobody notices until it is quoted back at them. High and
+      # above fails the build; anything lower is reported and read.
+      - run: npm run security:audit
+      - run: npm audit || true
+
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run format

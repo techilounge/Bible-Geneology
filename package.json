@@ -14,6 +14,7 @@
     "lint": "eslint .",
     "format": "prettier --check .",
     "format:write": "prettier --write .",
+    "security:audit": "npm audit --audit-level=high",
     "test": "npm run derive:chronology --silent && vitest run",
     "test:watch": "vitest",
     "verify": "npm run typecheck && npm run lint && npm run format && npm run test:coverage && npm run test:ui && npm run build",

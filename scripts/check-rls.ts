@@ -22,6 +22,17 @@ const USER_WRITABLE = new Set([
 /** Bookkeeping, not part of the data model. */
 const EXEMPT = new Set(['schema_migrations']);
 
+/**
+ * Tables that are meant to have no policy at all.
+ *
+ * "RLS on with no policy" is usually a mistake — a table nobody can
+ * read. For the rate-limit counters it is the intent: no client ever
+ * touches them, only the service role does, and the strictest possible
+ * state is the right one. Listing them here keeps the check meaningful
+ * for every other table rather than softening it for all of them.
+ */
+const SERVICE_ROLE_ONLY = new Set(['rate_limits']);
+
 async function main() {
   const problems: string[] = [];
 
@@ -65,7 +76,7 @@ async function main() {
     }
 
     for (const { tablename } of tables.rows) {
-      if (EXEMPT.has(tablename)) continue;
+      if (EXEMPT.has(tablename) || SERVICE_ROLE_ONLY.has(tablename)) continue;
       const has = policies.rows.some((p) => p.tablename === tablename);
       if (!has) {
         problems.push(

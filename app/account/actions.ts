@@ -3,6 +3,8 @@
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { parseAttempts, safeNext } from '@/lib/account';
+import { SIGN_IN_LIMIT } from '@/lib/security/rate-limit';
+import { callerAddress, spend } from '@/lib/services/rate-limit';
 import {
   mergeBrowserAttempts,
   toggleFavourite,
@@ -36,6 +38,17 @@ export async function sendMagicLink(formData: FormData): Promise<void> {
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     redirect(`/account/sign-in?error=email&next=${encodeURIComponent(next)}`);
+  }
+
+  // Counted against the address and against the caller, because either
+  // alone is a hole: one caller must not be able to mail a thousand
+  // addresses, and a thousand callers must not be able to mail one.
+  const attempts = await Promise.all([
+    spend('sign-in-email', email, SIGN_IN_LIMIT),
+    spend('sign-in-caller', await callerAddress(), SIGN_IN_LIMIT),
+  ]);
+  if (attempts.some((attempt) => !attempt.allowed)) {
+    redirect(`/account/sign-in?error=slow-down&next=${encodeURIComponent(next)}`);
   }
 
   const supabase = await createClient();

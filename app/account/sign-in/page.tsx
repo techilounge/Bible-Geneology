@@ -28,6 +28,8 @@ const MESSAGES: Record<string, string> = {
   send: 'The link could not be sent just now. Try again in a moment.',
   google: 'Google sign-in could not be started. Try the email link instead.',
   link: 'That link has already been used or has expired. Ask for a new one.',
+  'slow-down':
+    'That is a lot of sign-in links in a short time. Wait a couple of minutes and try again.',
 };
 
 export default async function SignInPage({

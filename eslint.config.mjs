@@ -44,6 +44,7 @@ export default tseslint.config(
       'lib/domain/**',
       'lib/account/**',
       'lib/admin/**',
+      'lib/security/**',
     ],
     rules: {
       'no-restricted-imports': [

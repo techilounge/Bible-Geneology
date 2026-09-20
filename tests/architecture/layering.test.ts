@@ -22,6 +22,7 @@ const ENGINE = [
   'lib/domain',
   'lib/account',
   'lib/admin',
+  'lib/security',
 ];
 
 const FORBIDDEN_IMPORTS = [
