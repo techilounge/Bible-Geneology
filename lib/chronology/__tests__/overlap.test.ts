@@ -117,3 +117,22 @@ describe('compareLifespans', () => {
     });
   });
 });
+
+describe('compareLifespans: the remaining absences', () => {
+  it('is symmetric', () => {
+    const forwards = compareLifespans(dataset, 'ancestor', 'child');
+    const backwards = compareLifespans(dataset, 'child', 'ancestor');
+    if (forwards.status !== 'known' || backwards.status !== 'known') {
+      throw new Error('expected known results');
+    }
+    expect(backwards.value.longerPersonId).toBe(forwards.value.longerPersonId);
+    expect(backwards.value.differenceYears).toBe(forwards.value.differenceYears);
+  });
+
+  it('is unknown when one person is not in this chronology at all', () => {
+    expect(compareLifespans(dataset, 'ancestor', 'absent')).toEqual({
+      status: 'unknown',
+      reason: 'not-applicable',
+    });
+  });
+});

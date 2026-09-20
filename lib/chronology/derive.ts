@@ -86,6 +86,8 @@ interface Resolved {
   deathYear: number | null;
   lifespan: number | null;
   birthDerivation: Derivation | null;
+  /** The reference a synthetic epoch step cites when this birth has no chain. */
+  birthReference: string;
   birthConfidence: ConfidenceLevel;
   deathConfidence: ConfidenceLevel;
   lifespanConfidence: ConfidenceLevel;
@@ -110,6 +112,7 @@ export function deriveChronology(
 
   for (const personId of order) {
     const row = byId.get(personId);
+    /* v8 ignore next -- @preserve: noUncheckedIndexedAccess forces this guard; the index is always in range. */
     if (!row) continue;
     resolved.set(personId, resolveRow(row, resolved, byId, issues));
   }
@@ -117,6 +120,7 @@ export function deriveChronology(
   const records: PersonChronology[] = [];
   for (const row of rows) {
     const r = resolved.get(row.personId);
+    /* v8 ignore next -- @preserve: every row was resolved in the loop above. */
     if (!r) continue;
     records.push({
       personId: row.personId,
@@ -168,6 +172,7 @@ function resolveRow(
     deathYear,
     lifespan: lifespan.value,
     birthDerivation: birth.derivation,
+    birthReference: primaryReference(row.birthOffsetFromFather),
     birthConfidence: birth.year === null ? 'UNKNOWN' : birth.confidence,
     deathConfidence,
     lifespanConfidence: lifespan.value === null ? 'UNKNOWN' : lifespan.confidence,
@@ -275,6 +280,7 @@ function resolveBirth(
           steps: [
             ...chainPrefix(row.father, resolved),
             {
+              /* v8 ignore next -- @preserve: the guard above returns unless row.father is set. */
               from: row.father ?? 'noah',
               to: 'the-flood',
               years: ageAtFlood,
@@ -332,6 +338,7 @@ function resolveBirth(
           steps: [
             ...chainPrefix(row.father, resolved),
             {
+              /* v8 ignore next -- @preserve: the guard above returns unless row.father is set. */
               from: row.father ?? 'terah',
               to: 'terah-death',
               years: terahLifespan,
@@ -369,6 +376,7 @@ function resolveBirth(
           steps: [
             ...chainPrefix(anchorId, resolved),
             {
+              /* v8 ignore next -- @preserve: the guard above returns unless the anchor resolved. */
               from: anchorId ?? 'anchor',
               to: row.personId,
               years: -ageAtAnchor,
@@ -414,6 +422,7 @@ function resolveBirth(
           steps: [
             ...chainPrefix(row.father, resolved),
             {
+              /* v8 ignore next -- @preserve: the guard above returns unless row.father is set. */
               from: row.father ?? 'jacob',
               to: 'jacob-before-pharaoh',
               years: jacobAgeBeforePharaoh,
@@ -447,13 +456,41 @@ function resolveBirth(
  * cumulative sum of the years before it. A chain that started midway would
  * fail that check, and rightly: a reader asking "why this date?" wants the
  * path, not the final addition.
+ *
+ * The caller's arithmetic is always anchor.birthYear + something, so the
+ * prefix has to sum to exactly the anchor's birth year or the whole
+ * derivation is inconsistent with the number it claims to explain. An anchor
+ * whose own birth carries no chain — the epoch, or any figure stated outright
+ * — gets a single step from the epoch instead, which is the honest
+ * description of where that year came from.
  */
 function chainPrefix(
   anchorId: string | null | undefined,
   resolved: Map<string, Resolved>,
 ): DerivationStep[] {
+  /* v8 ignore next -- @preserve: every caller has already established the anchor and its birth year. */
   if (!anchorId) return [];
-  return resolved.get(anchorId)?.birthDerivation?.steps ?? [];
+  const anchor = resolved.get(anchorId);
+  /* v8 ignore next -- @preserve: as above: the caller's own guard has already returned otherwise. */
+  if (!anchor || anchor.birthYear === null) return [];
+
+  const steps = anchor.birthDerivation?.steps ?? [];
+  const sum = steps[steps.length - 1]?.runningTotal ?? 0;
+  if (sum === anchor.birthYear) return steps;
+
+  return [
+    {
+      from: 'epoch',
+      to: anchorId,
+      years: anchor.birthYear,
+      reference: anchor.birthReference,
+      runningTotal: anchor.birthYear,
+    },
+  ];
+}
+
+function primaryReference(spec: BirthRule): string {
+  return spec.reference ?? spec.sourceReferences?.[0] ?? 'GEN.5.1';
 }
 
 function figureValue(
@@ -535,6 +572,7 @@ export function topologicalOrder(
       return;
     }
     state.set(id, 'visiting');
+    /* v8 ignore next -- @preserve: every row was seeded into deps above. */
     for (const dep of deps.get(id) ?? []) visit(dep, [...trail, id]);
     state.set(id, 'done');
     order.push(id);

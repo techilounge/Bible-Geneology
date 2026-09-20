@@ -43,15 +43,18 @@ export function buildOverlapGraph(records: Iterable<PersonChronology>): OverlapG
   // death, every later candidate is too.
   for (let i = 0; i < dated.length; i += 1) {
     const a = dated[i];
+    /* v8 ignore next -- @preserve: noUncheckedIndexedAccess forces this guard; the index is always in range. */
     if (!a) continue;
     for (let j = i + 1; j < dated.length; j += 1) {
       const b = dated[j];
+      /* v8 ignore next -- @preserve: noUncheckedIndexedAccess forces this guard; the index is always in range. */
       if (!b) continue;
       if (b.birthYear >= a.deathYear) break;
 
       const years =
         Math.min(a.deathYear, b.deathYear) - Math.max(a.birthYear, b.birthYear);
       if (years > 0) {
+        /* v8 ignore next 2 -- @preserve: every node is seeded into the map above, so the optional call always fires. */
         neighbours.get(a.personId)?.push(b.personId);
         neighbours.get(b.personId)?.push(a.personId);
       }
@@ -81,8 +84,10 @@ export function getOverlapChain(
 
   while (queue.length > 0) {
     const current = queue.shift();
+    /* v8 ignore next -- @preserve: noUncheckedIndexedAccess forces this guard; the index is always in range. */
     if (current === undefined) break;
 
+    /* v8 ignore next -- @preserve: only seeded nodes reach the queue, so the fallback cannot be taken. */
     for (const neighbour of graph.neighbours.get(current) ?? []) {
       if (seen.has(neighbour)) continue;
       seen.add(neighbour);
@@ -93,6 +98,7 @@ export function getOverlapChain(
         let cursor = toId;
         while (cursor !== fromId) {
           const prev = previous.get(cursor);
+          /* v8 ignore next -- @preserve: noUncheckedIndexedAccess forces this guard; the index is always in range. */
           if (prev === undefined) return null;
           chain.unshift(prev);
           cursor = prev;

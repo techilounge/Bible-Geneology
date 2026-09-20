@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  datedPeople,
   getAgeAtPersonBirth,
   getAgeAtPersonDeath,
   getAgeAtYear,
@@ -117,5 +118,104 @@ describe('getPersonTimeline', () => {
     expect(result.status).toBe('known');
     if (result.status !== 'known') return;
     expect(result.derivation?.result).toBe(50);
+  });
+});
+
+describe('datedPeople', () => {
+  it('lists only the people the dataset can place on a timeline', () => {
+    const ids = datedPeople(dataset)
+      .map((p) => p.personId)
+      .sort();
+    expect(ids).toEqual(['ancestor', 'child', 'cousin', 'parent']);
+  });
+
+  it('leaves out someone with a lifespan but no recorded death', () => {
+    // A bar of known length with no end is not a bar, and guessing the end
+    // to draw one is the mistake the whole dataset is arranged to prevent.
+    expect(datedPeople(dataset).map((p) => p.personId)).not.toContain('openended');
+  });
+});
+
+describe('the absences each age function has to distinguish', () => {
+  it('reports not-applicable when the other person is not in this chronology', () => {
+    expect(getAgeAtPersonBirth(dataset, 'ancestor', 'absent')).toEqual({
+      status: 'unknown',
+      reason: 'not-applicable',
+    });
+    expect(getAgeAtPersonDeath(dataset, 'ancestor', 'absent')).toEqual({
+      status: 'unknown',
+      reason: 'not-applicable',
+    });
+  });
+
+  it('reports unknown-in-chronology when the other person has no dates', () => {
+    expect(getAgeAtPersonBirth(dataset, 'ancestor', 'undated')).toEqual({
+      status: 'unknown',
+      reason: 'unknown-in-chronology',
+    });
+  });
+
+  it('reports unknown-in-chronology when the other person has no recorded death', () => {
+    expect(getAgeAtPersonDeath(dataset, 'ancestor', 'openended')).toEqual({
+      status: 'unknown',
+      reason: 'unknown-in-chronology',
+    });
+  });
+});
+
+describe('getPersonTimeline', () => {
+  it('gives the bar a closed life should be drawn as', () => {
+    const result = getPersonTimeline(dataset, 'ancestor');
+    if (result.status !== 'known') throw new Error('expected a known result');
+    expect(result.value).toEqual({
+      personId: 'ancestor',
+      birthYear: 0,
+      deathYear: 100,
+      lifespan: 100,
+      openEnded: false,
+    });
+  });
+
+  it('marks a life with no recorded death as open-ended rather than ending it', () => {
+    const result = getPersonTimeline(dataset, 'openended');
+    if (result.status !== 'known') throw new Error('expected a known result');
+    expect(result.value.deathYear).toBeNull();
+    expect(result.value.openEnded).toBe(true);
+    expect(result.value.lifespan).toBe(200);
+  });
+
+  it('carries the derivation so the bar can explain its own start', () => {
+    const result = getPersonTimeline(dataset, 'ancestor');
+    if (result.status !== 'known') throw new Error('expected a known result');
+    expect(result.derivation).toBeDefined();
+  });
+
+  it('is no-data for a person present but undated', () => {
+    expect(getPersonTimeline(dataset, 'undated')).toEqual({
+      status: 'unknown',
+      reason: 'no-data',
+    });
+  });
+
+  it('is not-applicable for a person absent from this chronology', () => {
+    expect(getPersonTimeline(dataset, 'absent')).toEqual({
+      status: 'unknown',
+      reason: 'not-applicable',
+    });
+  });
+});
+
+describe('a dated record with no derivation behind it', () => {
+  it('still returns a timeline, without a derivation to show', () => {
+    const record = dataset.chronology.get('ancestor');
+    if (!record) throw new Error('fixture missing');
+    const bare = fixtureDataset();
+    (bare.chronology as Map<string, typeof record>).set('ancestor', {
+      ...record,
+      derivation: null,
+    });
+    const result = getPersonTimeline(bare, 'ancestor');
+    expect(result.status).toBe('known');
+    if (result.status === 'known') expect(result.derivation).toBeUndefined();
   });
 });

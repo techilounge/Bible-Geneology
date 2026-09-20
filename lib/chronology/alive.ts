@@ -52,15 +52,17 @@ export function getPeopleAliveAtYear(dataset: Dataset, year: number): LivingPers
   const living: LivingPerson[] = [];
 
   for (const record of dataset.chronology.values()) {
-    const window = livingWindowEnd(record);
-    if (window === null || record.birthYear === null) continue;
-    if (record.birthYear <= year && year < window.end) {
+    // Named `span` rather than `window`: this layer must never touch the
+    // browser global, and the architecture test greps for it by name.
+    const span = livingWindowEnd(record);
+    if (span === null || record.birthYear === null) continue;
+    if (record.birthYear <= year && year < span.end) {
       living.push({
         personId: record.personId,
         age: year - record.birthYear,
         birthYear: record.birthYear,
-        endYear: window.end,
-        openEnded: window.openEnded,
+        endYear: span.end,
+        openEnded: span.openEnded,
       });
     }
   }

@@ -16,7 +16,7 @@
     "format:write": "prettier --write .",
     "test": "npm run derive:chronology --silent && vitest run",
     "test:watch": "vitest",
-    "verify": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "verify": "npm run typecheck && npm run lint && npm run test:coverage && npm run build",
     "db:reset": "tsx scripts/db-reset.ts",
     "db:migrate": "tsx scripts/db-migrate.ts",
     "db:check-rls": "tsx scripts/check-rls.ts",
@@ -24,7 +24,8 @@
     "test:db": "vitest run --config vitest.db.config.ts",
     "validate:data": "tsx scripts/validate-data.ts",
     "data:worksheet": "tsx scripts/figure-worksheet.ts",
-    "derive:chronology": "tsx scripts/derive-chronology.ts"
+    "derive:chronology": "tsx scripts/derive-chronology.ts",
+    "test:coverage": "npm run derive:chronology --silent && vitest run --coverage"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

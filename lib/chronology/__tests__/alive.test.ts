@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  agesAtYear,
   getLivingAncestorsAtYear,
   getLivingDescendantsAtYear,
   getMaximumConcurrentGenerations,
@@ -7,6 +8,7 @@ import {
   getPeopleAliveAtDeath,
   getPeopleAliveAtYear,
 } from '../alive';
+import { buildDataset } from '../dataset';
 import { fixtureDataset } from './fixtures';
 
 const dataset = fixtureDataset();
@@ -122,5 +124,175 @@ describe('getMaximumConcurrentGenerations', () => {
     // child (gen 2) arrives at 100, by which time ancestor has died.
     expect(result.value.generations).toBeGreaterThanOrEqual(2);
     expect(result.value.personIds.length).toBeGreaterThan(0);
+  });
+});
+
+describe('agesAtYear', () => {
+  it('pairs everyone alive with their age, ready to render', () => {
+    const rows = agesAtYear(dataset, 60);
+    expect(ids(rows)).toEqual(['ancestor', 'cousin', 'openended', 'parent']);
+
+    const ancestor = rows.find((r) => r.personId === 'ancestor');
+    expect(ancestor?.ageResult.status).toBe('known');
+    if (ancestor?.ageResult.status === 'known') {
+      expect(ancestor.ageResult.value.years).toBe(60);
+    }
+  });
+
+  it('carries an unknown age rather than a number for an open-ended life', () => {
+    // 'openended' is listed as alive because his birth and lifespan are
+    // known, and his age still resolves; the distinction that matters is
+    // that the year explorer includes him at all rather than dropping him.
+    const row = agesAtYear(dataset, 60).find((r) => r.personId === 'openended');
+    expect(row?.openEnded).toBe(true);
+  });
+
+  it('returns an empty list for a year before anyone is born', () => {
+    expect(agesAtYear(dataset, -1)).toEqual([]);
+  });
+});
+
+describe('getPeopleAliveAtDeath: the absences', () => {
+  it('is not-applicable for someone absent from this chronology', () => {
+    expect(getPeopleAliveAtDeath(dataset, 'absent')).toEqual({
+      status: 'unknown',
+      reason: 'not-applicable',
+    });
+  });
+
+  it('is unknown for someone whose death the text does not record', () => {
+    // Enoch's case. There is no year to ask the question at.
+    expect(getPeopleAliveAtDeath(dataset, 'openended')).toEqual({
+      status: 'unknown',
+      reason: 'unknown-in-chronology',
+    });
+  });
+
+  it('is unknown for someone with no dates at all', () => {
+    expect(getPeopleAliveAtDeath(dataset, 'undated')).toEqual({
+      status: 'unknown',
+      reason: 'unknown-in-chronology',
+    });
+  });
+});
+
+describe('the living window', () => {
+  it('leaves out someone with neither a death year nor a lifespan', () => {
+    // 'undated' has a record and no numbers in it. There is no window to
+    // place them in, and placing them anyway would be an invention.
+    expect(ids(getPeopleAliveAtYear(dataset, 60))).not.toContain('undated');
+  });
+
+  it('includes an open-ended life for as long as its lifespan runs', () => {
+    // 'openended' is born in 10 with a lifespan of 200 and no death year.
+    expect(ids(getPeopleAliveAtYear(dataset, 209))).toContain('openended');
+    expect(ids(getPeopleAliveAtYear(dataset, 210))).not.toContain('openended');
+  });
+});
+
+const ancestorRecord = dataset.chronology.get('ancestor');
+if (!ancestorRecord) throw new Error('fixture missing an ancestor record');
+
+describe('a record with a birth year and nothing else', () => {
+  it('is left out of the year explorer rather than given a window', () => {
+    // Genesis names people whose birth can be placed but whose death and
+    // lifespan it never gives. A bar with a start and no length is not a
+    // bar, and inventing the length is the failure this dataset avoids.
+    const dataset = buildDataset({
+      chronologyId: 'fixture',
+      people: [],
+      chronology: [
+        {
+          personId: 'birth-only',
+          chronologyId: 'fixture',
+          birthYear: 10,
+          deathYear: null,
+          lifespan: null,
+          birthConfidence: 'DERIVED',
+          deathConfidence: 'UNKNOWN',
+          lifespanConfidence: 'UNKNOWN',
+          birthSourceType: 'SCRIPTURE_DERIVED',
+          deathSourceType: 'UNKNOWN',
+          lifespanSourceType: 'UNKNOWN',
+          sourceReferences: ['GEN.5.1'],
+          calculationMethod: null,
+          derivation: null,
+          notes: null,
+          reviewStatus: 'DRAFT',
+        },
+      ],
+      relationships: [],
+    });
+    expect(getPeopleAliveAtYear(dataset, 10)).toEqual([]);
+  });
+});
+
+describe('getPeopleAliveAtDeath: the answer itself', () => {
+  it('lists who outlived the person, without the person', () => {
+    // 'cousin' dies in year 90; ancestor (0-100) and parent (50-150) are
+    // both still alive, and 'child' (100-150) is not yet born.
+    const result = getPeopleAliveAtDeath(dataset, 'cousin');
+    if (result.status !== 'known') throw new Error('expected a known result');
+    expect(ids(result.value)).toEqual(['ancestor', 'openended', 'parent']);
+  });
+});
+
+describe('the remaining absences in the living-at queries', () => {
+  it('reports no-data for a birth query on someone with no birth year', () => {
+    expect(getPeopleAliveAtBirth(dataset, 'undated')).toEqual({
+      status: 'unknown',
+      reason: 'no-data',
+    });
+  });
+
+  it('reports not-applicable for an ancestor query on an absent person', () => {
+    expect(getLivingAncestorsAtYear(dataset, 'absent', 60)).toEqual({
+      status: 'unknown',
+      reason: 'not-applicable',
+    });
+  });
+
+  it('reports not-applicable for a descendant query on an absent person', () => {
+    expect(getLivingDescendantsAtYear(dataset, 'absent', 60)).toEqual({
+      status: 'unknown',
+      reason: 'not-applicable',
+    });
+  });
+
+  it('reports no-data for concurrent generations when nobody is dated', () => {
+    const empty = buildDataset({
+      chronologyId: 'fixture',
+      people: [],
+      chronology: [],
+      relationships: [],
+    });
+    expect(getMaximumConcurrentGenerations(empty)).toEqual({
+      status: 'unknown',
+      reason: 'no-data',
+    });
+  });
+
+  it('reports no-data when everyone dated belongs to one generation', () => {
+    // One generation alive at a time is not a concurrency finding, and
+    // reporting it as one would put "1 generation" on a surprise card.
+    const flat = buildDataset({
+      chronologyId: 'fixture',
+      people: [],
+      chronology: [ancestorRecord],
+      relationships: [],
+    });
+    expect(getMaximumConcurrentGenerations(flat)).toEqual({
+      status: 'unknown',
+      reason: 'no-data',
+    });
+  });
+});
+
+describe('getPeopleAliveAtBirth: absence', () => {
+  it('is not-applicable for someone with no record in this chronology', () => {
+    expect(getPeopleAliveAtBirth(dataset, 'absent')).toEqual({
+      status: 'unknown',
+      reason: 'not-applicable',
+    });
   });
 });

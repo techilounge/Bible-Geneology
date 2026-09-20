@@ -9,11 +9,33 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['lib/**'],
+      // The Supabase clients are I/O wrappers exercised by the database
+      // suite under vitest.db.config.ts against a real Postgres, where a
+      // unit test would only assert that a mock was called.
+      exclude: ['lib/supabase/**', 'lib/**/index.ts', 'lib/**/__tests__/**'],
       thresholds: {
-        // Raised to 100% for lib/chronology and lib/graph in Phase 3,
-        // once those directories contain code. See docs/TESTING_STRATEGY.md section 2.
-        lines: 70,
-        branches: 70,
+        lines: 90,
+        branches: 85,
+        functions: 85,
+        statements: 90,
+
+        // The chronology engine and the relationship graph decide what the
+        // product asserts about Scripture, so every branch in them is
+        // tested. Requirement section 18 and docs/TESTING_STRATEGY.md
+        // section 2. The handful of guards that strict indexing forces but
+        // no input can reach carry a `v8 ignore` comment saying why.
+        'lib/chronology/**': {
+          lines: 100,
+          branches: 100,
+          functions: 100,
+          statements: 99,
+        },
+        'lib/graph/**': {
+          lines: 100,
+          branches: 100,
+          functions: 100,
+          statements: 99,
+        },
       },
     },
   },
