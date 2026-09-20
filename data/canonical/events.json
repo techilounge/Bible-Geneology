@@ -1,0 +1,52 @@
+[
+  {
+    "id": "creation-of-adam",
+    "name": "Creation of Adam",
+    "slug": "creation-of-adam",
+    "description": "The epoch of this chronology. Year 0 AM by definition, not by calculation.",
+    "eventType": "origin",
+    "relatedPersonIds": ["adam", "eve"],
+    "sourceReferences": ["GEN.5.1"],
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "id": "the-flood",
+    "name": "The Flood",
+    "slug": "the-flood",
+    "description": "Dated from Noah's age at the flood, so its year is derived rather than stated.",
+    "eventType": "judgement",
+    "relatedPersonIds": ["noah", "shem", "ham", "japheth"],
+    "sourceReferences": ["GEN.7.6"],
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "id": "tower-of-babel",
+    "name": "The Tower of Babel",
+    "slug": "tower-of-babel",
+    "description": "Scripture gives no age or year for this event, so its date is unknown under this chronology.",
+    "eventType": "judgement",
+    "relatedPersonIds": ["peleg"],
+    "sourceReferences": ["GEN.11.4"],
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "id": "abraham-departs-haran",
+    "name": "Abraham departs Haran",
+    "slug": "abraham-departs-haran",
+    "description": "Abraham was 75. The same figure the default chronology uses to derive his birth year.",
+    "eventType": "journey",
+    "relatedPersonIds": ["abraham", "sarah"],
+    "sourceReferences": ["GEN.12.4", "ACT.7.4"],
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "id": "jacob-enters-egypt",
+    "name": "Jacob enters Egypt",
+    "slug": "jacob-enters-egypt",
+    "description": "Jacob was 130 when he stood before Pharaoh.",
+    "eventType": "journey",
+    "relatedPersonIds": ["jacob", "joseph"],
+    "sourceReferences": ["GEN.47.9"],
+    "reviewStatus": "DRAFT"
+  }
+]

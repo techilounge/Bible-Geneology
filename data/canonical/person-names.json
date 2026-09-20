@@ -1,0 +1,79 @@
+[
+  {
+    "personId": "abraham",
+    "name": "Abram",
+    "nameType": "renamed_to",
+    "language": null,
+    "notes": "Named Abram until Genesis 17:5."
+  },
+  {
+    "personId": "abraham",
+    "name": "Abraham",
+    "nameType": "canonical",
+    "language": null,
+    "notes": null
+  },
+  {
+    "personId": "sarah",
+    "name": "Sarai",
+    "nameType": "renamed_to",
+    "language": null,
+    "notes": "Named Sarai until Genesis 17:15."
+  },
+  {
+    "personId": "sarah",
+    "name": "Sarah",
+    "nameType": "canonical",
+    "language": null,
+    "notes": null
+  },
+  {
+    "personId": "jacob",
+    "name": "Israel",
+    "nameType": "alternate",
+    "language": null,
+    "notes": "Renamed Israel in Genesis 32:28."
+  },
+  {
+    "personId": "jacob",
+    "name": "Jacob",
+    "nameType": "canonical",
+    "language": null,
+    "notes": null
+  },
+  {
+    "personId": "esau",
+    "name": "Edom",
+    "nameType": "alternate",
+    "language": null,
+    "notes": "Also called Edom, Genesis 25:30."
+  },
+  {
+    "personId": "benjamin",
+    "name": "Ben-Oni",
+    "nameType": "alternate",
+    "language": null,
+    "notes": "Named Ben-Oni by Rachel, Genesis 35:18."
+  },
+  {
+    "personId": "kenan",
+    "name": "Cainan",
+    "nameType": "transliteration",
+    "language": null,
+    "notes": "Rendered Cainan in some translations."
+  },
+  {
+    "personId": "enosh",
+    "name": "Enos",
+    "nameType": "transliteration",
+    "language": null,
+    "notes": "Rendered Enos in some translations."
+  },
+  {
+    "personId": "shelah",
+    "name": "Salah",
+    "nameType": "transliteration",
+    "language": null,
+    "notes": "Rendered Salah in some translations."
+  }
+]

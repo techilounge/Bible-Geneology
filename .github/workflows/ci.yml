@@ -36,6 +36,7 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run format
+      - run: npm run validate:data
       - run: npm run test
 
       # The database gate. Migrations run twice: once on a clean database, then

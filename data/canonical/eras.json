@@ -1,0 +1,20 @@
+[
+  {
+    "id": "antediluvian",
+    "name": "Before the Flood",
+    "description": "From creation to the flood.",
+    "sortOrder": 10
+  },
+  {
+    "id": "post-flood",
+    "name": "After the Flood",
+    "description": "From the flood to the call of Abraham.",
+    "sortOrder": 20
+  },
+  {
+    "id": "patriarchal",
+    "name": "The Patriarchs",
+    "description": "Abraham, Isaac, Jacob and their households.",
+    "sortOrder": 30
+  }
+]

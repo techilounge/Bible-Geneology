@@ -1,0 +1,662 @@
+[
+  {
+    "sourcePersonId": "adam",
+    "targetPersonId": "seth",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.3"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "eve",
+    "targetPersonId": "seth",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.4.25"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "seth",
+    "targetPersonId": "enosh",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.6"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "enosh",
+    "targetPersonId": "kenan",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.9"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "kenan",
+    "targetPersonId": "mahalalel",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.12"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "mahalalel",
+    "targetPersonId": "jared",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.15"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jared",
+    "targetPersonId": "enoch",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.18"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "enoch",
+    "targetPersonId": "methuselah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.21"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "methuselah",
+    "targetPersonId": "lamech",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.25"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "lamech",
+    "targetPersonId": "noah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.28"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "noah",
+    "targetPersonId": "shem",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.32"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "noah",
+    "targetPersonId": "ham",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.32"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "noah",
+    "targetPersonId": "japheth",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.5.32"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "shem",
+    "targetPersonId": "arphaxad",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.10"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "arphaxad",
+    "targetPersonId": "shelah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.12"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "shelah",
+    "targetPersonId": "eber",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.14"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "eber",
+    "targetPersonId": "peleg",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.16"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "peleg",
+    "targetPersonId": "reu",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.18"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "reu",
+    "targetPersonId": "serug",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.20"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "serug",
+    "targetPersonId": "nahor",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.22"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "nahor",
+    "targetPersonId": "terah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.24"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "terah",
+    "targetPersonId": "abraham",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.26"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "terah",
+    "targetPersonId": "nahor-son-of-terah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.26"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "terah",
+    "targetPersonId": "haran",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.11.26"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "abraham",
+    "targetPersonId": "ishmael",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.16.15"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "hagar",
+    "targetPersonId": "ishmael",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.16.15"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "abraham",
+    "targetPersonId": "isaac",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.21.3"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "sarah",
+    "targetPersonId": "isaac",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.21.3"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "isaac",
+    "targetPersonId": "esau",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.25.25"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "rebekah",
+    "targetPersonId": "esau",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.25.25"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "isaac",
+    "targetPersonId": "jacob",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.25.26"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "rebekah",
+    "targetPersonId": "jacob",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.25.26"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "reuben",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.29.32"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "leah",
+    "targetPersonId": "reuben",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.29.32"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "simeon",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.29.33"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "leah",
+    "targetPersonId": "simeon",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.29.33"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "levi",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.29.34"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "leah",
+    "targetPersonId": "levi",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.29.34"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "judah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.29.35"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "leah",
+    "targetPersonId": "judah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.29.35"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "dan",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.6"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "bilhah",
+    "targetPersonId": "dan",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.6"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "naphtali",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.8"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "bilhah",
+    "targetPersonId": "naphtali",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.8"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "gad",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.11"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "zilpah",
+    "targetPersonId": "gad",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.11"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "asher",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.13"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "zilpah",
+    "targetPersonId": "asher",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.13"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "issachar",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.18"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "leah",
+    "targetPersonId": "issachar",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.18"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "zebulun",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.20"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "leah",
+    "targetPersonId": "zebulun",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.20"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "dinah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.21"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "leah",
+    "targetPersonId": "dinah",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.21"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "joseph",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.24"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "rachel",
+    "targetPersonId": "joseph",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.30.24"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "benjamin",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.35.18"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "rachel",
+    "targetPersonId": "benjamin",
+    "relationshipType": "parent",
+    "sourceReferences": ["GEN.35.18"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "adam",
+    "targetPersonId": "eve",
+    "relationshipType": "spouse",
+    "sourceReferences": ["GEN.3.20"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "abraham",
+    "targetPersonId": "sarah",
+    "relationshipType": "spouse",
+    "sourceReferences": ["GEN.11.29"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "abraham",
+    "targetPersonId": "hagar",
+    "relationshipType": "spouse",
+    "sourceReferences": ["GEN.16.3"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "isaac",
+    "targetPersonId": "rebekah",
+    "relationshipType": "spouse",
+    "sourceReferences": ["GEN.24.67"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "leah",
+    "relationshipType": "spouse",
+    "sourceReferences": ["GEN.29.23"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "rachel",
+    "relationshipType": "spouse",
+    "sourceReferences": ["GEN.29.28"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "bilhah",
+    "relationshipType": "spouse",
+    "sourceReferences": ["GEN.30.4"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  },
+  {
+    "sourcePersonId": "jacob",
+    "targetPersonId": "zilpah",
+    "relationshipType": "spouse",
+    "sourceReferences": ["GEN.30.9"],
+    "confidence": "EXPLICIT",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "notes": null,
+    "reviewStatus": "DRAFT"
+  }
+]

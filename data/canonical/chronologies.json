@@ -1,0 +1,20 @@
+[
+  {
+    "id": "masoretic",
+    "name": "Masoretic Text",
+    "description": "Chronology derived from the Genesis 5 and Genesis 11 ages of the Masoretic Hebrew text, with Abraham's birth derived from Genesis 11:32, Genesis 12:4 and Acts 7:4.",
+    "epochLabel": "AM",
+    "isDefault": true,
+    "sourceId": "masoretic-text",
+    "notes": "The default. Abraham is born 130 years after Terah; see the assumption abraham-birth-from-acts-7-4."
+  },
+  {
+    "id": "masoretic-gen11-26",
+    "name": "Masoretic Text (Genesis 11:26 reading)",
+    "description": "Identical to the Masoretic chronology except that Terah's age of 70 in Genesis 11:26 is read as Abraham's birth offset.",
+    "epochLabel": "AM",
+    "isDefault": false,
+    "sourceId": "gen-11-26-reading",
+    "notes": "An interpretation rather than an explicit statement, kept because the disagreement is real and it changes whether Noah and Abraham were ever alive at the same time. Its Abraham records are never marked VERIFIED as an explicit birth age."
+  }
+]

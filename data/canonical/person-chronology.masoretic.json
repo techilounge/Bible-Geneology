@@ -1,0 +1,1159 @@
+[
+  {
+    "personId": "adam",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "epoch",
+      "value": 0,
+      "confidence": "DERIVED",
+      "sourceReferences": ["GEN.5.1"]
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.5",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "seth",
+    "chronologyId": "masoretic",
+    "father": "adam",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.3",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.8",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "enosh",
+    "chronologyId": "masoretic",
+    "father": "seth",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.6",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.11",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "kenan",
+    "chronologyId": "masoretic",
+    "father": "enosh",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.9",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.14",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "mahalalel",
+    "chronologyId": "masoretic",
+    "father": "kenan",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.12",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.17",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "jared",
+    "chronologyId": "masoretic",
+    "father": "mahalalel",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.15",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.20",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "enoch",
+    "chronologyId": "masoretic",
+    "father": "jared",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.18",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.23",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "not-recorded",
+    "assumptions": [
+      "adam-created-at-year-zero",
+      "begetting-age-is-named-son",
+      "enoch-has-no-recorded-death"
+    ],
+    "notes": "Genesis 5:24 records no death for Enoch, so his death year stays unknown.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "methuselah",
+    "chronologyId": "masoretic",
+    "father": "enoch",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.21",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.27",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "lamech",
+    "chronologyId": "masoretic",
+    "father": "methuselah",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.25",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.5.31",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "noah",
+    "chronologyId": "masoretic",
+    "father": "lamech",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.5.28",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.9.29",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null,
+    "additionalFigures": [
+      {
+        "name": "ageAtFlood",
+        "value": null,
+        "reference": "GEN.7.6",
+        "confidence": "EXPLICIT"
+      }
+    ]
+  },
+  {
+    "personId": "shem",
+    "chronologyId": "masoretic",
+    "father": "noah",
+    "birthOffsetFromFather": {
+      "rule": "shem-from-gen-11-10",
+      "value": null,
+      "confidence": "DERIVED",
+      "sourceReferences": ["GEN.11.10", "GEN.7.6", "GEN.5.32", "GEN.10.21"]
+    },
+    "lifespan": {
+      "rule": "sum-fathering-and-remainder",
+      "ageAtFathering": {
+        "value": null,
+        "reference": "GEN.11.10",
+        "confidence": "EXPLICIT"
+      },
+      "remainingYears": {
+        "value": null,
+        "reference": "GEN.11.11",
+        "confidence": "EXPLICIT"
+      }
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "shem-birth-from-gen-11-10"],
+    "notes": "Genesis 5:32 gives one age for three brothers; Genesis 11:10 names Shem specifically.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null,
+    "additionalFigures": [
+      {
+        "name": "yearsAfterFloodAtArphaxadBirth",
+        "value": null,
+        "reference": "GEN.11.10",
+        "confidence": "EXPLICIT"
+      }
+    ]
+  },
+  {
+    "personId": "ham",
+    "chronologyId": "masoretic",
+    "father": "noah",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.5.32"]
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.5.32"]
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": "Named with his brothers but never dated individually.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "japheth",
+    "chronologyId": "masoretic",
+    "father": "noah",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.5.32"]
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.5.32"]
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": "Named with his brothers but never dated individually.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "arphaxad",
+    "chronologyId": "masoretic",
+    "father": "shem",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.11.10",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "sum-fathering-and-remainder",
+      "ageAtFathering": {
+        "value": null,
+        "reference": "GEN.11.10",
+        "confidence": "EXPLICIT"
+      },
+      "remainingYears": {
+        "value": null,
+        "reference": "GEN.11.11",
+        "confidence": "EXPLICIT"
+      },
+      "confidence": "DERIVED"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "shelah",
+    "chronologyId": "masoretic",
+    "father": "arphaxad",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.11.12",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "sum-fathering-and-remainder",
+      "ageAtFathering": {
+        "value": null,
+        "reference": "GEN.11.12",
+        "confidence": "EXPLICIT"
+      },
+      "remainingYears": {
+        "value": null,
+        "reference": "GEN.11.13",
+        "confidence": "EXPLICIT"
+      },
+      "confidence": "DERIVED"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "eber",
+    "chronologyId": "masoretic",
+    "father": "shelah",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.11.14",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "sum-fathering-and-remainder",
+      "ageAtFathering": {
+        "value": null,
+        "reference": "GEN.11.14",
+        "confidence": "EXPLICIT"
+      },
+      "remainingYears": {
+        "value": null,
+        "reference": "GEN.11.15",
+        "confidence": "EXPLICIT"
+      },
+      "confidence": "DERIVED"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "peleg",
+    "chronologyId": "masoretic",
+    "father": "eber",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.11.16",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "sum-fathering-and-remainder",
+      "ageAtFathering": {
+        "value": null,
+        "reference": "GEN.11.16",
+        "confidence": "EXPLICIT"
+      },
+      "remainingYears": {
+        "value": null,
+        "reference": "GEN.11.17",
+        "confidence": "EXPLICIT"
+      },
+      "confidence": "DERIVED"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "reu",
+    "chronologyId": "masoretic",
+    "father": "peleg",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.11.18",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "sum-fathering-and-remainder",
+      "ageAtFathering": {
+        "value": null,
+        "reference": "GEN.11.18",
+        "confidence": "EXPLICIT"
+      },
+      "remainingYears": {
+        "value": null,
+        "reference": "GEN.11.19",
+        "confidence": "EXPLICIT"
+      },
+      "confidence": "DERIVED"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "serug",
+    "chronologyId": "masoretic",
+    "father": "reu",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.11.20",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "sum-fathering-and-remainder",
+      "ageAtFathering": {
+        "value": null,
+        "reference": "GEN.11.20",
+        "confidence": "EXPLICIT"
+      },
+      "remainingYears": {
+        "value": null,
+        "reference": "GEN.11.21",
+        "confidence": "EXPLICIT"
+      },
+      "confidence": "DERIVED"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "nahor",
+    "chronologyId": "masoretic",
+    "father": "serug",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.11.22",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "sum-fathering-and-remainder",
+      "ageAtFathering": {
+        "value": null,
+        "reference": "GEN.11.22",
+        "confidence": "EXPLICIT"
+      },
+      "remainingYears": {
+        "value": null,
+        "reference": "GEN.11.23",
+        "confidence": "EXPLICIT"
+      },
+      "confidence": "DERIVED"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "terah",
+    "chronologyId": "masoretic",
+    "father": "nahor",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.11.24",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.11.32",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Genesis 11:32 states Terah's total, so his lifespan is EXPLICIT where the rest of the chapter's are derived.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "abraham",
+    "chronologyId": "masoretic",
+    "father": "terah",
+    "birthOffsetFromFather": {
+      "rule": "terah-lifespan-minus-departure-age",
+      "value": null,
+      "confidence": "DERIVED",
+      "calculationMethod": "terah.lifespan - abraham.ageAtDepartureFromHaran",
+      "sourceReferences": ["GEN.11.26", "GEN.11.32", "GEN.12.4", "ACT.7.4"]
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.25.7",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "abraham-birth-from-acts-7-4"],
+    "notes": "Genesis 11:26 gives one age for three sons and does not say Abram was eldest, so 70 is an interpretation. See docs/DATA_SOURCING.md section 4a.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null,
+    "additionalFigures": [
+      {
+        "name": "ageAtDepartureFromHaran",
+        "value": null,
+        "reference": "GEN.12.4",
+        "confidence": "EXPLICIT"
+      }
+    ]
+  },
+  {
+    "personId": "nahor-son-of-terah",
+    "chronologyId": "masoretic",
+    "father": "terah",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.11.26"]
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.11.26"]
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": "Named in Genesis 11:26 but never dated individually.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "haran",
+    "chronologyId": "masoretic",
+    "father": "terah",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.11.26"]
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.11.26"]
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": "Named in Genesis 11:26 but never dated individually.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "ishmael",
+    "chronologyId": "masoretic",
+    "father": "abraham",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.16.16",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.25.17",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "isaac",
+    "chronologyId": "masoretic",
+    "father": "abraham",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.21.5",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.35.28",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "jacob",
+    "chronologyId": "masoretic",
+    "father": "isaac",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.25.26",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.47.28",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null,
+    "additionalFigures": [
+      {
+        "name": "ageBeforePharaoh",
+        "value": null,
+        "reference": "GEN.47.9",
+        "confidence": "EXPLICIT"
+      }
+    ]
+  },
+  {
+    "personId": "esau",
+    "chronologyId": "masoretic",
+    "father": "isaac",
+    "birthOffsetFromFather": {
+      "rule": "father-age",
+      "value": null,
+      "reference": "GEN.25.26",
+      "confidence": "EXPLICIT"
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": ["GEN.25.25"]
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Twin of Jacob, so his birth offset is the same verse; no lifespan is stated.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "sarah",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "derived-from-own-age-at-event",
+      "value": null,
+      "confidence": "DERIVED",
+      "calculationMethod": "isaac.birthYear - sarah.ageAtIsaacBirth",
+      "sourceReferences": ["GEN.17.17", "GEN.21.5"]
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.23.1",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": "One of the few women whose ages Scripture states.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null,
+    "additionalFigures": [
+      {
+        "name": "ageAtIsaacBirth",
+        "value": null,
+        "reference": "GEN.17.17",
+        "confidence": "EXPLICIT"
+      }
+    ]
+  },
+  {
+    "personId": "joseph",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "derived-from-own-age-at-event",
+      "value": null,
+      "confidence": "DERIVED",
+      "calculationMethod": "derived from Joseph's stated ages and Jacob's chronology",
+      "sourceReferences": ["GEN.37.2", "GEN.41.46", "GEN.47.9"]
+    },
+    "lifespan": {
+      "rule": "explicit",
+      "value": null,
+      "reference": "GEN.50.26",
+      "confidence": "EXPLICIT"
+    },
+    "deathRule": "birth-plus-lifespan",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": null,
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null,
+    "additionalFigures": [
+      {
+        "name": "ageWhenSold",
+        "value": null,
+        "reference": "GEN.37.2",
+        "confidence": "EXPLICIT"
+      },
+      {
+        "name": "ageBeforePharaoh",
+        "value": null,
+        "reference": "GEN.41.46",
+        "confidence": "EXPLICIT"
+      }
+    ]
+  },
+  {
+    "personId": "eve",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "hagar",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "rebekah",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "leah",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "rachel",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "bilhah",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "zilpah",
+    "chronologyId": "masoretic",
+    "father": null,
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "reuben",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "simeon",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "levi",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "judah",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "dan",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "naphtali",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "gad",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "asher",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "issachar",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "zebulun",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "dinah",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  },
+  {
+    "personId": "benjamin",
+    "chronologyId": "masoretic",
+    "father": "jacob",
+    "birthOffsetFromFather": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "lifespan": {
+      "rule": "unknown",
+      "sourceReferences": []
+    },
+    "deathRule": "unknown",
+    "assumptions": ["adam-created-at-year-zero", "begetting-age-is-named-son"],
+    "notes": "Scripture states no ages for this person. The record exists so the gap is visible rather than invisible.",
+    "reviewStatus": "DRAFT",
+    "verifiedBy": null,
+    "verifiedAt": null
+  }
+]

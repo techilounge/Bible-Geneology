@@ -1,0 +1,56 @@
+[
+  {
+    "id": "masoretic-text",
+    "name": "Masoretic Text",
+    "sourceType": "TEXTUAL_TRADITION",
+    "citation": "Masoretic Hebrew text of Genesis",
+    "url": null,
+    "license": "Public domain (text of the tradition)",
+    "notes": "The textual tradition the default chronology derives from. Its Genesis 5 and 11 ages differ from the Septuagint's."
+  },
+  {
+    "id": "kjv-1769",
+    "name": "King James Version (1769 Blayney edition)",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "citation": "The Holy Bible, Authorised Version, 1769 Blayney edition",
+    "url": null,
+    "license": "Public domain in the United States",
+    "notes": "One of the translations a value is cross-checked against before it may be marked SOURCE_CHECKED."
+  },
+  {
+    "id": "asv-1901",
+    "name": "American Standard Version (1901)",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "citation": "American Standard Version, 1901",
+    "url": null,
+    "license": "Public domain",
+    "notes": "Cross-check translation."
+  },
+  {
+    "id": "web-bible",
+    "name": "World English Bible",
+    "sourceType": "SCRIPTURE_EXPLICIT",
+    "citation": "World English Bible",
+    "url": null,
+    "license": "Public domain",
+    "notes": "Cross-check translation."
+  },
+  {
+    "id": "acts-7-harmonisation",
+    "name": "Acts 7:4 harmonisation of Abraham's birth",
+    "sourceType": "SCRIPTURE_DERIVED",
+    "citation": "Genesis 11:32, Genesis 12:4, Acts 7:4",
+    "url": null,
+    "license": "Public domain",
+    "notes": "Terah died at 205; Abraham was 75 at the departure from Haran; Acts 7:4 places that departure after Terah's death. 205 - 75 = 130. The basis of the default chronology's Terah-to-Abraham birth offset."
+  },
+  {
+    "id": "gen-11-26-reading",
+    "name": "Genesis 11:26 read as Abraham's birth year",
+    "sourceType": "DISPUTED",
+    "citation": "Genesis 11:26",
+    "url": null,
+    "license": "Public domain",
+    "notes": "Reads Terah's age of 70 as Abraham's birth offset. The verse gives one age for three sons and does not state that Abram was the eldest, so this is an interpretation. Basis of the alternate chronology only; never VERIFIED as an explicit statement."
+  }
+]

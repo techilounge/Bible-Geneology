@@ -1,0 +1,812 @@
+[
+  {
+    "id": "ACT.7.4",
+    "book": "ACT",
+    "chapter": 7,
+    "verseStart": 4,
+    "verseEnd": 4,
+    "canonicalKey": "ACT.7.4",
+    "displayLabel": "Acts 7:4"
+  },
+  {
+    "id": "GEN.3.20",
+    "book": "GEN",
+    "chapter": 3,
+    "verseStart": 20,
+    "verseEnd": 20,
+    "canonicalKey": "GEN.3.20",
+    "displayLabel": "Genesis 3:20"
+  },
+  {
+    "id": "GEN.4.25",
+    "book": "GEN",
+    "chapter": 4,
+    "verseStart": 25,
+    "verseEnd": 25,
+    "canonicalKey": "GEN.4.25",
+    "displayLabel": "Genesis 4:25"
+  },
+  {
+    "id": "GEN.5.1",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 1,
+    "verseEnd": 1,
+    "canonicalKey": "GEN.5.1",
+    "displayLabel": "Genesis 5:1"
+  },
+  {
+    "id": "GEN.5.3",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 3,
+    "verseEnd": 3,
+    "canonicalKey": "GEN.5.3",
+    "displayLabel": "Genesis 5:3"
+  },
+  {
+    "id": "GEN.5.5",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 5,
+    "verseEnd": 5,
+    "canonicalKey": "GEN.5.5",
+    "displayLabel": "Genesis 5:5"
+  },
+  {
+    "id": "GEN.5.6",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 6,
+    "verseEnd": 6,
+    "canonicalKey": "GEN.5.6",
+    "displayLabel": "Genesis 5:6"
+  },
+  {
+    "id": "GEN.5.8",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 8,
+    "verseEnd": 8,
+    "canonicalKey": "GEN.5.8",
+    "displayLabel": "Genesis 5:8"
+  },
+  {
+    "id": "GEN.5.9",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 9,
+    "verseEnd": 9,
+    "canonicalKey": "GEN.5.9",
+    "displayLabel": "Genesis 5:9"
+  },
+  {
+    "id": "GEN.5.11",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 11,
+    "verseEnd": 11,
+    "canonicalKey": "GEN.5.11",
+    "displayLabel": "Genesis 5:11"
+  },
+  {
+    "id": "GEN.5.12",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 12,
+    "verseEnd": 12,
+    "canonicalKey": "GEN.5.12",
+    "displayLabel": "Genesis 5:12"
+  },
+  {
+    "id": "GEN.5.14",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 14,
+    "verseEnd": 14,
+    "canonicalKey": "GEN.5.14",
+    "displayLabel": "Genesis 5:14"
+  },
+  {
+    "id": "GEN.5.15",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 15,
+    "verseEnd": 15,
+    "canonicalKey": "GEN.5.15",
+    "displayLabel": "Genesis 5:15"
+  },
+  {
+    "id": "GEN.5.17",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 17,
+    "verseEnd": 17,
+    "canonicalKey": "GEN.5.17",
+    "displayLabel": "Genesis 5:17"
+  },
+  {
+    "id": "GEN.5.18",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 18,
+    "verseEnd": 18,
+    "canonicalKey": "GEN.5.18",
+    "displayLabel": "Genesis 5:18"
+  },
+  {
+    "id": "GEN.5.20",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 20,
+    "verseEnd": 20,
+    "canonicalKey": "GEN.5.20",
+    "displayLabel": "Genesis 5:20"
+  },
+  {
+    "id": "GEN.5.21",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 21,
+    "verseEnd": 21,
+    "canonicalKey": "GEN.5.21",
+    "displayLabel": "Genesis 5:21"
+  },
+  {
+    "id": "GEN.5.23",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 23,
+    "verseEnd": 23,
+    "canonicalKey": "GEN.5.23",
+    "displayLabel": "Genesis 5:23"
+  },
+  {
+    "id": "GEN.5.24",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 24,
+    "verseEnd": 24,
+    "canonicalKey": "GEN.5.24",
+    "displayLabel": "Genesis 5:24"
+  },
+  {
+    "id": "GEN.5.25",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 25,
+    "verseEnd": 25,
+    "canonicalKey": "GEN.5.25",
+    "displayLabel": "Genesis 5:25"
+  },
+  {
+    "id": "GEN.5.27",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 27,
+    "verseEnd": 27,
+    "canonicalKey": "GEN.5.27",
+    "displayLabel": "Genesis 5:27"
+  },
+  {
+    "id": "GEN.5.28",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 28,
+    "verseEnd": 28,
+    "canonicalKey": "GEN.5.28",
+    "displayLabel": "Genesis 5:28"
+  },
+  {
+    "id": "GEN.5.31",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 31,
+    "verseEnd": 31,
+    "canonicalKey": "GEN.5.31",
+    "displayLabel": "Genesis 5:31"
+  },
+  {
+    "id": "GEN.5.32",
+    "book": "GEN",
+    "chapter": 5,
+    "verseStart": 32,
+    "verseEnd": 32,
+    "canonicalKey": "GEN.5.32",
+    "displayLabel": "Genesis 5:32"
+  },
+  {
+    "id": "GEN.7.6",
+    "book": "GEN",
+    "chapter": 7,
+    "verseStart": 6,
+    "verseEnd": 6,
+    "canonicalKey": "GEN.7.6",
+    "displayLabel": "Genesis 7:6"
+  },
+  {
+    "id": "GEN.9.29",
+    "book": "GEN",
+    "chapter": 9,
+    "verseStart": 29,
+    "verseEnd": 29,
+    "canonicalKey": "GEN.9.29",
+    "displayLabel": "Genesis 9:29"
+  },
+  {
+    "id": "GEN.10.2",
+    "book": "GEN",
+    "chapter": 10,
+    "verseStart": 2,
+    "verseEnd": 2,
+    "canonicalKey": "GEN.10.2",
+    "displayLabel": "Genesis 10:2"
+  },
+  {
+    "id": "GEN.10.6",
+    "book": "GEN",
+    "chapter": 10,
+    "verseStart": 6,
+    "verseEnd": 6,
+    "canonicalKey": "GEN.10.6",
+    "displayLabel": "Genesis 10:6"
+  },
+  {
+    "id": "GEN.10.21",
+    "book": "GEN",
+    "chapter": 10,
+    "verseStart": 21,
+    "verseEnd": 21,
+    "canonicalKey": "GEN.10.21",
+    "displayLabel": "Genesis 10:21"
+  },
+  {
+    "id": "GEN.11.4",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 4,
+    "verseEnd": 4,
+    "canonicalKey": "GEN.11.4",
+    "displayLabel": "Genesis 11:4"
+  },
+  {
+    "id": "GEN.11.10",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 10,
+    "verseEnd": 10,
+    "canonicalKey": "GEN.11.10",
+    "displayLabel": "Genesis 11:10"
+  },
+  {
+    "id": "GEN.11.11",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 11,
+    "verseEnd": 11,
+    "canonicalKey": "GEN.11.11",
+    "displayLabel": "Genesis 11:11"
+  },
+  {
+    "id": "GEN.11.12",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 12,
+    "verseEnd": 12,
+    "canonicalKey": "GEN.11.12",
+    "displayLabel": "Genesis 11:12"
+  },
+  {
+    "id": "GEN.11.13",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 13,
+    "verseEnd": 13,
+    "canonicalKey": "GEN.11.13",
+    "displayLabel": "Genesis 11:13"
+  },
+  {
+    "id": "GEN.11.14",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 14,
+    "verseEnd": 14,
+    "canonicalKey": "GEN.11.14",
+    "displayLabel": "Genesis 11:14"
+  },
+  {
+    "id": "GEN.11.15",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 15,
+    "verseEnd": 15,
+    "canonicalKey": "GEN.11.15",
+    "displayLabel": "Genesis 11:15"
+  },
+  {
+    "id": "GEN.11.16",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 16,
+    "verseEnd": 16,
+    "canonicalKey": "GEN.11.16",
+    "displayLabel": "Genesis 11:16"
+  },
+  {
+    "id": "GEN.11.17",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 17,
+    "verseEnd": 17,
+    "canonicalKey": "GEN.11.17",
+    "displayLabel": "Genesis 11:17"
+  },
+  {
+    "id": "GEN.11.18",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 18,
+    "verseEnd": 18,
+    "canonicalKey": "GEN.11.18",
+    "displayLabel": "Genesis 11:18"
+  },
+  {
+    "id": "GEN.11.19",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 19,
+    "verseEnd": 19,
+    "canonicalKey": "GEN.11.19",
+    "displayLabel": "Genesis 11:19"
+  },
+  {
+    "id": "GEN.11.20",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 20,
+    "verseEnd": 20,
+    "canonicalKey": "GEN.11.20",
+    "displayLabel": "Genesis 11:20"
+  },
+  {
+    "id": "GEN.11.21",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 21,
+    "verseEnd": 21,
+    "canonicalKey": "GEN.11.21",
+    "displayLabel": "Genesis 11:21"
+  },
+  {
+    "id": "GEN.11.22",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 22,
+    "verseEnd": 22,
+    "canonicalKey": "GEN.11.22",
+    "displayLabel": "Genesis 11:22"
+  },
+  {
+    "id": "GEN.11.23",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 23,
+    "verseEnd": 23,
+    "canonicalKey": "GEN.11.23",
+    "displayLabel": "Genesis 11:23"
+  },
+  {
+    "id": "GEN.11.24",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 24,
+    "verseEnd": 24,
+    "canonicalKey": "GEN.11.24",
+    "displayLabel": "Genesis 11:24"
+  },
+  {
+    "id": "GEN.11.25",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 25,
+    "verseEnd": 25,
+    "canonicalKey": "GEN.11.25",
+    "displayLabel": "Genesis 11:25"
+  },
+  {
+    "id": "GEN.11.26",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 26,
+    "verseEnd": 26,
+    "canonicalKey": "GEN.11.26",
+    "displayLabel": "Genesis 11:26"
+  },
+  {
+    "id": "GEN.11.28",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 28,
+    "verseEnd": 28,
+    "canonicalKey": "GEN.11.28",
+    "displayLabel": "Genesis 11:28"
+  },
+  {
+    "id": "GEN.11.29",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 29,
+    "verseEnd": 29,
+    "canonicalKey": "GEN.11.29",
+    "displayLabel": "Genesis 11:29"
+  },
+  {
+    "id": "GEN.11.32",
+    "book": "GEN",
+    "chapter": 11,
+    "verseStart": 32,
+    "verseEnd": 32,
+    "canonicalKey": "GEN.11.32",
+    "displayLabel": "Genesis 11:32"
+  },
+  {
+    "id": "GEN.12.4",
+    "book": "GEN",
+    "chapter": 12,
+    "verseStart": 4,
+    "verseEnd": 4,
+    "canonicalKey": "GEN.12.4",
+    "displayLabel": "Genesis 12:4"
+  },
+  {
+    "id": "GEN.16.1",
+    "book": "GEN",
+    "chapter": 16,
+    "verseStart": 1,
+    "verseEnd": 1,
+    "canonicalKey": "GEN.16.1",
+    "displayLabel": "Genesis 16:1"
+  },
+  {
+    "id": "GEN.16.3",
+    "book": "GEN",
+    "chapter": 16,
+    "verseStart": 3,
+    "verseEnd": 3,
+    "canonicalKey": "GEN.16.3",
+    "displayLabel": "Genesis 16:3"
+  },
+  {
+    "id": "GEN.16.15",
+    "book": "GEN",
+    "chapter": 16,
+    "verseStart": 15,
+    "verseEnd": 15,
+    "canonicalKey": "GEN.16.15",
+    "displayLabel": "Genesis 16:15"
+  },
+  {
+    "id": "GEN.16.16",
+    "book": "GEN",
+    "chapter": 16,
+    "verseStart": 16,
+    "verseEnd": 16,
+    "canonicalKey": "GEN.16.16",
+    "displayLabel": "Genesis 16:16"
+  },
+  {
+    "id": "GEN.17.17",
+    "book": "GEN",
+    "chapter": 17,
+    "verseStart": 17,
+    "verseEnd": 17,
+    "canonicalKey": "GEN.17.17",
+    "displayLabel": "Genesis 17:17"
+  },
+  {
+    "id": "GEN.21.3",
+    "book": "GEN",
+    "chapter": 21,
+    "verseStart": 3,
+    "verseEnd": 3,
+    "canonicalKey": "GEN.21.3",
+    "displayLabel": "Genesis 21:3"
+  },
+  {
+    "id": "GEN.21.5",
+    "book": "GEN",
+    "chapter": 21,
+    "verseStart": 5,
+    "verseEnd": 5,
+    "canonicalKey": "GEN.21.5",
+    "displayLabel": "Genesis 21:5"
+  },
+  {
+    "id": "GEN.23.1",
+    "book": "GEN",
+    "chapter": 23,
+    "verseStart": 1,
+    "verseEnd": 1,
+    "canonicalKey": "GEN.23.1",
+    "displayLabel": "Genesis 23:1"
+  },
+  {
+    "id": "GEN.24.67",
+    "book": "GEN",
+    "chapter": 24,
+    "verseStart": 67,
+    "verseEnd": 67,
+    "canonicalKey": "GEN.24.67",
+    "displayLabel": "Genesis 24:67"
+  },
+  {
+    "id": "GEN.25.7",
+    "book": "GEN",
+    "chapter": 25,
+    "verseStart": 7,
+    "verseEnd": 7,
+    "canonicalKey": "GEN.25.7",
+    "displayLabel": "Genesis 25:7"
+  },
+  {
+    "id": "GEN.25.17",
+    "book": "GEN",
+    "chapter": 25,
+    "verseStart": 17,
+    "verseEnd": 17,
+    "canonicalKey": "GEN.25.17",
+    "displayLabel": "Genesis 25:17"
+  },
+  {
+    "id": "GEN.25.21",
+    "book": "GEN",
+    "chapter": 25,
+    "verseStart": 21,
+    "verseEnd": 21,
+    "canonicalKey": "GEN.25.21",
+    "displayLabel": "Genesis 25:21"
+  },
+  {
+    "id": "GEN.25.25",
+    "book": "GEN",
+    "chapter": 25,
+    "verseStart": 25,
+    "verseEnd": 25,
+    "canonicalKey": "GEN.25.25",
+    "displayLabel": "Genesis 25:25"
+  },
+  {
+    "id": "GEN.25.26",
+    "book": "GEN",
+    "chapter": 25,
+    "verseStart": 26,
+    "verseEnd": 26,
+    "canonicalKey": "GEN.25.26",
+    "displayLabel": "Genesis 25:26"
+  },
+  {
+    "id": "GEN.29.23",
+    "book": "GEN",
+    "chapter": 29,
+    "verseStart": 23,
+    "verseEnd": 23,
+    "canonicalKey": "GEN.29.23",
+    "displayLabel": "Genesis 29:23"
+  },
+  {
+    "id": "GEN.29.28",
+    "book": "GEN",
+    "chapter": 29,
+    "verseStart": 28,
+    "verseEnd": 28,
+    "canonicalKey": "GEN.29.28",
+    "displayLabel": "Genesis 29:28"
+  },
+  {
+    "id": "GEN.29.32",
+    "book": "GEN",
+    "chapter": 29,
+    "verseStart": 32,
+    "verseEnd": 32,
+    "canonicalKey": "GEN.29.32",
+    "displayLabel": "Genesis 29:32"
+  },
+  {
+    "id": "GEN.29.33",
+    "book": "GEN",
+    "chapter": 29,
+    "verseStart": 33,
+    "verseEnd": 33,
+    "canonicalKey": "GEN.29.33",
+    "displayLabel": "Genesis 29:33"
+  },
+  {
+    "id": "GEN.29.34",
+    "book": "GEN",
+    "chapter": 29,
+    "verseStart": 34,
+    "verseEnd": 34,
+    "canonicalKey": "GEN.29.34",
+    "displayLabel": "Genesis 29:34"
+  },
+  {
+    "id": "GEN.29.35",
+    "book": "GEN",
+    "chapter": 29,
+    "verseStart": 35,
+    "verseEnd": 35,
+    "canonicalKey": "GEN.29.35",
+    "displayLabel": "Genesis 29:35"
+  },
+  {
+    "id": "GEN.30.3",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 3,
+    "verseEnd": 3,
+    "canonicalKey": "GEN.30.3",
+    "displayLabel": "Genesis 30:3"
+  },
+  {
+    "id": "GEN.30.4",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 4,
+    "verseEnd": 4,
+    "canonicalKey": "GEN.30.4",
+    "displayLabel": "Genesis 30:4"
+  },
+  {
+    "id": "GEN.30.6",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 6,
+    "verseEnd": 6,
+    "canonicalKey": "GEN.30.6",
+    "displayLabel": "Genesis 30:6"
+  },
+  {
+    "id": "GEN.30.8",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 8,
+    "verseEnd": 8,
+    "canonicalKey": "GEN.30.8",
+    "displayLabel": "Genesis 30:8"
+  },
+  {
+    "id": "GEN.30.9",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 9,
+    "verseEnd": 9,
+    "canonicalKey": "GEN.30.9",
+    "displayLabel": "Genesis 30:9"
+  },
+  {
+    "id": "GEN.30.11",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 11,
+    "verseEnd": 11,
+    "canonicalKey": "GEN.30.11",
+    "displayLabel": "Genesis 30:11"
+  },
+  {
+    "id": "GEN.30.13",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 13,
+    "verseEnd": 13,
+    "canonicalKey": "GEN.30.13",
+    "displayLabel": "Genesis 30:13"
+  },
+  {
+    "id": "GEN.30.18",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 18,
+    "verseEnd": 18,
+    "canonicalKey": "GEN.30.18",
+    "displayLabel": "Genesis 30:18"
+  },
+  {
+    "id": "GEN.30.20",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 20,
+    "verseEnd": 20,
+    "canonicalKey": "GEN.30.20",
+    "displayLabel": "Genesis 30:20"
+  },
+  {
+    "id": "GEN.30.21",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 21,
+    "verseEnd": 21,
+    "canonicalKey": "GEN.30.21",
+    "displayLabel": "Genesis 30:21"
+  },
+  {
+    "id": "GEN.30.22",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 22,
+    "verseEnd": 22,
+    "canonicalKey": "GEN.30.22",
+    "displayLabel": "Genesis 30:22"
+  },
+  {
+    "id": "GEN.30.24",
+    "book": "GEN",
+    "chapter": 30,
+    "verseStart": 24,
+    "verseEnd": 24,
+    "canonicalKey": "GEN.30.24",
+    "displayLabel": "Genesis 30:24"
+  },
+  {
+    "id": "GEN.35.18",
+    "book": "GEN",
+    "chapter": 35,
+    "verseStart": 18,
+    "verseEnd": 18,
+    "canonicalKey": "GEN.35.18",
+    "displayLabel": "Genesis 35:18"
+  },
+  {
+    "id": "GEN.35.28",
+    "book": "GEN",
+    "chapter": 35,
+    "verseStart": 28,
+    "verseEnd": 28,
+    "canonicalKey": "GEN.35.28",
+    "displayLabel": "Genesis 35:28"
+  },
+  {
+    "id": "GEN.37.2",
+    "book": "GEN",
+    "chapter": 37,
+    "verseStart": 2,
+    "verseEnd": 2,
+    "canonicalKey": "GEN.37.2",
+    "displayLabel": "Genesis 37:2"
+  },
+  {
+    "id": "GEN.41.46",
+    "book": "GEN",
+    "chapter": 41,
+    "verseStart": 46,
+    "verseEnd": 46,
+    "canonicalKey": "GEN.41.46",
+    "displayLabel": "Genesis 41:46"
+  },
+  {
+    "id": "GEN.47.9",
+    "book": "GEN",
+    "chapter": 47,
+    "verseStart": 9,
+    "verseEnd": 9,
+    "canonicalKey": "GEN.47.9",
+    "displayLabel": "Genesis 47:9"
+  },
+  {
+    "id": "GEN.47.28",
+    "book": "GEN",
+    "chapter": 47,
+    "verseStart": 28,
+    "verseEnd": 28,
+    "canonicalKey": "GEN.47.28",
+    "displayLabel": "Genesis 47:28"
+  },
+  {
+    "id": "GEN.50.26",
+    "book": "GEN",
+    "chapter": 50,
+    "verseStart": 26,
+    "verseEnd": 26,
+    "canonicalKey": "GEN.50.26",
+    "displayLabel": "Genesis 50:26"
+  }
+]

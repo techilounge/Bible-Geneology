@@ -1,0 +1,38 @@
+[
+  {
+    "id": "adam-created-at-year-zero",
+    "title": "Adam's creation is year 0 AM",
+    "explanation": "AM years are an internal coordinate system for measuring intervals between events in the genealogies. They are not a claim about calendar history, and no screen presents an AM year as an agreed historical date.",
+    "sourceReferences": ["GEN.5.1"]
+  },
+  {
+    "id": "begetting-age-is-named-son",
+    "title": "A stated age at fathering refers to the son named in the chain",
+    "explanation": "Genesis 5 and 11 give a patriarch's age when he fathered a named son. This assumes that age refers to the birth of that named son, rather than to the birth of a first child generally. It is an interpretive choice and every derived birth year depends on it.",
+    "sourceReferences": ["GEN.5.3", "GEN.11.10"]
+  },
+  {
+    "id": "overlap-half-open",
+    "title": "A lifetime is the half-open interval from birth up to death",
+    "explanation": "Overlap is measured over integer AM years as [birth, death). If one person dies in the same year another is born, the overlap is zero years and the engine reports no overlap, flagged as a year-boundary case. The alternative inclusive rule would add a phantom year to every overlap and make overlap calculations disagree with age calculations by one.",
+    "sourceReferences": []
+  },
+  {
+    "id": "abraham-birth-from-acts-7-4",
+    "title": "Abraham was born when Terah was 130",
+    "explanation": "Genesis 11:26 says Terah was 70 when he fathered Abram, Nahor and Haran. That is one age for three sons and does not state that Abram was the eldest, so reading 70 as Abraham's birth offset is an interpretation rather than an explicit chronological statement. The default chronology instead derives the offset from three figures: Terah died at 205 (Genesis 11:32), Abraham was 75 at the departure from Haran (Genesis 12:4), and Acts 7:4 places that departure after Terah's death. 205 minus 75 is 130. Decided by the project owner on 2026-09-20. Under the alternative 70-year reading Noah and Abraham's lifetimes overlap; under this one they do not.",
+    "sourceReferences": ["GEN.11.26", "GEN.11.32", "GEN.12.4", "ACT.7.4"]
+  },
+  {
+    "id": "shem-birth-from-gen-11-10",
+    "title": "Shem's birth is derived backward from Genesis 11:10",
+    "explanation": "Genesis 5:32 gives Noah's age at the fathering of Shem, Ham and Japheth as one figure for three sons, and Genesis 10:21 bears on their birth order. Genesis 11:10 instead names Shem specifically and dates Arphaxad's birth relative to the flood, so Shem's birth year is derived backward from it. Ham and Japheth keep unknown birth years, because no verse dates either individually.",
+    "sourceReferences": ["GEN.5.32", "GEN.7.6", "GEN.10.21", "GEN.11.10"]
+  },
+  {
+    "id": "enoch-has-no-recorded-death",
+    "title": "Enoch's record has no death year",
+    "explanation": "Genesis 5:24 does not record a death for Enoch as the surrounding entries do. His record carries an explicit lifespan and an unknown death year rather than a death year computed from birth plus lifespan.",
+    "sourceReferences": ["GEN.5.23", "GEN.5.24"]
+  }
+]
