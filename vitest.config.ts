@@ -36,6 +36,17 @@ export default defineConfig({
           functions: 100,
           statements: 99,
         },
+
+        // The discovery generators write the sentences the product shows
+        // as findings, and the Phase 11 gate is that every one of them is
+        // reproducible from canonical data. An untested branch here is a
+        // claim nobody has read.
+        'lib/discovery/**': {
+          lines: 100,
+          branches: 100,
+          functions: 100,
+          statements: 99,
+        },
       },
     },
   },

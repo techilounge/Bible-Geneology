@@ -14,6 +14,11 @@ import {
   ALTERNATE_CHRONOLOGY_ID,
   DEFAULT_CHRONOLOGY_ID,
 } from '@/lib/config/chronology-defaults';
+import {
+  discoveryById,
+  generateDiscoveries,
+  type Discovery,
+} from '@/lib/discovery';
 import type {
   Assumption,
   BiblicalEvent,
@@ -227,3 +232,29 @@ export const getTimelineEvents = (
 export const getTimelineBounds = (
   chronologyId: string = DEFAULT_CHRONOLOGY_ID,
 ): [number, number] => extentOf(getTimelineRows(chronologyId)) ?? [0, 1];
+
+/**
+ * The discoveries this chronology supports.
+ *
+ * Memoised per chronology because the generators are pure and the dataset
+ * does not change between requests: computing the same fourteen findings on
+ * every page view would be work with a known answer. Requirement section 34
+ * calls for the discoveries to be deterministic, which is what makes the
+ * cache safe.
+ */
+const discoveryCache = new Map<string, Discovery[]>();
+
+export const getDiscoveries = (
+  chronologyId: string = DEFAULT_CHRONOLOGY_ID,
+): Discovery[] => {
+  const cached = discoveryCache.get(chronologyId);
+  if (cached) return cached;
+  const found = generateDiscoveries(getDataset(chronologyId));
+  discoveryCache.set(chronologyId, found);
+  return found;
+};
+
+export const getDiscovery = (
+  id: string,
+  chronologyId: string = DEFAULT_CHRONOLOGY_ID,
+): Discovery | null => discoveryById(getDiscoveries(chronologyId), id);
