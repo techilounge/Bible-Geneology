@@ -101,10 +101,14 @@ export const PersonChronologySchema = z
     lifespanSourceType: SourceTypeSchema,
 
     /**
-     * At least one. A chronology record without provenance cannot parse, which
-     * is requirement section 5 enforced where it actually bites.
+     * Provenance attaches to values, not to rows. Any record that states a
+     * year or a lifespan must cite where it came from — requirement section 5
+     * enforced where it actually bites, see the refinement below. A record
+     * that states nothing (most of the women of requirement section 43, whose
+     * ages Scripture never gives) has nothing to cite, and forcing a citation
+     * onto it would only invite a decorative one.
      */
-    sourceReferences: z.array(ScriptureRefId).min(1),
+    sourceReferences: z.array(ScriptureRefId).default([]),
 
     calculationMethod: z.string().nullable().default(null),
     derivation: DerivationSchema.nullable().default(null),
@@ -126,6 +130,12 @@ export const PersonChronologySchema = z
   .refine(
     (v) => v.birthYear === null || v.deathYear === null || v.deathYear >= v.birthYear,
     'Death year cannot precede birth year',
+  )
+  .refine(
+    (v) =>
+      (v.birthYear === null && v.deathYear === null && v.lifespan === null) ||
+      v.sourceReferences.length > 0,
+    'A record that states a year or a lifespan must cite at least one reference',
   );
 
 export const RelationshipSchema = z

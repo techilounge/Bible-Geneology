@@ -65,7 +65,30 @@ function baseFiles(): CanonicalFiles {
         sourceType: 'SCRIPTURE_EXPLICIT',
       },
     ],
-    events: [],
+    events: [
+      {
+        id: 'the-flood',
+        name: 'The Flood',
+        slug: 'the-flood',
+        description: 'The flood of Genesis 7.',
+        eventType: 'judgement',
+        relatedPersonIds: ['adam'],
+        sourceReferences: ['GEN.5.3'],
+        reviewStatus: 'DRAFT',
+      },
+    ],
+    eventChronology: [
+      {
+        eventId: 'the-flood',
+        chronologyId: 'masoretic',
+        rule: 'person-age',
+        anchorPersonId: 'adam',
+        value: 600,
+        reference: 'GEN.5.3',
+        dateType: 'point',
+        assumptions: ['adam-created-at-year-zero'],
+      },
+    ],
     personChronology: [
       {
         personId: 'adam',
@@ -225,5 +248,97 @@ describe('findParentCycles', () => {
         { sourcePersonId: 'mother', targetPersonId: 'child', relationshipType: 'parent' },
       ]),
     ).toEqual([]);
+  });
+});
+
+describe('validateDataset: event dates', () => {
+  it('catches a derived year typed into the canonical event file', () => {
+    const files = baseFiles();
+    (files.eventChronology[0] as Record<string, unknown>)['startYear'] = 1656;
+    expect(severeChecks(files)).toContain('derived-value-in-canonical');
+  });
+
+  it('catches an event anchored to a person who does not exist', () => {
+    const files = baseFiles();
+    (files.eventChronology[0] as Record<string, unknown>)['anchorPersonId'] = 'nobody';
+    expect(severeChecks(files)).toContain('missing-anchor');
+  });
+
+  it('catches a person-age event with no age read from the text', () => {
+    const files = baseFiles();
+    (files.eventChronology[0] as Record<string, unknown>)['value'] = null;
+    expect(severeChecks(files)).toContain('missing-figure');
+  });
+
+  it('catches an event rule the engine does not implement', () => {
+    const files = baseFiles();
+    (files.eventChronology[0] as Record<string, unknown>)['rule'] = 'guess';
+    expect(severeChecks(files)).toContain('unknown-rule');
+  });
+
+  it('catches two records for the same event in one chronology', () => {
+    const files = baseFiles();
+    files.eventChronology.push({ ...(files.eventChronology[0] as object) });
+    expect(severeChecks(files)).toContain('duplicate-event-chronology');
+  });
+
+  it('allows an event the text gives no date for', () => {
+    const files = baseFiles();
+    files.eventChronology = [
+      {
+        eventId: 'the-flood',
+        chronologyId: 'masoretic',
+        rule: 'unknown',
+        value: null,
+        reference: 'GEN.5.3',
+        dateType: 'unknown',
+        assumptions: [],
+      },
+    ];
+    expect(severeChecks(files)).toEqual([]);
+  });
+});
+
+describe('validateDataset: alternate chronology overrides', () => {
+  const withOverride = (patch: Record<string, unknown> = {}): CanonicalFiles => {
+    const files = baseFiles();
+    files.chronologyOverrides = {
+      'masoretic-gen11-26': {
+        chronologyId: 'masoretic-gen11-26',
+        baseChronologyId: 'masoretic',
+        rationale: 'Reads Genesis 11:26 as a birth offset.',
+        records: [{ personId: 'adam' }],
+        ...patch,
+      },
+    };
+    return files;
+  };
+
+  it('passes a well-formed override', () => {
+    expect(severeChecks(withOverride())).toEqual([]);
+  });
+
+  it('catches an override of a person the base chronology does not date', () => {
+    expect(severeChecks(withOverride({ records: [{ personId: 'nobody' }] }))).toContain(
+      'override-unknown-person',
+    );
+  });
+
+  it('catches an override whose base chronology does not exist', () => {
+    expect(severeChecks(withOverride({ baseChronologyId: 'septuagint' }))).toContain(
+      'override-missing-base',
+    );
+  });
+
+  it('catches an override that does not say why it differs', () => {
+    expect(severeChecks(withOverride({ rationale: undefined }))).toContain(
+      'override-no-rationale',
+    );
+  });
+
+  it('catches a derived year typed into an override', () => {
+    expect(
+      severeChecks(withOverride({ records: [{ personId: 'adam', birthYear: 1948 }] })),
+    ).toContain('derived-value-in-canonical');
   });
 });

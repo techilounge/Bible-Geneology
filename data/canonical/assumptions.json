@@ -24,6 +24,12 @@
     "sourceReferences": ["GEN.11.26", "GEN.11.32", "GEN.12.4", "ACT.7.4"]
   },
   {
+    "id": "abraham-birth-from-gen-11-26",
+    "title": "Abraham was born when Terah was 70 (alternate reading)",
+    "explanation": "The alternate chronology masoretic-gen11-26 reads Terah's age of 70 in Genesis 11:26 as Abraham's own birth offset. Genesis 11:26 names three sons at that one age and does not say Abram was the eldest, so this is an interpretation rather than an explicit chronological statement, and it is held at review status DISPUTED. It is kept because the disagreement is real and it changes the answer to the app's central question: under this reading Noah and Abraham's lifetimes overlap, and Shem outlives Jacob's birth, while under the default they do not.",
+    "sourceReferences": ["GEN.11.26"]
+  },
+  {
     "id": "shem-birth-from-gen-11-10",
     "title": "Shem's birth is derived backward from Genesis 11:10",
     "explanation": "Genesis 5:32 gives Noah's age at the fathering of Shem, Ham and Japheth as one figure for three sons, and Genesis 10:21 bears on their birth order. Genesis 11:10 instead names Shem specifically and dates Arphaxad's birth relative to the flood, so Shem's birth year is derived backward from it. Ham and Japheth keep unknown birth years, because no verse dates either individually.",
@@ -34,5 +40,11 @@
     "title": "Enoch's record has no death year",
     "explanation": "Genesis 5:24 does not record a death for Enoch as the surrounding entries do. His record carries an explicit lifespan and an unknown death year rather than a death year computed from birth plus lifespan.",
     "sourceReferences": ["GEN.5.23", "GEN.5.24"]
+  },
+  {
+    "id": "joseph-birth-from-egypt-years",
+    "title": "Joseph's birth is derived through the years in Egypt",
+    "explanation": "Scripture does not state Joseph's age at birth relative to Jacob. It is derived by working back from Jacob's age when he stood before Pharaoh, subtracting Joseph's age at that point: his age when he entered Pharaoh's service, plus the years of plenty, plus the years of famine already elapsed when Jacob arrived. Each figure is stated; the chain between them is an interpretation.",
+    "sourceReferences": ["GEN.41.46", "GEN.41.53", "GEN.45.6", "GEN.47.9"]
   }
 ]

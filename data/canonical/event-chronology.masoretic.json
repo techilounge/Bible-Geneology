@@ -1,0 +1,55 @@
+[
+  {
+    "eventId": "creation-of-adam",
+    "chronologyId": "masoretic",
+    "rule": "epoch",
+    "value": 0,
+    "reference": "GEN.5.1",
+    "dateType": "point",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": "Year 0 AM by definition, not by calculation. The epoch has to be fixed somewhere and this chronology fixes it here."
+  },
+  {
+    "eventId": "the-flood",
+    "chronologyId": "masoretic",
+    "rule": "person-age",
+    "anchorPersonId": "noah",
+    "value": 600,
+    "reference": "GEN.7.6",
+    "dateType": "point",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": "Genesis 7:6 states Noah's age when the flood came, so the year follows from Noah's birth year."
+  },
+  {
+    "eventId": "tower-of-babel",
+    "chronologyId": "masoretic",
+    "rule": "unknown",
+    "value": null,
+    "reference": "GEN.11.4",
+    "dateType": "unknown",
+    "assumptions": [],
+    "notes": "Scripture states no age or interval for Babel. Genesis 10:25 says the earth was divided in Peleg's days, but that is a statement about an era, not a date, and reading it as one would be an inference the text does not make. The year stays UNKNOWN."
+  },
+  {
+    "eventId": "abraham-departs-haran",
+    "chronologyId": "masoretic",
+    "rule": "person-age",
+    "anchorPersonId": "abraham",
+    "value": 75,
+    "reference": "GEN.12.4",
+    "dateType": "point",
+    "assumptions": ["adam-created-at-year-zero", "abraham-birth-from-acts-7-4"],
+    "notes": "Genesis 12:4 states Abraham's age at the departure. Acts 7:4 places it after Terah's death, which is the figure Abraham's own birth year is derived from, so this event and his birth are two ends of the same derivation."
+  },
+  {
+    "eventId": "jacob-enters-egypt",
+    "chronologyId": "masoretic",
+    "rule": "person-age",
+    "anchorPersonId": "jacob",
+    "value": 130,
+    "reference": "GEN.47.9",
+    "dateType": "point",
+    "assumptions": ["adam-created-at-year-zero"],
+    "notes": "Genesis 47:9 has Jacob give his own age to Pharaoh on arrival."
+  }
+]

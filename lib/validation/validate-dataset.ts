@@ -23,7 +23,10 @@ export interface CanonicalFiles {
   relationships: unknown[];
   chronologies: unknown[];
   personChronology: unknown[];
+  /** One entry per alternate chronology, keyed by its id. */
+  chronologyOverrides?: Record<string, unknown>;
   events: unknown[];
+  eventChronology: unknown[];
   scriptureReferences: unknown[];
   sources: unknown[];
   assumptions: unknown[];
@@ -199,19 +202,178 @@ export function validateDataset(files: CanonicalFiles): Finding[] {
   }
 
   // --- chronology input ----------------------------------------------------
+  const ctx: InputContext = { personIds, chronologyIds, referenceIds, assumptionIds };
+  findings.push(...validateChronologyInput(files.personChronology, ctx));
   findings.push(
-    ...validateChronologyInput(files.personChronology, {
-      personIds,
-      chronologyIds,
-      referenceIds,
-      assumptionIds,
+    ...validateEventChronologyInput(files.eventChronology, {
+      ...ctx,
+      eventIds: new Set(events.map((e) => e.id)),
     }),
   );
+
+  for (const [chronologyId, override] of Object.entries(
+    files.chronologyOverrides ?? {},
+  )) {
+    findings.push(
+      ...validateChronologyOverride(chronologyId, override, ctx, files.personChronology),
+    );
+  }
 
   return findings;
 }
 
-interface InputContext {
+/**
+ * An alternate chronology is a short list of differences from a base, not a
+ * second copy of the dataset. Two copies drift silently; this checks that the
+ * list still refers to records the base actually has.
+ */
+export function validateChronologyOverride(
+  chronologyId: string,
+  raw: unknown,
+  ctx: InputContext,
+  baseRows: unknown[],
+): Finding[] {
+  const findings: Finding[] = [];
+  const severe = (check: string, subject: string, message: string) =>
+    findings.push({ severity: 'severe', check, subject, message });
+
+  const file = raw as {
+    chronologyId?: string;
+    baseChronologyId?: string;
+    rationale?: string;
+    records?: Array<Record<string, unknown>>;
+  };
+  const subject = `chronology-overrides.${chronologyId}`;
+
+  if (file.chronologyId !== chronologyId) {
+    severe('override-id-mismatch', subject, `File declares ${String(file.chronologyId)}`);
+  }
+  if (!file.baseChronologyId || !ctx.chronologyIds.has(file.baseChronologyId)) {
+    severe(
+      'override-missing-base',
+      subject,
+      `Unknown base chronology ${String(file.baseChronologyId)}`,
+    );
+  }
+  if (!file.rationale) {
+    severe(
+      'override-no-rationale',
+      subject,
+      'An alternate chronology must say in the data why it differs, not only in prose elsewhere',
+    );
+  }
+
+  const basePeople = new Set(
+    (baseRows as Array<{ personId?: string }>)
+      .map((r) => r.personId)
+      .filter((id): id is string => !!id),
+  );
+
+  for (const record of file.records ?? []) {
+    const personId = String(record['personId'] ?? '');
+    if (!basePeople.has(personId)) {
+      severe(
+        'override-unknown-person',
+        `${subject}:${personId}`,
+        'Overrides a person with no record in the base chronology',
+      );
+    }
+    for (const key of FORBIDDEN_DERIVED_KEYS) {
+      if (key in record) {
+        severe(
+          'derived-value-in-canonical',
+          `${subject}:${personId}`,
+          `${key} is derived and must not appear in canonical input`,
+        );
+      }
+    }
+  }
+
+  return findings;
+}
+
+interface EventInputContext extends InputContext {
+  eventIds: Set<string>;
+}
+
+const FORBIDDEN_EVENT_KEYS = ['startYear', 'endYear', 'start_year', 'end_year'];
+
+/**
+ * Event years are derived from an age the text states plus the anchor
+ * person's own derived birth year, so the canonical file holds the age and
+ * never the year.
+ */
+export function validateEventChronologyInput(
+  rows: unknown[],
+  ctx: EventInputContext,
+): Finding[] {
+  const findings: Finding[] = [];
+  const severe = (check: string, subject: string, message: string) =>
+    findings.push({ severity: 'severe', check, subject, message });
+
+  const seen = new Set<string>();
+
+  rows.forEach((raw, index) => {
+    const row = raw as Record<string, unknown>;
+    const eventId = String(row['eventId'] ?? `[${index}]`);
+    const chronologyId = String(row['chronologyId'] ?? '');
+    const subject = `${eventId}@${chronologyId}`;
+
+    if (!ctx.eventIds.has(eventId)) {
+      severe('missing-event', subject, `Unknown event ${eventId}`);
+    }
+    if (!ctx.chronologyIds.has(chronologyId)) {
+      severe('missing-chronology', subject, `Unknown chronology ${chronologyId}`);
+    }
+    const key = `${eventId}@${chronologyId}`;
+    if (seen.has(key)) {
+      severe('duplicate-event-chronology', subject, 'Two records for this event');
+    }
+    seen.add(key);
+
+    for (const forbidden of FORBIDDEN_EVENT_KEYS) {
+      if (forbidden in row) {
+        severe(
+          'derived-value-in-canonical',
+          subject,
+          `${forbidden} is derived and must not appear in canonical input; it is computed into data/generated/`,
+        );
+      }
+    }
+
+    const rule = String(row['rule'] ?? '');
+    if (rule === 'person-age') {
+      const anchor = String(row['anchorPersonId'] ?? '');
+      if (!ctx.personIds.has(anchor)) {
+        severe('missing-anchor', subject, `Unknown anchor person ${anchor}`);
+      }
+      if (row['value'] === null || row['value'] === undefined) {
+        severe(
+          'missing-figure',
+          subject,
+          'A person-age event needs the age the text states',
+        );
+      }
+    } else if (rule !== 'epoch' && rule !== 'unknown') {
+      severe('unknown-rule', subject, `Unrecognised event rule ${rule}`);
+    }
+
+    const reference = row['reference'];
+    if (typeof reference === 'string' && reference && !ctx.referenceIds.has(reference)) {
+      severe('missing-reference', subject, `Unknown scripture reference ${reference}`);
+    }
+
+    for (const id of (row['assumptions'] as string[] | undefined) ?? []) {
+      if (!ctx.assumptionIds.has(id)) {
+        severe('missing-assumption', subject, `Unknown assumption ${id}`);
+      }
+    }
+  });
+
+  return findings;
+}
+
+export interface InputContext {
   personIds: Set<string>;
   chronologyIds: Set<string>;
   referenceIds: Set<string>;

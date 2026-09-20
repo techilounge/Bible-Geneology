@@ -20,6 +20,10 @@ async function load(name: string): Promise<unknown[]> {
   return parsed;
 }
 
+async function loadObject(name: string): Promise<unknown> {
+  return JSON.parse(await readFile(join(DIR, name), 'utf8')) as unknown;
+}
+
 function render(findings: Finding[]) {
   const severe = findings.filter((f) => f.severity === 'severe');
   const warnings = findings.filter((f) => f.severity === 'warning');
@@ -58,7 +62,13 @@ async function main() {
     relationships: await load('relationships.json'),
     chronologies: await load('chronologies.json'),
     personChronology: await load('person-chronology.masoretic.json'),
+    chronologyOverrides: {
+      'masoretic-gen11-26': await loadObject(
+        'chronology-overrides.masoretic-gen11-26.json',
+      ),
+    },
     events: await load('events.json'),
+    eventChronology: await load('event-chronology.masoretic.json'),
     scriptureReferences: await load('scripture-references.json'),
     sources: await load('sources.json'),
     assumptions: await load('assumptions.json'),
@@ -67,7 +77,8 @@ async function main() {
 
   console.log(
     `Validating ${files.people.length} people, ${files.relationships.length} relationships, ` +
-      `${files.personChronology.length} chronology records, ${files.scriptureReferences.length} references.`,
+      `${files.personChronology.length} chronology records, ${files.eventChronology.length} event dates, ` +
+      `${files.scriptureReferences.length} references.`,
   );
 
   const severeCount = render(validateDataset(files));

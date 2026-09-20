@@ -783,6 +783,24 @@
     "displayLabel": "Genesis 41:46"
   },
   {
+    "id": "GEN.41.53",
+    "book": "GEN",
+    "chapter": 41,
+    "verseStart": 53,
+    "verseEnd": 53,
+    "canonicalKey": "GEN.41.53",
+    "displayLabel": "Genesis 41:53"
+  },
+  {
+    "id": "GEN.45.6",
+    "book": "GEN",
+    "chapter": 45,
+    "verseStart": 6,
+    "verseEnd": 6,
+    "canonicalKey": "GEN.45.6",
+    "displayLabel": "Genesis 45:6"
+  },
+  {
     "id": "GEN.47.9",
     "book": "GEN",
     "chapter": 47,

@@ -118,9 +118,26 @@ stated per record rather than defaulted.
 | Isaac's lifespan                      | GEN.35.28 | EXPLICIT |
 | Jacob's age before Pharaoh            | GEN.47.9  | EXPLICIT |
 | Jacob's lifespan                      | GEN.47.28 | EXPLICIT |
-| Joseph's age when sold                | GEN.37.2  | EXPLICIT |
+| Joseph's age when sold                | GEN.37.2  | DERIVED  |
 | Joseph's age before Pharaoh           | GEN.41.46 | EXPLICIT |
+| Years of plenty                       | GEN.41.53 | EXPLICIT |
+| Years of famine at Jacob's arrival    | GEN.45.6  | EXPLICIT |
 | Joseph's lifespan                     | GEN.50.26 | EXPLICIT |
+
+**Joseph's age when sold is DERIVED, not EXPLICIT.** Genesis 37:2 gives his age at the
+start of the narrative that ends in the sale; the text does not repeat it at the sale
+itself, so reading 17 as his age on that day is an inference from adjacency. It is a
+small inference and almost certainly right, and it is still an inference, so it carries
+the label that says so.
+
+**Joseph's birth year needs three figures, not one.** It is derived backwards from
+Jacob's age before Pharaoh (GEN.47.9) less the elapsed years of Joseph's Egyptian
+career: his age when he entered Pharaoh's service (GEN.41.46), the years of plenty
+(GEN.41.53) and the years of famine already past when Jacob arrived (GEN.45.6). The
+last two were added to the model after the Phase 2 worksheet was generated, so they
+are the one gap remaining in the dataset. Joseph's record stays at DRAFT with a null
+birth year until they are read from the text. The engine already carries the rule; it
+is the figures it is waiting on.
 
 ### People who get UNKNOWN dates
 

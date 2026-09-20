@@ -1,0 +1,21 @@
+{
+  "chronologyId": "masoretic-gen11-26",
+  "baseChronologyId": "masoretic",
+  "rationale": "Reads Terah's age of 70 in Genesis 11:26 as Abraham's birth offset. Everything upstream of Abraham is identical to the Masoretic chronology, so only the records that actually differ are listed here.",
+  "records": [
+    {
+      "personId": "abraham",
+      "birthOffsetFromFather": {
+        "rule": "father-age",
+        "value": 70,
+        "reference": "GEN.11.26",
+        "confidence": "DISPUTED",
+        "calculationMethod": "terah.ageAtFatheringAbramNahorHaran, read as Abraham's own birth offset",
+        "sourceReferences": ["GEN.11.26"]
+      },
+      "assumptions": ["adam-created-at-year-zero", "abraham-birth-from-gen-11-26"],
+      "notes": "Genesis 11:26 gives one age for three sons and does not say Abram was the eldest, so treating 70 as Abraham's birth offset is an interpretation. Kept as a labelled alternate, never VERIFIED as an explicit birth age. See docs/DATA_SOURCING.md section 4a.",
+      "reviewStatus": "DISPUTED"
+    }
+  ]
+}
