@@ -93,9 +93,15 @@ CREATE POLICY "staff read all" ON person_chronology
 
 That last line is the important one. Canonical writes never happen through the
 anon or authenticated client, in any phase. Phase 2 seeds through the service-role key
-in a script. Phase 14's CMS writes through server actions that check the caller's role
-in the database and then use the service-role client. There is no policy for a client
-to exploit because there is no client write path at all.
+in a script. The Phase 14 CMS writes through server actions that check the caller's
+role in the database and then use the service-role client. There is no policy for a
+client to exploit because there is no client write path at all.
+
+Since Phase 14 this is tested rather than stated: `tests/db/governance.test.ts` tries
+an insert, an update and a delete against five canonical tables from three roles —
+anonymous, a signed-in reader, and an administrator — and every one of the forty-five
+attempts is refused. The administrator is in that list deliberately, because the claim
+is not "admins only": it is that no client role can write a canonical table at all.
 
 **User tables** — `favorites`, `saved_comparisons`, `quiz_attempts`,
 `user_achievements`, `profiles`:

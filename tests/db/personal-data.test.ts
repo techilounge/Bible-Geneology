@@ -265,13 +265,14 @@ describe('a verification that was not performed by a person', () => {
           birth_confidence, death_confidence, lifespan_confidence,
           birth_source_type, death_source_type, lifespan_source_type,
           review_status, verified_by_label, verified_at, supplied_by, supplied_at,
-          verification
+          verification, revision_notes
         ) VALUES (
           'adam', 'masoretic', 0, 930, 930,
           'DERIVED', 'DERIVED', 'EXPLICIT',
           'SCRIPTURE_DERIVED', 'SCRIPTURE_DERIVED', 'SCRIPTURE_EXPLICIT',
           'VERIFIED', 'source-check:web-bible+kjv-1769', now(), 'Kelv', current_date,
-          '{"method":"automated-source-check"}'::jsonb
+          '{"method":"automated-source-check","sources":["web-bible","kjv-1769"]}'::jsonb,
+          'Checked against two public-domain translations'
         )
       `);
       const row = await db.query(
@@ -295,12 +296,13 @@ describe('a verification that was not performed by a person', () => {
             person_id, chronology_id, birth_year, death_year, lifespan,
             birth_confidence, death_confidence, lifespan_confidence,
             birth_source_type, death_source_type, lifespan_source_type,
-            review_status
+            review_status, revision_notes, verification
           ) VALUES (
             'seth', 'masoretic', 130, 1042, 912,
             'DERIVED', 'DERIVED', 'EXPLICIT',
             'SCRIPTURE_DERIVED', 'SCRIPTURE_DERIVED', 'SCRIPTURE_EXPLICIT',
-            'VERIFIED'
+            'VERIFIED', 'A reason, so the rule under test is the reviewer one',
+            '{"method":"fixture","sources":["genesis"]}'::jsonb
           )
         `),
       ).rejects.toThrow(/verified_requires_reviewer/);

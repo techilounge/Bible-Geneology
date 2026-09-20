@@ -57,10 +57,14 @@ export async function seedFixtures(client: Client) {
       ('masoretic', 'Masoretic', 'Masoretic Text chronology', true)
     ON CONFLICT (id) DO NOTHING;
 
-    INSERT INTO people (id, canonical_name, slug, review_status) VALUES
-      ('adam', 'Adam', 'adam', 'VERIFIED'),
-      ('seth', 'Seth', 'seth', 'VERIFIED'),
-      ('enosh', 'Enosh', 'enosh', 'DRAFT')
+    -- A VERIFIED row now has to say why and against what, which is the
+    -- Phase 14 rule. The fixtures obey it like any other writer.
+    INSERT INTO people (id, canonical_name, slug, review_status, revision_notes, verification) VALUES
+      ('adam', 'Adam', 'adam', 'VERIFIED', 'Seeded for the test suite',
+       '{"method":"fixture","sources":["genesis"]}'::jsonb),
+      ('seth', 'Seth', 'seth', 'VERIFIED', 'Seeded for the test suite',
+       '{"method":"fixture","sources":["genesis"]}'::jsonb),
+      ('enosh', 'Enosh', 'enosh', 'DRAFT', NULL, NULL)
     ON CONFLICT (id) DO NOTHING;
   `);
 }

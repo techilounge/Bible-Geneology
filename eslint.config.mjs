@@ -43,6 +43,7 @@ export default tseslint.config(
       'lib/progress/**',
       'lib/domain/**',
       'lib/account/**',
+      'lib/admin/**',
     ],
     rules: {
       'no-restricted-imports': [
