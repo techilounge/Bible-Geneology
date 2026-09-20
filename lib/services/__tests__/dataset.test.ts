@@ -123,10 +123,12 @@ describe('the timeline view of the dataset', () => {
 
     expect(ids.has('adam')).toBe(true);
     // Esau has a birth year and neither a death year nor a lifespan, so
-    // there is no year to draw the bar to. Joseph has a lifespan and no
-    // birth year, pending two figures from the text.
+    // there is no year to draw the bar to.
     expect(ids.has('esau')).toBe(false);
-    expect(ids.has('joseph')).toBe(false);
+    // Joseph gained his birth year once Kelv supplied the Genesis 41:53 and
+    // 45:6 figures on 2026-09-20; before that he had a lifespan and no
+    // birth year and could not be placed.
+    expect(ids.has('joseph')).toBe(true);
   });
 
   it('records how long each life is, so no component has to subtract', () => {

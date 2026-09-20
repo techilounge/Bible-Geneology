@@ -778,9 +778,9 @@
     "deathRule": "birth-plus-lifespan",
     "assumptions": ["adam-created-at-year-zero", "joseph-birth-from-egypt-years"],
     "notes": "Joseph's birth is derived from his age before Pharaoh, the years of plenty and famine elapsed when Jacob arrived, and Jacob's own age before Pharaoh. It is not stated directly.",
-    "reviewStatus": "DRAFT",
-    "verifiedBy": null,
-    "verifiedAt": null,
+    "reviewStatus": "SOURCE_CHECKED",
+    "verifiedBy": "Kelv (techilounge)",
+    "verifiedAt": "2026-09-20",
     "additionalFigures": [
       {
         "name": "ageWhenSold",
@@ -797,13 +797,13 @@
       },
       {
         "name": "yearsOfPlenty",
-        "value": null,
+        "value": 7,
         "reference": "GEN.41.53",
         "confidence": "EXPLICIT"
       },
       {
         "name": "yearsOfFamineAtJacobsArrival",
-        "value": null,
+        "value": 2,
         "reference": "GEN.45.6",
         "confidence": "EXPLICIT"
       }

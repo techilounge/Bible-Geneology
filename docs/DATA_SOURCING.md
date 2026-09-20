@@ -133,11 +133,16 @@ the label that says so.
 **Joseph's birth year needs three figures, not one.** It is derived backwards from
 Jacob's age before Pharaoh (GEN.47.9) less the elapsed years of Joseph's Egyptian
 career: his age when he entered Pharaoh's service (GEN.41.46), the years of plenty
-(GEN.41.53) and the years of famine already past when Jacob arrived (GEN.45.6). The
-last two were added to the model after the Phase 2 worksheet was generated, so they
-are the one gap remaining in the dataset. Joseph's record stays at DRAFT with a null
-birth year until they are read from the text. The engine already carries the rule; it
-is the figures it is waiting on.
+(GEN.41.53) and the years of famine already past when Jacob arrived (GEN.45.6).
+
+The last two figures were supplied by the project owner on 2026-09-20: seven years of
+plenty, and two years of famine elapsed. With his age of 30 before Pharaoh that puts
+Joseph at 39 when Jacob arrived, so he was born when Jacob was 91, in 2259 AM, and
+died in 2369 AM. The 39 is DERIVED, not EXPLICIT: no verse states it, and the
+derivation record carries all three references and the subtraction that produced it.
+
+This was the last gap in the dataset. Every figure the Masoretic chronology needs has
+now been read from the text; `npm run data:worksheet` writes an empty worksheet.
 
 ### People who get UNKNOWN dates
 

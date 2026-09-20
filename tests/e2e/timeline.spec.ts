@@ -80,12 +80,12 @@ test.describe('the timeline renders the dataset', () => {
     page,
   }) => {
     await page.goto('/timeline');
-    // 25 of the 49 people have a birth year, and 24 of those also have an
+    // 26 of the 49 people have a birth year, and 25 of those also have an
     // end to draw to. Esau has a birth year and neither a death nor a
     // lifespan, so he is named in the prose instead of guessed at.
-    await expect(page.locator('[data-testid="bar"]')).toHaveCount(24);
-    await expect(page.getByRole('status')).toContainText('24 of 24 dated lifetimes');
-    await expect(page.getByText(/24 more people/)).toBeVisible();
+    await expect(page.locator('[data-testid="bar"]')).toHaveCount(25);
+    await expect(page.getByRole('status')).toContainText('25 of 25 dated lifetimes');
+    await expect(page.getByText(/23 more people/)).toBeVisible();
     await expect(
       page.getByText(/Esau has a birth year but no recorded death/),
     ).toBeVisible();
@@ -212,7 +212,7 @@ test.describe('filters', () => {
     await page.getByLabel('Find a name').fill('Methuselah');
 
     await expect(page.locator('[data-testid="bar"]')).toHaveCount(1);
-    await expect(page.getByRole('status')).toContainText('1 of 24');
+    await expect(page.getByRole('status')).toContainText('1 of 25');
     // The surviving bar sits in the first lane, not where it was before.
     await expect(page.locator('[data-testid="bar"]')).toHaveAttribute('y', '28');
   });

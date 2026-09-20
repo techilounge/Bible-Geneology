@@ -27,7 +27,9 @@ const dataset = buildDataset({
  * interval makes interesting: the year Noah dies (2006) and the year
  * Abraham is born (2008), the flood (1656), and both ends of the span.
  */
-const SAMPLE_YEARS = [0, 1, 130, 687, 1055, 1056, 1656, 2006, 2007, 2008, 2083, 2315];
+const SAMPLE_YEARS = [
+  0, 1, 130, 687, 1055, 1056, 1656, 2006, 2007, 2008, 2083, 2259, 2315, 2369,
+];
 
 async function renderedIds(page: Page): Promise<string[]> {
   return (
@@ -156,7 +158,7 @@ test.describe('the year controls', () => {
     page,
   }) => {
     await page.goto('/who-was-alive?year=99999');
-    await expect(page.getByTestId('living-heading')).toContainText('2315 AM');
+    await expect(page.getByTestId('living-heading')).toContainText('2369 AM');
 
     await page.goto('/who-was-alive?year=not-a-year');
     await expect(page.getByTestId('living-heading')).toBeVisible();
