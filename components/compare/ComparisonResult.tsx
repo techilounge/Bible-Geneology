@@ -55,11 +55,20 @@ export function ComparisonResult({
 }: ComparisonProps) {
   return (
     <div className="flex flex-col gap-8">
-      <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold" data-testid="verdict">
+      <section className="glass-panel flex flex-col gap-3 rounded-2xl border-l-4 border-l-[var(--color-accent)] border-[var(--color-border-subtle)] p-6 shadow-xl">
+        <div className="flex items-center gap-2">
+          <span className="size-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
+          <p className="text-xs font-bold tracking-widest text-[var(--color-accent)] uppercase">
+            Comparative Verdict
+          </p>
+        </div>
+        <h2
+          className="text-2xl font-bold tracking-tight text-[var(--color-text-primary)]"
+          data-testid="verdict"
+        >
           <Verdict a={a} b={b} overlap={overlap} />
         </h2>
-        <p className="max-w-2xl text-sm text-[var(--color-text-secondary)]">
+        <p className="max-w-2xl text-sm text-[var(--color-text-secondary)] leading-relaxed">
           {NOT_CONTACT}
         </p>
       </section>

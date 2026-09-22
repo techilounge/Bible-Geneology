@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { Maximize2, Minus, Plus } from 'lucide-react';
 import type { TreeEdge, TreeNode } from '@/lib/graph/tree-layout';
 import {
   fitViewport,
@@ -192,25 +193,33 @@ export function FamilyTreeChart({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap items-center gap-2">
-        <Control
-          onClick={() =>
-            setViewport((v) => zoomViewport(v, 1.25, size.width / 2, size.height / 2))
-          }
-          label="Zoom in"
-          symbol="+"
-        />
-        <Control
-          onClick={() =>
-            setViewport((v) => zoomViewport(v, 1 / 1.25, size.width / 2, size.height / 2))
-          }
-          label="Zoom out"
-          symbol="−"
-        />
-        <Control onClick={fit} label="Fit the whole tree" symbol="Fit" />
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-sunken)]/60 px-4 py-2.5">
+        <div className="flex items-center gap-2">
+          <Control
+            onClick={() =>
+              setViewport((v) => zoomViewport(v, 1.25, size.width / 2, size.height / 2))
+            }
+            label="Zoom in"
+            icon={<Plus className="size-4" />}
+          />
+          <Control
+            onClick={() =>
+              setViewport((v) =>
+                zoomViewport(v, 1 / 1.25, size.width / 2, size.height / 2),
+              )
+            }
+            label="Zoom out"
+            icon={<Minus className="size-4" />}
+          />
+          <Control
+            onClick={fit}
+            label="Fit the whole tree"
+            icon={<Maximize2 className="size-4" />}
+          />
+        </div>
         <p
           data-testid="tree-scale"
-          className="ml-auto font-mono text-sm tabular-nums text-[var(--color-text-muted)]"
+          className="font-mono text-sm tabular-nums text-[var(--color-text-muted)] bg-[var(--color-surface-overlay)] px-3 py-1 rounded-lg border border-[var(--color-border-subtle)]"
         >
           {Math.round(viewport.scale * 100)}%
         </p>
@@ -308,20 +317,25 @@ export function FamilyTreeChart({
 function Control({
   onClick,
   label,
-  symbol,
+  icon,
 }: {
   onClick: () => void;
   label: string;
-  symbol: string;
+  icon: React.ReactNode;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg bg-[var(--color-surface-overlay)] px-3 text-sm font-medium hover:bg-[var(--color-border-subtle)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+      className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl bg-[var(--color-surface-overlay)] border border-[var(--color-border-subtle)] px-3 text-sm font-medium hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
     >
       <span className="sr-only">{label}</span>
-      <span aria-hidden="true">{symbol}</span>
+      <span
+        aria-hidden="true"
+        className="flex items-center justify-center [&>svg]:size-4"
+      >
+        {icon}
+      </span>
     </button>
   );
 }

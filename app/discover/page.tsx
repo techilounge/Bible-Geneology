@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Shuffle, Sparkles } from 'lucide-react';
 import { DiscoveryCard } from '@/components/discovery/DiscoveryCard';
 import { PageHeader, PageShell } from '@/components/layout/PageHeader';
 import { CHRONOLOGY_DISCLAIMER } from '@/lib/config/chronology-defaults';
@@ -41,46 +42,62 @@ export default async function DiscoverPage({
       <PageHeader
         eyebrow="Discover"
         title="Findings the dataset supports"
+        icon={<Sparkles className="size-4" />}
         lede="Every finding here is generated from the chronology engine and the verified records behind it. None of them is written by hand, so changing the chronology changes the findings rather than leaving them behind."
       />
 
       {surprise ? (
         <section
           data-testid="surprise"
-          className="flex flex-col gap-3 rounded-xl border border-[var(--color-accent)] bg-[var(--color-surface-raised)] p-5"
+          className="glass-panel flex flex-col gap-4 rounded-2xl border border-[var(--color-accent)]/80 bg-gradient-to-br from-[var(--color-surface-raised)] to-[var(--color-surface-overlay)] p-6 shadow-xl"
         >
-          <p className="text-xs tracking-widest text-[var(--color-accent)] uppercase">
-            Surprise me
-          </p>
-          <h2 className="text-xl font-medium text-balance">
+          <div className="flex items-center gap-2">
+            <span className="flex size-7 items-center justify-center rounded-lg bg-[var(--color-accent)]/20 text-[var(--color-accent)]">
+              <Sparkles className="size-4" />
+            </span>
+            <p className="text-xs font-bold tracking-widest text-[var(--color-accent)] uppercase">
+              Featured Insight &middot; Surprise me
+            </p>
+          </div>
+
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-balance text-[var(--color-text-primary)]">
             <Link
               href={`/discover/${surprise.id}`}
               data-testid="surprise-link"
-              className="rounded hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+              className="rounded hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)] transition-colors"
             >
               {surprise.headline}
             </Link>
           </h2>
-          <div className="flex flex-wrap gap-2">
+
+          <div className="flex flex-wrap items-center gap-3 pt-2">
             <Link
               href={`/discover?seed=${encodeURIComponent(nextSeed(discoveries, seed))}`}
-              className="inline-flex min-h-11 items-center rounded-lg bg-[var(--color-accent)] px-4 font-medium text-[var(--color-surface-base)] hover:bg-[var(--color-accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[var(--color-accent)] px-4 font-semibold text-[var(--color-surface-base)] hover:bg-[var(--color-accent-strong)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
             >
-              Surprise me again
+              <Shuffle className="size-4" />
+              <span>Surprise me again</span>
             </Link>
             <Link
               href={`/discover/${surprise.id}`}
-              className="inline-flex min-h-11 items-center rounded-lg bg-[var(--color-surface-overlay)] px-4 font-medium hover:bg-[var(--color-border-subtle)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-overlay)] px-4 font-medium text-[var(--color-text-primary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
             >
-              See how it was worked out
+              <span>See how it was worked out</span>
             </Link>
           </div>
         </section>
       ) : null}
 
       <section className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold">All {discoveries.length} findings</h2>
-        <ul className="flex flex-col gap-3">
+        <div className="flex items-center justify-between border-b border-[var(--color-border-subtle)] pb-2">
+          <h2 className="text-lg font-bold text-[var(--color-text-primary)]">
+            All {discoveries.length} findings
+          </h2>
+          <span className="text-xs text-[var(--color-text-muted)] font-mono">
+            Generated from chronology engine
+          </span>
+        </div>
+        <ul className="grid gap-4 sm:grid-cols-2">
           {discoveries.map((discovery) => (
             <DiscoveryCard key={discovery.id} discovery={discovery} names={names} />
           ))}

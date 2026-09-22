@@ -10,10 +10,14 @@
  * colours below are the supporting signal, not the only one.
  */
 @theme {
+  --color-surface-sunken: oklch(14% 0.01 255);
   --color-surface-base: oklch(19% 0.012 255);
   --color-surface-raised: oklch(24% 0.014 255);
   --color-surface-overlay: oklch(29% 0.016 255);
+  --color-surface-popover: oklch(33% 0.018 255);
   --color-border-subtle: oklch(36% 0.014 255);
+  --color-border-hover: oklch(48% 0.02 255);
+  --color-border-glow: oklch(78% 0.115 82 / 0.4);
 
   --color-text-primary: oklch(96% 0.004 255);
   --color-text-secondary: oklch(78% 0.008 255);
@@ -28,6 +32,7 @@
 
   --color-accent: oklch(78% 0.115 82);
   --color-accent-strong: oklch(70% 0.135 78);
+  --color-accent-subtle: oklch(78% 0.115 82 / 0.15);
 
   --color-confidence-explicit: oklch(74% 0.12 160);
   --color-confidence-derived: oklch(74% 0.105 235);
@@ -51,6 +56,43 @@
 body {
   background-color: var(--color-surface-base);
   color: var(--color-text-primary);
+  background-image:
+    radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      oklch(78% 0.115 82 / 0.06),
+      transparent 70%
+    ),
+    radial-gradient(circle at 100% 100%, oklch(74% 0.105 235 / 0.04), transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Custom interactive utility classes */
+.glass-panel {
+  background-color: color-mix(in oklch, var(--color-surface-raised) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.glass-card {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--color-surface-raised) 90%, white 3%) 0%,
+    var(--color-surface-raised) 100%
+  );
+  border: 1px solid var(--color-border-subtle);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: color-mix(in oklch, var(--color-accent) 50%, var(--color-border-subtle));
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.3),
+    0 0 15px -2px oklch(78% 0.115 82 / 0.1);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px -3px oklch(78% 0.115 82 / 0.25);
 }
 
 /* Requirement section 51: reduced motion is honoured globally, not per component. */
@@ -62,5 +104,9 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    transform: none !important;
+  }
+  .glass-card:hover {
+    transform: none !important;
   }
 }

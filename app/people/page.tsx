@@ -1,4 +1,7 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import type { Metadata } from 'next';
+import { Users } from 'lucide-react';
 import {
   PeopleDirectory,
   type DirectoryEntry,
@@ -40,6 +43,9 @@ export default function PeoplePage() {
         birthYear: record?.birthYear ?? null,
         deathYear: record?.deathYear ?? null,
         birthConfidence: record?.birthConfidence ?? 'UNKNOWN',
+        hasPortrait: existsSync(
+          join(process.cwd(), 'public', 'assets', `${person.slug}.jpg`),
+        ),
       };
     });
 
@@ -50,6 +56,7 @@ export default function PeoplePage() {
       <PageHeader
         eyebrow="Directory"
         title="People"
+        icon={<Users className="size-4" />}
         lede={`${entries.length} people, of whom ${dated} can be placed on a timeline. The rest appear here too: Scripture names them and gives no ages, and leaving them out would hide that.`}
       />
       <PeopleDirectory entries={entries} />

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Clock } from 'lucide-react';
 import { PageHeader, PageShell } from '@/components/layout/PageHeader';
 import { Timeline } from '@/components/timeline/Timeline';
 import { CHRONOLOGY_DISCLAIMER } from '@/lib/config/chronology-defaults';
@@ -41,6 +42,7 @@ export default function TimelinePage() {
       <PageHeader
         eyebrow="Chronology"
         title="Timeline"
+        icon={<Clock className="size-4" />}
         lede={`${rows.length} lifetimes on one axis, each bar coloured by how the app knows its dates. Select a lifetime to see which others ran alongside it.`}
       />
       <Timeline

@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -26,6 +28,9 @@ import {
   nameOf,
   resolveReferences,
 } from '@/lib/services/dataset';
+
+import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
+import { User } from 'lucide-react';
 
 export function generateStaticParams() {
   return getCanonical().people.map((person) => ({ slug: person.slug }));
@@ -123,12 +128,19 @@ export default async function PersonPage({
       : [];
 
   const events = getEventsDuringLifetime(dataset, person.id);
+  const hasPortrait = existsSync(
+    join(process.cwd(), 'public', 'assets', `${person.slug}.jpg`),
+  );
 
   return (
     <PageShell>
+      <Breadcrumbs
+        items={[{ label: 'People', href: '/people' }, { label: person.canonicalName }]}
+      />
       <PageHeader
         eyebrow={canonical.eras.find((e) => e.id === person.eraId)?.name}
         title={person.canonicalName}
+        icon={<User className="size-4" />}
         lede={person.description ?? undefined}
       >
         {names.length > 0 ? (
@@ -152,6 +164,22 @@ export default async function PersonPage({
           label={`Save ${person.canonicalName} to your account`}
         />
       </PageHeader>
+
+      {hasPortrait ? (
+        <div className="relative overflow-hidden rounded-3xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-sunken)] shadow-xl max-w-xl">
+          <img
+            src={`/assets/${person.slug}.jpg`}
+            alt={`Artistic portrait of ${person.canonicalName}`}
+            className="w-full h-80 object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface-base)] via-transparent to-transparent opacity-80" />
+          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+            <span className="text-xs font-semibold tracking-wider text-[var(--color-accent)] uppercase bg-[var(--color-surface-base)]/80 backdrop-blur-md px-3 py-1 rounded-full border border-[var(--color-border-subtle)]">
+              {person.gender === 'female' ? 'Matriarch Portrait' : 'Patriarch Portrait'}
+            </span>
+          </div>
+        </div>
+      ) : null}
 
       {record === null ? (
         <UndatedNotice name={person.canonicalName} />

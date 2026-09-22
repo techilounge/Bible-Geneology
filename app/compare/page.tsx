@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { GitCompare } from 'lucide-react';
 import { PageHeader, PageShell } from '@/components/layout/PageHeader';
 import { ComparePicker } from '@/components/compare/ComparePicker';
 import { ComparisonResult } from '@/components/compare/ComparisonResult';
@@ -56,6 +57,7 @@ export default async function ComparePage({
       <PageHeader
         eyebrow="Comparison"
         title="Could they have met?"
+        icon={<GitCompare className="size-4" />}
         lede="Pick two people. This chronology can say whether they were alive at the same time. Whether they ever met is a different question, and one it cannot answer."
       />
 

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { Search, X } from 'lucide-react';
 import { ConfidenceBadge } from '@/components/chronology/ConfidenceBadge';
 import { Card } from '@/components/ui/Card';
 import { EPOCH_LABEL } from '@/lib/config/chronology-defaults';
@@ -11,23 +12,14 @@ export interface DirectoryEntry {
   id: string;
   slug: string;
   name: string;
-  /** Every other name this person is called, so a search for Abram finds him. */
   aliases: string[];
   eraName: string | null;
   birthYear: number | null;
   deathYear: number | null;
   birthConfidence: ConfidenceLevel;
+  hasPortrait?: boolean;
 }
 
-/**
- * Search runs in the browser over the whole list.
- *
- * The dataset is 49 people through the MVP and a few hundred at most after
- * it, small enough that filtering an array beats a round trip and far
- * smaller than the JavaScript a search service would cost. Requirement
- * section 49's performance budget is easiest to keep by not shipping the
- * feature at all.
- */
 export function PeopleDirectory({ entries }: { entries: readonly DirectoryEntry[] }) {
   const [query, setQuery] = useState('');
   const [onlyDated, setOnlyDated] = useState(false);
@@ -57,29 +49,45 @@ export function PeopleDirectory({ entries }: { entries: readonly DirectoryEntry[
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <label className="flex-1">
+      {/* Search & Filter Toolbar */}
+      <div className="glass-panel flex flex-col gap-3 rounded-2xl p-4 sm:flex-row sm:items-center sm:justify-between shadow-lg">
+        <label className="relative flex-1">
           <span className="sr-only">Search people by name</span>
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-[var(--color-text-muted)]" />
           <input
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search by name, including former names"
-            className="min-h-11 w-full rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-raised)] px-3 text-base placeholder:text-[var(--color-text-muted)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+            className="min-h-11 w-full rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-sunken)] pr-9 pl-10 text-sm placeholder:text-[var(--color-text-muted)] transition-colors focus-visible:border-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
           />
+          {query ? (
+            <button
+              type="button"
+              aria-label="Clear search"
+              onClick={() => setQuery('')}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 flex size-6 items-center justify-center rounded-full text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)]"
+            >
+              <X className="size-3.5" />
+            </button>
+          ) : null}
         </label>
-        <label className="flex min-h-11 cursor-pointer items-center gap-2 text-sm">
+
+        <label className="flex min-h-11 cursor-pointer items-center gap-2.5 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-overlay)] px-3 text-sm font-medium text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-raised)] transition-colors">
           <input
             type="checkbox"
             checked={onlyDated}
             onChange={(event) => setOnlyDated(event.target.checked)}
-            className="size-4 accent-[var(--color-accent)]"
+            className="size-4.5 rounded accent-[var(--color-accent)] cursor-pointer"
           />
-          Only people with dates
+          <span>Only people with dates</span>
         </label>
       </div>
 
-      <p role="status" className="text-sm text-[var(--color-text-muted)]">
+      <p
+        role="status"
+        className="text-xs sm:text-sm font-medium text-[var(--color-text-muted)]"
+      >
         {filtered.length} of {entries.length} people
         {undatedCount > 0 && !onlyDated
           ? `, of whom ${undatedCount} have no ages in Scripture`
@@ -88,7 +96,7 @@ export function PeopleDirectory({ entries }: { entries: readonly DirectoryEntry[
       </p>
 
       {grouped.length === 0 ? (
-        <Card>
+        <Card className="rounded-2xl p-8 text-center">
           <p className="text-[var(--color-text-secondary)]">
             No one in this dataset matches &ldquo;{query}&rdquo;.
           </p>
@@ -97,35 +105,61 @@ export function PeopleDirectory({ entries }: { entries: readonly DirectoryEntry[
 
       {grouped.map(([era, people]) => (
         <section key={era} className="flex flex-col gap-3">
-          <h2 className="text-sm tracking-widest text-[var(--color-text-muted)] uppercase">
-            {era}
-          </h2>
+          <div className="flex items-center gap-2 border-b border-[var(--color-border-subtle)] pb-2">
+            <span className="size-1.5 rounded-full bg-[var(--color-accent)]" />
+            <h2 className="text-xs font-bold tracking-widest text-[var(--color-accent)] uppercase">
+              {era}
+            </h2>
+            <span className="text-xs text-[var(--color-text-muted)] font-mono">
+              ({people.length})
+            </span>
+          </div>
+
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {people.map((entry) => (
               <li key={entry.id}>
                 <Link
                   href={`/people/${entry.slug}`}
-                  className="block h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+                  className="block h-full rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
                 >
-                  <Card className="flex h-full flex-col gap-2 transition-colors hover:border-[var(--color-accent)]">
-                    <span className="font-semibold">{entry.name}</span>
-                    {entry.birthYear === null ? (
-                      <span className="text-sm text-[var(--color-text-muted)] italic">
-                        Scripture gives no ages
-                      </span>
-                    ) : (
-                      <span className="flex flex-wrap items-baseline gap-2">
-                        <span className="font-mono text-sm tabular-nums">
-                          {entry.birthYear}
-                          {'–'}
-                          {entry.deathYear ?? '?'} {EPOCH_LABEL}
+                  <Card className="glass-card flex h-full flex-col justify-between gap-3 p-4 rounded-2xl">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-2.5">
+                          {entry.hasPortrait ? (
+                            <img
+                              src={`/assets/${entry.slug}.jpg`}
+                              alt=""
+                              className="size-8 shrink-0 rounded-lg object-cover border border-[var(--color-border-subtle)]"
+                            />
+                          ) : (
+                            <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface-overlay)] text-[var(--color-accent)] font-bold text-xs border border-[var(--color-border-subtle)]">
+                              {entry.name[0]}
+                            </div>
+                          )}
+                          <span className="font-bold text-base text-[var(--color-text-primary)]">
+                            {entry.name}
+                          </span>
+                        </div>
+                      </div>
+
+                      {entry.birthYear === null ? (
+                        <span className="text-xs text-[var(--color-text-muted)] italic">
+                          Scripture gives no ages
                         </span>
-                        <ConfidenceBadge level={entry.birthConfidence} />
-                      </span>
-                    )}
+                      ) : (
+                        <div className="flex flex-wrap items-center gap-2 pt-1">
+                          <span className="font-mono text-xs font-semibold tabular-nums text-[var(--color-text-secondary)]">
+                            {entry.birthYear}–{entry.deathYear ?? '?'} {EPOCH_LABEL}
+                          </span>
+                          <ConfidenceBadge level={entry.birthConfidence} />
+                        </div>
+                      )}
+                    </div>
+
                     {entry.aliases.length > 0 ? (
-                      <span className="text-xs text-[var(--color-text-muted)]">
-                        also {entry.aliases.join(', ')}
+                      <span className="text-[11px] text-[var(--color-text-muted)] line-clamp-1 border-t border-[var(--color-border-subtle)]/40 pt-2">
+                        Also known as: {entry.aliases.join(', ')}
                       </span>
                     ) : null}
                   </Card>

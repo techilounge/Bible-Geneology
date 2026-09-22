@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { User } from 'lucide-react';
 import { syncProgressAction } from '@/app/account/actions';
 import { SignOutButton } from '@/components/account/SignOutButton';
 import { SyncProgress } from '@/components/account/SyncProgress';
@@ -47,6 +48,7 @@ export default async function AccountPage({
         <PageHeader
           eyebrow="Account"
           title="Accounts are not configured here"
+          icon={<User className="size-4" />}
           lede="This deployment has no account service attached, so there is nothing to sign in to."
         />
         <p
@@ -67,6 +69,7 @@ export default async function AccountPage({
         <PageHeader
           eyebrow="Account"
           title="You are not signed in"
+          icon={<User className="size-4" />}
           lede="An account keeps your favourites and progress across browsers. Nothing else here needs one."
         />
         <div>
@@ -94,6 +97,7 @@ export default async function AccountPage({
       <PageHeader
         eyebrow="Account"
         title={profile?.displayName ?? user.email ?? 'Your account'}
+        icon={<User className="size-4" />}
         lede="What this account is keeping for you, and how to take it away again."
       />
 

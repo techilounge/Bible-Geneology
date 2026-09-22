@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Milestone } from 'lucide-react';
 import { ComingInPhase } from '@/components/layout/ComingInPhase';
 import { PageHeader, PageShell } from '@/components/layout/PageHeader';
 
@@ -11,7 +12,9 @@ export default function EventsPage() {
   return (
     <PageShell>
       <PageHeader
+        eyebrow="Milestones"
         title="Events"
+        icon={<Milestone className="size-4" />}
         lede="Dated events, and who the dataset can place alive when each happened."
       />
       <ComingInPhase

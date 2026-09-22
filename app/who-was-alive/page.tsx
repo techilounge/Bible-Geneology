@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CalendarClock } from 'lucide-react';
 import { PageHeader, PageShell } from '@/components/layout/PageHeader';
 import { YearExplorer } from '@/components/year/YearExplorer';
 import { busiestYear, livingWindowEnd } from '@/lib/chronology';
@@ -59,6 +60,7 @@ export default async function WhoWasAlivePage({
       <PageHeader
         eyebrow="Chronology"
         title="Who was alive"
+        icon={<CalendarClock className="size-4" />}
         lede={`Pick a year and see everyone this chronology can place alive in it, with their ages. It opens on ${defaultYear} ${EPOCH_LABEL}, the fullest year in the dataset.`}
       />
       <YearExplorer

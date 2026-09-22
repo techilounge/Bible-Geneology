@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { GitFork } from 'lucide-react';
 import { PageHeader, PageShell } from '@/components/layout/PageHeader';
 import { FamilyTreeChart } from '@/components/tree/FamilyTreeChart';
 import { TreeOutline, type OutlinePerson } from '@/components/tree/TreeOutline';
@@ -73,18 +74,44 @@ export default async function FamilyTreePage({
       <PageHeader
         eyebrow="Relationships"
         title="Family tree"
-        lede={`Every line here is a relationship the dataset records, with the verse behind it. Siblings are not drawn, because no record states them: they are worked out from shared parents, and a drawn line would be the picture claiming more than the text.`}
+        icon={<GitFork className="size-4" />}
+        lede="Every line here is a relationship the dataset records, with the verse behind it. Siblings are not drawn, because no record states them: they are worked out from shared parents, and a drawn line would be the picture claiming more than the text."
       />
+
+      {/* Quick root selector chips */}
+      <div className="flex flex-wrap items-center gap-2 text-xs">
+        <span className="font-semibold uppercase tracking-wider text-[var(--color-text-muted)] text-[11px]">
+          Prominent Patriarchs:
+        </span>
+        {['adam', 'noah', 'abraham', 'jacob'].map((slug) => {
+          const person = people.find((p) => p.slug === slug);
+          if (!person) return null;
+          const isSelected = root.slug === slug;
+          return (
+            <a
+              key={slug}
+              href={`/family-tree?root=${slug}&up=${up}&down=${down}`}
+              className={`inline-flex min-h-8 items-center rounded-lg px-3 py-1 font-medium transition-colors ${
+                isSelected
+                  ? 'bg-[var(--color-accent)] text-[var(--color-surface-base)] font-semibold'
+                  : 'bg-[var(--color-surface-overlay)] text-[var(--color-text-secondary)] hover:bg-[var(--color-border-subtle)] hover:text-[var(--color-text-primary)]'
+              }`}
+            >
+              {person.canonicalName}
+            </a>
+          );
+        })}
+      </div>
 
       <form
         method="get"
         action="/family-tree"
-        className="flex flex-wrap items-end gap-4 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-raised)] p-4"
+        className="glass-panel flex flex-wrap items-end gap-4 rounded-2xl p-5 shadow-lg"
       >
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1.5">
           <label
             htmlFor="tree-root"
-            className="text-sm text-[var(--color-text-secondary)]"
+            className="text-xs font-semibold tracking-wide text-[var(--color-text-secondary)] uppercase"
           >
             Centre on
           </label>
@@ -92,7 +119,7 @@ export default async function FamilyTreePage({
             id="tree-root"
             name="root"
             defaultValue={root.slug}
-            className="min-h-11 min-w-48 rounded-lg border border-[var(--color-border-subtle)] bg-[var(--color-surface-overlay)] px-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+            className="min-h-11 min-w-48 rounded-xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-overlay)] px-3 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
           >
             {people.map((person) => (
               <option key={person.id} value={person.slug}>
@@ -112,7 +139,7 @@ export default async function FamilyTreePage({
 
         <button
           type="submit"
-          className="min-h-11 rounded-lg bg-[var(--color-accent)] px-4 font-medium text-[var(--color-surface-base)] hover:bg-[var(--color-accent-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)]"
+          className="min-h-11 rounded-xl bg-[var(--color-accent)] px-5 font-semibold text-[var(--color-surface-base)] hover:bg-[var(--color-accent-strong)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent)] cursor-pointer"
         >
           Show tree
         </button>

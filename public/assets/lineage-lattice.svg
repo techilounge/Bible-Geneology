@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#e5b869" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.02"/>
+    </linearGradient>
+    <radialGradient id="node-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Flowing Timeline Axis Curves -->
+  <path d="M 0,200 C 150,120 250,280 400,200 C 550,120 650,280 800,200" stroke="url(#gold-grad)" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
+  <path d="M 0,160 C 180,240 260,80 420,170 C 580,260 680,130 800,180" stroke="url(#blue-grad)" stroke-width="1.8" fill="none"/>
+  <path d="M 0,240 C 120,160 300,290 480,210 C 620,150 720,230 800,220" stroke="url(#gold-grad)" stroke-width="1.2" fill="none"/>
+
+  <!-- Vertical Genealogic Lineage Connectors -->
+  <line x1="120" y1="130" x2="120" y2="230" stroke="url(#gold-grad)" stroke-width="1.5"/>
+  <line x1="280" y1="90" x2="280" y2="280" stroke="url(#blue-grad)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="440" y1="150" x2="440" y2="260" stroke="url(#gold-grad)" stroke-width="1.5"/>
+  <line x1="600" y1="120" x2="600" y2="270" stroke="url(#blue-grad)" stroke-width="1.5"/>
+  <line x1="720" y1="160" x2="720" y2="240" stroke="url(#gold-grad)" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <!-- Luminous Nodes / Historical Figures -->
+  <circle cx="120" cy="180" r="14" fill="url(#node-glow)"/>
+  <circle cx="120" cy="180" r="4" fill="#fbbf24"/>
+
+  <circle cx="280" cy="120" r="16" fill="url(#node-glow)"/>
+  <circle cx="280" cy="120" r="5" fill="#38bdf8"/>
+
+  <circle cx="440" cy="200" r="20" fill="url(#node-glow)"/>
+  <circle cx="440" cy="200" r="6" fill="#f59e0b"/>
+
+  <circle cx="600" cy="150" r="15" fill="url(#node-glow)"/>
+  <circle cx="600" cy="150" r="4.5" fill="#38bdf8"/>
+
+  <circle cx="720" cy="210" r="14" fill="url(#node-glow)"/>
+  <circle cx="720" cy="210" r="4" fill="#fbbf24"/>
+</svg>
