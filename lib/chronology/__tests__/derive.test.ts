@@ -926,3 +926,83 @@ describe('deriveEventChronology: the last fallbacks', () => {
     expect(result.records[0]?.derivation?.steps[0]?.reference).toBe('GEN.5.1');
   });
 });
+
+describe('deriveChronology: review status propagation', () => {
+  // Fixtures with an explicit source status, so the propagated status is the
+  // only thing under test. A three-generation line lets a status set on the
+  // middle generation reach the youngest.
+  const grandfather = row({
+    personId: 'grandfather',
+    birthOffsetFromFather: { rule: 'epoch', value: 0, sourceReferences: ['GEN.5.1'] },
+    lifespan: { rule: 'explicit', value: 900, reference: 'GEN.5.5' },
+    deathRule: 'birth-plus-lifespan',
+    reviewStatus: 'VERIFIED',
+  });
+  const father = row({
+    personId: 'father',
+    father: 'grandfather',
+    birthOffsetFromFather: { rule: 'father-age', value: 100, reference: 'GEN.5.3' },
+    lifespan: { rule: 'explicit', value: 900, reference: 'GEN.5.8' },
+    deathRule: 'birth-plus-lifespan',
+    reviewStatus: 'VERIFIED',
+  });
+  const son = row({
+    personId: 'son',
+    father: 'father',
+    birthOffsetFromFather: { rule: 'father-age', value: 100, reference: 'GEN.5.6' },
+    lifespan: { rule: 'explicit', value: 900, reference: 'GEN.5.11' },
+    deathRule: 'birth-plus-lifespan',
+    reviewStatus: 'VERIFIED',
+  });
+
+  const statusOf = (rows: ChronologyInputRecord[], id: string) =>
+    derive(rows).byId.get(id)?.reviewStatus;
+
+  it('keeps a status when nothing weaker feeds it', () => {
+    expect(statusOf([grandfather, father, son], 'son')).toBe('VERIFIED');
+  });
+
+  it('weakens a record to its own least-reviewed figure', () => {
+    const draftSon = { ...son, reviewStatus: 'SOURCE_CHECKED' };
+    expect(statusOf([grandfather, father, draftSon], 'son')).toBe('SOURCE_CHECKED');
+  });
+
+  it('weakens a record to the weakest link in its chain', () => {
+    // The son's own figures are VERIFIED, but they are computed from a father
+    // that is only SOURCE_CHECKED, so the son cannot be more than that.
+    const checkedFather = { ...father, reviewStatus: 'SOURCE_CHECKED' };
+    expect(statusOf([grandfather, checkedFather, son], 'son')).toBe('SOURCE_CHECKED');
+  });
+
+  it('carries a disputed ancestor all the way down the line', () => {
+    // The mirror of the alternate chronology: a single disputed reading in the
+    // middle generation must not present the youngest as verified.
+    const disputedFather = { ...father, reviewStatus: 'DISPUTED' };
+    expect(statusOf([grandfather, disputedFather, son], 'father')).toBe('DISPUTED');
+    expect(statusOf([grandfather, disputedFather, son], 'son')).toBe('DISPUTED');
+    // The generation above the dispute is untouched.
+    expect(statusOf([grandfather, disputedFather, son], 'grandfather')).toBe('VERIFIED');
+  });
+
+  it('weakens through an explicit dependsOn edge, not only through a father', () => {
+    const anchored = row({
+      personId: 'anchored',
+      dependsOn: ['grandfather'],
+      birthOffsetFromFather: {
+        rule: 'derived-from-own-age-at-event',
+        value: 50,
+        reference: 'GEN.5.1',
+      },
+      lifespan: { rule: 'explicit', value: 100, reference: 'GEN.5.5' },
+      deathRule: 'birth-plus-lifespan',
+      reviewStatus: 'VERIFIED',
+    });
+    const draftGrandfather = { ...grandfather, reviewStatus: 'DRAFT' };
+    expect(statusOf([draftGrandfather, anchored], 'anchored')).toBe('DRAFT');
+  });
+
+  it('fails closed on a status the schema does not recognise', () => {
+    const garbled = { ...grandfather, reviewStatus: 'probably-fine' };
+    expect(statusOf([garbled], 'grandfather')).toBe('DRAFT');
+  });
+});

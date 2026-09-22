@@ -160,5 +160,11 @@ the Supabase email sender and Google client, applying migrations 0001 to 0018, t
 first administrator, and a daily `sweep_rate_limits()`. Nothing in the build is blocked
 on any of it.
 
-The oldest open item in the project is still open: review status does not gate what
-reaches the application. It should be closed before anybody but Kelv edits the dataset.
+The oldest open item in the project is now half closed. The derivation used to discard
+the review status of the figures it built on and stamp every derived record DRAFT; it now
+propagates the true status through the chain, so the derived data honestly distinguishes
+the 25-record verified spine from the source-checked collateral, and the alternate
+chronology surfaces its disputed reading as DISPUTED down the whole line after Abraham.
+What is left is the decision of whether to switch the application boundary to VERIFIED-only
+by default, which narrows the default experience and touches figures the journeys were
+built around — see section 7 of `PRODUCTION_READINESS.md`.

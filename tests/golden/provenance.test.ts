@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
@@ -44,6 +44,38 @@ const personIds = new Set(
 const eventIds = new Set(
   readJson<Array<{ id: string }>>(join(CANONICAL, 'events.json')).map((e) => e.id),
 );
+
+/**
+ * The review status of each source figure for a chronology, before derivation:
+ * the base file, with an alternate chronology's overrides applied on top. This
+ * is the artefact a human actually reviews, and what the derived status is
+ * propagated from.
+ */
+function sourceReviewStatus(chronologyId: string): Map<string, string> {
+  const exists = (name: string) => existsSync(join(CANONICAL, name));
+  const overrideName = `chronology-overrides.${chronologyId}.json`;
+  const baseId = exists(overrideName)
+    ? readJson<{ baseChronologyId: string }>(join(CANONICAL, overrideName))
+        .baseChronologyId
+    : chronologyId;
+
+  const status = new Map(
+    readJson<Array<{ personId: string; reviewStatus: string }>>(
+      join(CANONICAL, `person-chronology.${baseId}.json`),
+    ).map((r) => [r.personId, r.reviewStatus]),
+  );
+
+  if (exists(overrideName)) {
+    const override = readJson<{
+      records: Array<{ personId: string; reviewStatus?: string }>;
+    }>(join(CANONICAL, overrideName));
+    for (const patch of override.records) {
+      if (patch.reviewStatus) status.set(patch.personId, patch.reviewStatus);
+    }
+  }
+
+  return status;
+}
 
 describe.each(CHRONOLOGIES)('provenance: %s', (chronologyId) => {
   const records = loadDerivedRecords(chronologyId);
@@ -119,10 +151,19 @@ describe.each(CHRONOLOGIES)('provenance: %s', (chronologyId) => {
     expect(dangling).toEqual([]);
   });
 
-  it('no record is VERIFIED without a reviewer', () => {
-    // The derived output is never VERIFIED; review happens on the canonical
-    // figures, which is the artefact a human can actually check.
-    expect(records.filter((r) => r.reviewStatus === 'VERIFIED')).toEqual([]);
+  it('a derived record is VERIFIED only atop a VERIFIED source figure', () => {
+    // A derived record's status is propagated, not asserted (section 8): it is
+    // the weakest status in the chain the value is computed from. The necessary
+    // condition that is checkable from the source alone is that a VERIFIED
+    // derived record must have a VERIFIED source figure of its own — the
+    // derivation can only weaken a status, never strengthen one. The sufficient
+    // half (a fully-VERIFIED chain does come out VERIFIED) lives in the
+    // derivation's own unit tests, which hold the whole chain.
+    const source = sourceReviewStatus(chronologyId);
+    const laundered = records
+      .filter((r) => r.reviewStatus === 'VERIFIED')
+      .filter((r) => source.get(r.personId) !== 'VERIFIED');
+    expect(laundered.map((r) => r.personId)).toEqual([]);
   });
 
   it('unknown stays unknown', () => {

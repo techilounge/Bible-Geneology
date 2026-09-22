@@ -113,13 +113,13 @@ export function validateDerived(input: DerivedInput): Finding[] {
 
     findings.push(...checkDerivation(subject, record, referenceIds));
 
-    if (record.reviewStatus === 'VERIFIED') {
-      warn(
-        'verified-without-reviewer',
-        subject,
-        'A VERIFIED record needs a recorded reviewer; the derived output is never reviewed directly',
-      );
-    }
+    // A derived record's review status is not a claim that the arithmetic was
+    // reviewed. It is propagated from the sourced figures the value rests on
+    // (section 8, lib/chronology/derive.ts): VERIFIED here means every figure
+    // in the chain was VERIFIED at source, where the reviewer and provenance
+    // actually live and where validate-dataset enforces them. So there is
+    // nothing to check about it that these derived records carry the inputs
+    // for; the propagation itself is proven in the derivation's own tests.
   }
 
   // --- descent has to run forwards in time --------------------------------

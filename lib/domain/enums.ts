@@ -89,3 +89,43 @@ export type AppRole = (typeof APP_ROLES)[number];
 export function isProductionVisible(status: ReviewStatus): boolean {
   return status === 'VERIFIED';
 }
+
+/**
+ * Review statuses ranked by how much trust they license, least first.
+ *
+ * DEPRECATED is the floor: nothing built on a superseded figure can be trusted
+ * more than the figure itself. DISPUTED sits below the unreviewed states on
+ * purpose — a contested reading is a stronger caution than one merely not yet
+ * checked, and it is the label a reader most needs to see. VERIFIED is the
+ * ceiling, and the only status section 8 lets reach production calculations.
+ */
+const REVIEW_STATUS_RANK: Readonly<Record<ReviewStatus, number>> = {
+  DEPRECATED: 0,
+  DISPUTED: 1,
+  DRAFT: 2,
+  SOURCE_CHECKED: 3,
+  VERIFIED: 4,
+};
+
+export function reviewStatusRank(status: ReviewStatus): number {
+  return REVIEW_STATUS_RANK[status];
+}
+
+/**
+ * The weakest status among several: the trust a derived value inherits from
+ * the chain of figures it rests on.
+ *
+ * A calculation is only as reviewed as its least-reviewed input, so a value
+ * whose own figures are VERIFIED but which is computed from a DISPUTED ancestor
+ * is DISPUTED, not VERIFIED. This is what stops the derivation quietly laundering
+ * an unverified reading into a verified-looking date. With no arguments it is
+ * VERIFIED: an empty chain constrains nothing, which makes it the identity for
+ * folding a record's own status together with its dependencies'.
+ */
+export function weakestReviewStatus(...statuses: ReviewStatus[]): ReviewStatus {
+  let weakest: ReviewStatus = 'VERIFIED';
+  for (const status of statuses) {
+    if (reviewStatusRank(status) < reviewStatusRank(weakest)) weakest = status;
+  }
+  return weakest;
+}

@@ -301,11 +301,15 @@ describe('validateDerived', () => {
     expect(validateDerived(input({ events: [babel] }))).toEqual([]);
   });
 
-  it('warns when the derived output claims to be VERIFIED', () => {
-    // Review happens on the figures a human can check, never on arithmetic.
-    expect(
-      checks(input({ records: [person({ reviewStatus: 'VERIFIED' })] }), 'warning'),
-    ).toContain('verified-without-reviewer');
+  it('does not warn on a VERIFIED derived record: the status is propagated', () => {
+    // A derived record's status is the weakest figure in the chain it rests on
+    // (section 8), not a claim the arithmetic was reviewed. VERIFIED here only
+    // reflects VERIFIED source figures, which is enforced where they live, so
+    // the derived validator has nothing to add and must stay quiet.
+    const findings = validateDerived(
+      input({ records: [person({ reviewStatus: 'VERIFIED' })] }),
+    );
+    expect(findings.map((f) => f.check)).not.toContain('verified-without-reviewer');
   });
 
   it('ignores a relationship whose ends are not both dated', () => {

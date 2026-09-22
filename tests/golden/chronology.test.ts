@@ -149,7 +149,22 @@ describe('golden: the alternate Genesis 11:26 reading', () => {
   it('never claims Abraham’s birth is explicit', () => {
     const record = years(alternate, 'abraham');
     expect(record.birthConfidence).not.toBe('EXPLICIT');
-    expect(record.reviewStatus).not.toBe('VERIFIED');
+    // The 70 reading is a labelled interpretation, so the derived record
+    // carries the source figure's DISPUTED status rather than being quietly
+    // laundered up to VERIFIED (section 8, review-status propagation).
+    expect(record.reviewStatus).toBe('DISPUTED');
+  });
+
+  it('propagates Abraham’s disputed reading to the line after him', () => {
+    // Everyone whose birth is computed from Abraham's inherits the caution: a
+    // verified figure resting on a disputed ancestor is disputed, not verified.
+    for (const personId of ['isaac', 'jacob', 'joseph']) {
+      expect(years(alternate, personId).reviewStatus).toBe('DISPUTED');
+    }
+    // The spine above Abraham is untouched and stays verified.
+    for (const personId of ['adam', 'noah', 'shem', 'terah']) {
+      expect(years(alternate, personId).reviewStatus).toBe('VERIFIED');
+    }
   });
 });
 

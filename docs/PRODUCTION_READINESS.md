@@ -147,13 +147,33 @@ below — and the first thing to revisit if anything goes wrong quietly.
 | Golden tests      | Ready  | Including 800 generated questions re-marked by the engine                        |
 | Provenance        | Ready  | Every chronological value carries a source type and a confidence                 |
 
-**Carried forward, and still open:** review status does not gate what reaches the
-application. Derived output is written `reviewStatus: 'DRAFT'`, so section 8's "only
-VERIFIED reaches production calculations" is not enforced at the boundary. The Phase 14
-export is the mechanism that would close it — only VERIFIED rows leave the database —
-but nothing in `data/canonical` is VERIFIED yet, so there is nothing to export. This is
-the oldest open item in the project and it should be closed before the dataset grows
-beyond one person's review.
+**Half closed, and the rest is a decision, not a task:** section 8 asks that "only
+VERIFIED records be included by default in production timeline calculations." Two things
+stood in the way, and the first is now fixed.
+
+The derivation used to stamp every derived record `reviewStatus: 'DRAFT'`, discarding the
+status of the sourced figures it was built from — so the derived data could not tell a
+verified figure from an unreviewed one at all. It now **propagates** the status through
+the derivation chain: a derived value carries the weakest review status of any figure it
+rests on. On the Masoretic chronology this yields 25 VERIFIED records (the closed
+Adam→Joseph spine, whose whole chain is verified) and 24 SOURCE_CHECKED (the collateral
+figures — the wives, the twelve sons, Ham, Japheth, Haran). On the alternate
+`masoretic-gen11-26` chronology the single disputed reading of Abraham's birth correctly
+surfaces as DISPUTED on Abraham and every one of the nineteen figures computed from him,
+while the spine above him stays VERIFIED. `isProductionVisible` (section 8's VERIFIED-only
+predicate) is wired and unit-tested, and the derivation's propagation is proven in
+`lib/chronology/__tests__/derive.test.ts` and `tests/golden/`.
+
+What remains is not more code but a call that shapes the product: whether to switch the
+application boundary (`lib/services/dataset.ts`) to VERIFIED-only **now**. The 25 VERIFIED
+records form a coherent primary genealogy, but the 24 SOURCE_CHECKED figures include ones
+the journeys and the "who was alive?" year explorer were built around (Sarah, Hagar, the
+sons of Jacob). Enforcing the gate today removes them from the default experience until
+each is individually promoted — and the project's verification policy forbids promoting
+figures to VERIFIED in bulk. So the switch is deferred to a data-owner decision: turn the
+gate on and let the default view narrow to the verified spine, or keep showing
+source-checked figures (each already labelled with its confidence and source type) until
+the review queue promotes them. The mechanism is ready either way.
 
 ## 8. Analytics
 

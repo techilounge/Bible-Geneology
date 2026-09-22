@@ -1,10 +1,13 @@
-import type {
-  ConfidenceLevel,
-  DateType,
-  Derivation,
-  DerivationStep,
-  EventChronology,
-  PersonChronology,
+import {
+  REVIEW_STATUSES,
+  weakestReviewStatus,
+  type ConfidenceLevel,
+  type DateType,
+  type Derivation,
+  type DerivationStep,
+  type EventChronology,
+  type PersonChronology,
+  type ReviewStatus,
 } from '@/lib/domain';
 
 /**
@@ -117,11 +120,15 @@ export function deriveChronology(
     resolved.set(personId, resolveRow(row, resolved, byId, issues));
   }
 
+  const propagatedStatus = propagateReviewStatus(rows, order, byId);
+
   const records: PersonChronology[] = [];
   for (const row of rows) {
     const r = resolved.get(row.personId);
     /* v8 ignore next -- @preserve: every row was resolved in the loop above. */
     if (!r) continue;
+    /* v8 ignore next -- @preserve: topologicalOrder visits every row, so a propagated status always exists; the fallback only stops a future change dropping one to undefined. */
+    const status = propagatedStatus.get(row.personId) ?? asReviewStatus(row.reviewStatus);
     records.push({
       personId: row.personId,
       chronologyId,
@@ -138,7 +145,7 @@ export function deriveChronology(
       calculationMethod: row.birthOffsetFromFather.calculationMethod ?? null,
       derivation: r.birthDerivation,
       notes: row.notes ?? null,
-      reviewStatus: 'DRAFT',
+      reviewStatus: status,
     });
   }
 
@@ -544,6 +551,64 @@ function countUnread(row: ChronologyInputRecord): number {
  * (anchored to Isaac) and Joseph (anchored to Jacob) resolve correctly despite
  * not following the simple father chain.
  */
+/**
+ * A source review status the schema recognises, or DRAFT.
+ *
+ * The canonical validator rejects an unknown status before derivation ever
+ * runs, so this only fails closed for a file derived in isolation: an
+ * unrecognised label licenses the least trust, never accidentally more.
+ */
+function asReviewStatus(value: string): ReviewStatus {
+  return (REVIEW_STATUSES as readonly string[]).includes(value)
+    ? (value as ReviewStatus)
+    : 'DRAFT';
+}
+
+/**
+ * Each record's review status, weakened to the least-reviewed figure anywhere
+ * in the chain it is computed from (requirement section 8).
+ *
+ * A derived birth year rests on the father's birth year, which rests on the
+ * grandfather's, and so on. The value is only as reviewed as the weakest link
+ * in that chain, so a VERIFIED figure computed from a DISPUTED ancestor comes
+ * out DISPUTED — which is exactly what the alternate chronology needs, where a
+ * single disputed reading of Abraham's birth must not present the whole line
+ * after him as verified. Walking `order` (fathers before children) means every
+ * dependency already carries its propagated status by the time a record reads
+ * it.
+ */
+function propagateReviewStatus(
+  rows: ChronologyInputRecord[],
+  order: string[],
+  byId: Map<string, ChronologyInputRecord>,
+): Map<string, ReviewStatus> {
+  const propagated = new Map<string, ReviewStatus>();
+  const ids = new Set(rows.map((r) => r.personId));
+
+  for (const personId of order) {
+    const row = byId.get(personId);
+    /* v8 ignore next -- @preserve: order only ever holds ids seeded from rows. */
+    if (!row) continue;
+
+    const dependencies: ReviewStatus[] = [];
+    const consider = (dep: string | null | undefined) => {
+      if (!dep || !ids.has(dep)) return;
+      const status = propagated.get(dep);
+      /* v8 ignore next -- @preserve: topological order resolves every dependency first, outside a cycle the build already fails on. */
+      if (status) dependencies.push(status);
+    };
+    consider(row.father);
+    for (const dep of row.dependsOn ?? []) consider(dep);
+
+    propagated.set(
+      personId,
+      weakestReviewStatus(asReviewStatus(row.reviewStatus), ...dependencies),
+    );
+  }
+
+  return propagated;
+}
+
 export function topologicalOrder(
   rows: ChronologyInputRecord[],
   issues: DeriveIssue[],
